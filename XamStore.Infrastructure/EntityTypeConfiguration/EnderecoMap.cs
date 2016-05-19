@@ -8,9 +8,9 @@ using XamStore.Domain.Entities.Cadastro;
 
 namespace XamStore.Infrastructure.EntityTypeConfiguration
 {
-    public class PessoaEnderecoMap : EntityTypeConfiguration<PessoaEndereco>
+    public class EnderecoMap : EntityTypeConfiguration<Endereco>
     {
-        public PessoaEnderecoMap()
+        public EnderecoMap()
         {
             ToTable("PessoaEndereco");
             HasKey(e => e.Id);

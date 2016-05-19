@@ -17,7 +17,7 @@ namespace XamStore.Infrastructure.Context
         }
 
         public DbSet<Pessoa> Pessoa { get; set; }
-        public DbSet<PessoaEndereco> PessoaEndereco { get; set; }
+        public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Estado> Estado { get; set; }
 
@@ -28,7 +28,7 @@ namespace XamStore.Infrastructure.Context
 
             modelBuilder.Configurations.Add(new CidadeMap());
             modelBuilder.Configurations.Add(new EstadoMap());
-            modelBuilder.Configurations.Add(new PessoaEnderecoMap());
+            modelBuilder.Configurations.Add(new EnderecoMap());
             modelBuilder.Configurations.Add(new PessoaMap());
         }
     }

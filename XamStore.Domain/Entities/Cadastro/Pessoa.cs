@@ -25,6 +25,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public string ConfirmaSenha { get; set; }
         public PessoaTipo PessoaTipo { get; set; }
 
-        public virtual List<PessoaEndereco> PessoaEnderecos { get; set; }
+        public virtual List<Endereco> PessoaEnderecos { get; set; }
     }
 }
