@@ -20,6 +20,7 @@ namespace XamStore.Infrastructure.Context
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Estado> Estado { get; set; }
+        public DbSet<Produto> Produto { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -30,6 +31,7 @@ namespace XamStore.Infrastructure.Context
             modelBuilder.Configurations.Add(new EstadoMap());
             modelBuilder.Configurations.Add(new EnderecoMap());
             modelBuilder.Configurations.Add(new PessoaMap());
+            modelBuilder.Configurations.Add(new ProdutoMap());
         }
     }
 }

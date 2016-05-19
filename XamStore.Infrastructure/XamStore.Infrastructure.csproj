@@ -78,6 +78,7 @@
     <Compile Include="EntityTypeConfiguration\EstadoMap.cs" />
     <Compile Include="EntityTypeConfiguration\EnderecoMap.cs" />
     <Compile Include="EntityTypeConfiguration\PessoaMap.cs" />
+    <Compile Include="EntityTypeConfiguration\ProdutoMap.cs" />
     <Compile Include="Migrations\201605191901349_Primeiro.cs" />
     <Compile Include="Migrations\201605191901349_Primeiro.Designer.cs">
       <DependentUpon>201605191901349_Primeiro.cs</DependentUpon>

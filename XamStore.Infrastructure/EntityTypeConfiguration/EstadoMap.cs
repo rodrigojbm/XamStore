@@ -15,7 +15,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
             ToTable("Estado");
             HasKey(e => e.Id);
             Property(e => e.Id).HasColumnName("Id");
-            Property(e => e.Descricao).HasColumnName("Descricao");
+            Property(e => e.Nome).HasColumnName("Descricao");
             Property(e => e.Abreviacao).HasColumnName("Abreviacao").IsRequired();
         }
     }

@@ -10,7 +10,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
             ToTable("Cidade");
             HasKey(c => c.Id);
             Property(c => c.Id).HasColumnName("Id");
-            Property(c => c.Descricao).HasColumnName("Descricao");
+            Property(c => c.Nome).HasColumnName("Nome");
 
             //Mapping the Relationship
             HasRequired(c => c.Estado)

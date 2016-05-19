@@ -68,6 +68,7 @@
     <Compile Include="Entities\Cadastro\Estado.cs" />
     <Compile Include="Entities\Cadastro\Pessoa.cs" />
     <Compile Include="Entities\Cadastro\Endereco.cs" />
+    <Compile Include="Entities\Cadastro\Produto.cs" />
     <Compile Include="Entities\Enums\PessoaTipo.cs" />
     <Compile Include="Entities\Enums\SexoTipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
