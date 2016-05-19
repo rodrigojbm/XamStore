@@ -12,7 +12,7 @@ namespace XamStore.Infrastructure.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Descricao = c.String(),
+                        Nome = c.String(),
                         IdEstado = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -20,17 +20,7 @@ namespace XamStore.Infrastructure.Migrations
                 .Index(t => t.IdEstado);
             
             CreateTable(
-                "dbo.Estado",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Descricao = c.String(),
-                        Abreviacao = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.PessoaEndereco",
+                "dbo.Endereco",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -69,19 +59,29 @@ namespace XamStore.Infrastructure.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Estado",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Descricao = c.String(),
+                        Abreviacao = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.PessoaEndereco", "IdPessoa", "dbo.Pessoa");
-            DropForeignKey("dbo.PessoaEndereco", "IdCidade", "dbo.Cidade");
             DropForeignKey("dbo.Cidade", "IdEstado", "dbo.Estado");
-            DropIndex("dbo.PessoaEndereco", new[] { "IdPessoa" });
-            DropIndex("dbo.PessoaEndereco", new[] { "IdCidade" });
+            DropForeignKey("dbo.Endereco", "IdPessoa", "dbo.Pessoa");
+            DropForeignKey("dbo.Endereco", "IdCidade", "dbo.Cidade");
+            DropIndex("dbo.Endereco", new[] { "IdPessoa" });
+            DropIndex("dbo.Endereco", new[] { "IdCidade" });
             DropIndex("dbo.Cidade", new[] { "IdEstado" });
-            DropTable("dbo.Pessoa");
-            DropTable("dbo.PessoaEndereco");
             DropTable("dbo.Estado");
+            DropTable("dbo.Pessoa");
+            DropTable("dbo.Endereco");
             DropTable("dbo.Cidade");
         }
     }

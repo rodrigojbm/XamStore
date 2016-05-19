@@ -17,17 +17,46 @@ namespace XamStore.ConsoleTeste
         {
             var context = new Context();
 
-            context.Endereco.AddOrUpdate(c => c.Logradouro,
-               new Endereco()
-               {
-                   Logradouro = "Rua Três Mil e Cem",
-                   Numero = "16",
-                   Bairro = "Jardim Imperial",
-                   Cep = "78075735",
-                   Complemento = "Proximo a alguma coisa",
-                   IdCidade = 1,
-                   IdPessoa = 1
-               });
+            context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
+            {
+                Nome = "Jamal",
+                Sobrenome = "Malik",
+                Cpf = "1231244112",
+                DataNascimento = DateTime.Parse("12-04-1990"),
+                Email = "jamal@hotmail.com",
+                SexoTipo = SexoTipo.Masculino,
+                Senha = "1234",
+                PessoaTipo = PessoaTipo.Juridica
+            });
+
+            context.SaveChanges();
+
+            context.Estado.AddOrUpdate(c => c.Nome,
+                new Estado()
+                {
+                    Nome = "Mato Grosso",
+                    Abreviacao = "MT"
+                });
+
+            context.SaveChanges();
+
+            context.Cidade.AddOrUpdate(c => c.Nome, new Cidade()
+            {
+                Nome = "Cuiabá",
+                IdEstado = 1,
+            });
+
+            context.SaveChanges();
+
+            context.Endereco.AddOrUpdate(c => c.Logradouro, new Endereco()
+            {
+                Logradouro = "Rua 3.100",
+                Numero = "20",
+                Cep = "78075735",
+                Bairro = "Jardim imperial",
+                IdCidade = 1,
+                IdPessoa = 1
+            });
 
             context.SaveChanges();
         }

@@ -79,9 +79,9 @@
     <Compile Include="EntityTypeConfiguration\EnderecoMap.cs" />
     <Compile Include="EntityTypeConfiguration\PessoaMap.cs" />
     <Compile Include="EntityTypeConfiguration\ProdutoMap.cs" />
-    <Compile Include="Migrations\201605191901349_Primeiro.cs" />
-    <Compile Include="Migrations\201605191901349_Primeiro.Designer.cs">
-      <DependentUpon>201605191901349_Primeiro.cs</DependentUpon>
+    <Compile Include="Migrations\201605192140442_Primeiro.cs" />
+    <Compile Include="Migrations\201605192140442_Primeiro.Designer.cs">
+      <DependentUpon>201605192140442_Primeiro.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,8 +97,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605191901349_Primeiro.resx">
-      <DependentUpon>201605191901349_Primeiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605192140442_Primeiro.resx">
+      <DependentUpon>201605192140442_Primeiro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

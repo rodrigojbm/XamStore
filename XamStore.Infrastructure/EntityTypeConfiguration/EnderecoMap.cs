@@ -12,7 +12,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
     {
         public EnderecoMap()
         {
-            ToTable("PessoaEndereco");
+            ToTable("Endereco");
             HasKey(e => e.Id);
             Property(e => e.Id).HasColumnName("Id");
             Property(e => e.Logradouro).HasColumnName("Logradouro").IsRequired();
@@ -23,11 +23,11 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
 
 
             HasRequired(p => p.Cidade)
-                .WithMany(p => p.PessoaEnderecos)
+                .WithMany(p => p.Enderecos)
                 .HasForeignKey(p => p.IdCidade);
 
             HasRequired(p => p.Pessoa)
-                .WithMany(p => p.PessoaEnderecos)
+                .WithMany(p => p.Enderecos)
                 .HasForeignKey(p => p.IdPessoa);
         }
     }

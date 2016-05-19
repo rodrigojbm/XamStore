@@ -9,6 +9,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public int IdEstado { get; set; }
         public virtual Estado Estado { get; set; }
 
-        public virtual List<Endereco> PessoaEnderecos { get; set; }
+        public virtual List<Endereco> Enderecos { get; set; }
     }
 }
