@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Teste";
+}
+
+<div class="jumbotron">
+    <h1>Teste</h1>
+</div>
+
+<div class="row">
+    <ul class="ei-slider-large">
+        @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Pessoa>)ViewBag.Message)
+        {
+
+            <li>
+                <h2>@slide.Nome</h2>
+                <h2>@slide.Sobrenome</h2>
+                <div class="ei-title">
+                    <h3 class="btn">@($"{slide.Email}")</h3>
+                    <h2>@slide.Nome</h2>
+                    <h2>@slide.Sobrenome</h2>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
