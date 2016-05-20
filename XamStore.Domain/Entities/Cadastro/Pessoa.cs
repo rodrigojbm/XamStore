@@ -20,11 +20,11 @@ namespace XamStore.Domain.Entities.Cadastro
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
         public string EmailAutenticacao { get; set; }
-        public SexoTipo SexoTipo { get; set; }
+        public SexoTipoEnum SexoTipo { get; set; }
         public string Senha { get; set; }
         public string ConfirmaSenha { get; set; }
-        public PessoaTipo PessoaTipo { get; set; }
+        public PessoaTipoEnum PessoaTipo { get; set; }
 
-        public virtual List<Endereco> Enderecos { get; set; }
+        public virtual ICollection<Endereco> Endereco { get; set; }
     }
 }

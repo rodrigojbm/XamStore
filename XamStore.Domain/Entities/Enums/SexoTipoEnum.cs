@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XamStore.Domain.Entities.Enums
 {
-    public enum SexoTipo
+    public enum SexoTipoEnum
     {
         Masculino = 0, 
         Feminino = 1

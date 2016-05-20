@@ -9,6 +9,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public string Nome { get; set; }
         public string Abreviacao { get; set; }
 
-        public virtual List<Cidade> Cidades { get; set; }
+        public virtual ICollection<Cidade> Cidades { get; set; }
     }
 }

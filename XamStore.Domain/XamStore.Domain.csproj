@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -64,13 +65,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Cadastro\Categoria.cs" />
     <Compile Include="Entities\Cadastro\Cidade.cs" />
+    <Compile Include="Entities\Cadastro\Contato.cs" />
     <Compile Include="Entities\Cadastro\Estado.cs" />
+    <Compile Include="Entities\Cadastro\Genero.cs" />
+    <Compile Include="Entities\Cadastro\Imagem.cs" />
+    <Compile Include="Entities\Cadastro\Jogo.cs" />
+    <Compile Include="Entities\Cadastro\Newsletter.cs" />
     <Compile Include="Entities\Cadastro\Pessoa.cs" />
     <Compile Include="Entities\Cadastro\Endereco.cs" />
     <Compile Include="Entities\Cadastro\Produto.cs" />
-    <Compile Include="Entities\Enums\PessoaTipo.cs" />
-    <Compile Include="Entities\Enums\SexoTipo.cs" />
+    <Compile Include="Entities\Cadastro\ProdutoImagem.cs" />
+    <Compile Include="Entities\Cadastro\Slide.cs" />
+    <Compile Include="Entities\Enums\StatusEnum.cs" />
+    <Compile Include="Entities\Cadastro\Usuario.cs" />
+    <Compile Include="Entities\Cadastro\UsuarioNivel.cs" />
+    <Compile Include="Entities\Enums\PessoaTipoEnum.cs" />
+    <Compile Include="Entities\Enums\SexoTipoEnum.cs" />
+    <Compile Include="Entities\Operacao\Pedido.cs" />
+    <Compile Include="Entities\Enums\PedidoStatusEnum.cs" />
+    <Compile Include="Entities\Operacao\PedidoItem.cs" />
+    <Compile Include="Entities\Operacao\Relatorio.cs" />
+    <Compile Include="Entities\Operacao\Venda.cs" />
+    <Compile Include="Entities\Enums\AutenticacaoTipoEnum.cs" />
+    <Compile Include="Entities\Sistema\Menu.cs" />
+    <Compile Include="Entities\Sistema\MenuAdmin.cs" />
+    <Compile Include="Entities\Enums\MenuAdminTipoEnum.cs" />
+    <Compile Include="Entities\Sistema\ProdutoCarrinho.cs" />
+    <Compile Include="Entities\Sistema\SessionAutenticacaoAdmin.cs" />
+    <Compile Include="Entities\Sistema\SessionAutenticacaoClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

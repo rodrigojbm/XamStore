@@ -24,9 +24,9 @@ namespace XamStore.ConsoleTeste
                 Cpf = "1231244112",
                 DataNascimento = DateTime.Parse("12-04-1990"),
                 Email = "jamal@hotmail.com",
-                SexoTipo = SexoTipo.Masculino,
+                SexoTipo = SexoTipoEnum.Masculino,
                 Senha = "1234",
-                PessoaTipo = PessoaTipo.Juridica
+                PessoaTipo = PessoaTipoEnum.Juridica
             });
 
             context.SaveChanges();
@@ -45,7 +45,7 @@ namespace XamStore.ConsoleTeste
                 Nome = "Cuiabá",
                 IdEstado = 1,
             });
-
+                
             context.SaveChanges();
 
             context.Endereco.AddOrUpdate(c => c.Logradouro, new Endereco()

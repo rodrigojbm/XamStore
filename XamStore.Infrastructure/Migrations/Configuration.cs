@@ -27,8 +27,8 @@ namespace XamStore.Infrastructure.Migrations
                     DataNascimento = DateTime.Parse("21-04-1995"),
                     Email = "rodrigojbm@hotmail.com",
                     Senha = "1234",
-                    PessoaTipo = PessoaTipo.Fisica,
-                    SexoTipo = SexoTipo.Masculino
+                    PessoaTipo = PessoaTipoEnum.Fisica,
+                    SexoTipo = SexoTipoEnum.Masculino
                 });
           
             context.SaveChanges();
