@@ -73,12 +73,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityTypeConfiguration\CategoriaMap.cs" />
     <Compile Include="EntityTypeConfiguration\CidadeMap.cs" />
     <Compile Include="Context\Context.cs" />
     <Compile Include="EntityTypeConfiguration\EstadoMap.cs" />
     <Compile Include="EntityTypeConfiguration\EnderecoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\GeneroMap.cs" />
+    <Compile Include="EntityTypeConfiguration\ImagemMap.cs" />
+    <Compile Include="EntityTypeConfiguration\JogoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\NewsletterMap.cs" />
     <Compile Include="EntityTypeConfiguration\PessoaMap.cs" />
     <Compile Include="EntityTypeConfiguration\ProdutoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\SlideMap.cs" />
+    <Compile Include="EntityTypeConfiguration\UsuarioMap.cs" />
+    <Compile Include="EntityTypeConfiguration\UsuarioNivelMap.cs" />
     <Compile Include="Migrations\201605201752504_Primeiro.cs" />
     <Compile Include="Migrations\201605201752504_Primeiro.Designer.cs">
       <DependentUpon>201605201752504_Primeiro.cs</DependentUpon>

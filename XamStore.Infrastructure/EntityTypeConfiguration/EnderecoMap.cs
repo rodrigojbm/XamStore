@@ -27,7 +27,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
                 .HasForeignKey(p => p.IdCidade);
 
             HasRequired(p => p.Pessoa)
-                .WithMany(p => p.Endereco)
+                .WithMany(p => p.Enderecos)
                 .HasForeignKey(p => p.IdPessoa);
         }
     }

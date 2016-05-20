@@ -13,9 +13,11 @@ namespace XamStore.Domain.Entities.Cadastro
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
+        public int Garantia { get; set; }
         public decimal Peso { get; set; }
         public int Estoque { get; set; }
         public Categoria Categoria { get; set; }
         public ICollection<Imagem> Imagens { get; set; }
+        public ICollection<Slide> Slides { get; set; }
     }
 }

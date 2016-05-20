@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace XamStore.Domain.Entities.Cadastro
 {
-    public class Jogo
+    public class ProdutoEstoque
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public bool Multiplayer { get; set; }
-        public int Jogadores { get; set; }
-        public Genero Genero { get; set; }
-
+        public int Quantidade { get; set; }
+        public int IdProduto { get; set; }
+        public Produto Produto { get; set; }
     }
 }

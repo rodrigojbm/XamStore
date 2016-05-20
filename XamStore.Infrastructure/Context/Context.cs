@@ -20,6 +20,14 @@ namespace XamStore.Infrastructure.Context
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Estado> Estado { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<UsuarioNivel> UsuarioNivel { get; set; }
+        public DbSet<Slide> Slide { get; set; }
+        public DbSet<Newsletter> Newsletter { get; set; }
+        public DbSet<Imagem> Imagem { get; set; }
+        public DbSet<Genero> Genero { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        //public DbSet<Jogo> Jogo { get; set; }
         //public DbSet<Produto> Produto { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,7 +39,15 @@ namespace XamStore.Infrastructure.Context
             modelBuilder.Configurations.Add(new EstadoMap());
             modelBuilder.Configurations.Add(new EnderecoMap());
             modelBuilder.Configurations.Add(new PessoaMap());
-           // modelBuilder.Configurations.Add(new ProdutoMap());
+            modelBuilder.Configurations.Add(new UsuarioMap());
+            modelBuilder.Configurations.Add(new UsuarioNivelMap());
+            modelBuilder.Configurations.Add(new SlideMap());
+            modelBuilder.Configurations.Add(new NewsletterMap());
+            modelBuilder.Configurations.Add(new ImagemMap());
+            modelBuilder.Configurations.Add(new GeneroMap());
+            modelBuilder.Configurations.Add(new CategoriaMap());
+            //modelBuilder.Configurations.Add(new JogoMap());
+            // modelBuilder.Configurations.Add(new ProdutoMap());
         }
     }
 }

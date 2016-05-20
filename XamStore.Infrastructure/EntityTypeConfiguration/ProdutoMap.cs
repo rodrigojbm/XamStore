@@ -17,8 +17,14 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
             Property(p => p.Id).HasColumnName("Id");
             Property(p => p.Nome).HasColumnName("Nome").IsRequired();
             Property(p => p.Descricao).HasColumnName("Descricao");
-            Property(p => p.Estoque).HasColumnName("Estoque").IsRequired();
             Property(p => p.Preco).HasColumnName("Preco").IsRequired();
+            Property(p => p.Garantia).HasColumnName("Garantia").IsRequired();
+            Property(p => p.Peso).HasColumnName("Peso");
+            Property(p => p.Estoque).HasColumnName("Estoque").IsRequired();
+
         }
     }
 }
+
+
+//Falta terminar
