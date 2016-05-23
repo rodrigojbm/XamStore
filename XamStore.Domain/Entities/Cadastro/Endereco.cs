@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XamStore.Domain.Entities.Operacao;
 
 namespace XamStore.Domain.Entities.Cadastro
 {
@@ -18,5 +19,7 @@ namespace XamStore.Domain.Entities.Cadastro
         public virtual Cidade Cidade { get; set; }
         public int IdPessoa { get; set; }
         public virtual Pessoa Pessoa { get; set; }
+
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

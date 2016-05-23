@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 using XamStore.Domain.Entities.Cadastro;
 
-namespace XamStore.Infrastructure.EntityTypeConfiguration
+namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
 {
     public class PessoaMap : EntityTypeConfiguration<Pessoa>
     {

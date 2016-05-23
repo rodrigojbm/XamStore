@@ -96,6 +96,7 @@
     <Compile Include="Entities\Sistema\ProdutoCarrinho.cs" />
     <Compile Include="Entities\Sistema\SessionAutenticacaoAdmin.cs" />
     <Compile Include="Entities\Sistema\SessionAutenticacaoClient.cs" />
+    <Compile Include="Entities\Sistema\SessionCarrinho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

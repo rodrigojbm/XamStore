@@ -14,6 +14,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public Produto Produto { get; set; }
 
         public int IdImagem { get; set; }
-        public Imagem Imagem { get; set; }
+        public virtual Imagem Imagem { get; set; }
     }
 }

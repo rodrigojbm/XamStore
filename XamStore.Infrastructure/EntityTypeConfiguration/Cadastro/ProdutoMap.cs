@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 using XamStore.Domain.Entities.Cadastro;
 
-namespace XamStore.Infrastructure.EntityTypeConfiguration
+namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
 {
     public class ProdutoMap : EntityTypeConfiguration<Produto>
     {
@@ -22,9 +17,9 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration
             Property(p => p.Peso).HasColumnName("Peso");
             Property(p => p.Estoque).HasColumnName("Estoque").IsRequired();
 
+            HasRequired(p => p.Categoria)
+                .WithMany(p => p.Produtos)
+                .HasForeignKey(p => p.IdCategoria);
         }
     }
 }
-
-
-//Falta terminar

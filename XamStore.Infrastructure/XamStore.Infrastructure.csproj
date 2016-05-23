@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -73,23 +74,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityTypeConfiguration\CategoriaMap.cs" />
-    <Compile Include="EntityTypeConfiguration\CidadeMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\CategoriaMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\CidadeMap.cs" />
     <Compile Include="Context\Context.cs" />
-    <Compile Include="EntityTypeConfiguration\EstadoMap.cs" />
-    <Compile Include="EntityTypeConfiguration\EnderecoMap.cs" />
-    <Compile Include="EntityTypeConfiguration\GeneroMap.cs" />
-    <Compile Include="EntityTypeConfiguration\ImagemMap.cs" />
-    <Compile Include="EntityTypeConfiguration\JogoMap.cs" />
-    <Compile Include="EntityTypeConfiguration\NewsletterMap.cs" />
-    <Compile Include="EntityTypeConfiguration\PessoaMap.cs" />
-    <Compile Include="EntityTypeConfiguration\ProdutoMap.cs" />
-    <Compile Include="EntityTypeConfiguration\SlideMap.cs" />
-    <Compile Include="EntityTypeConfiguration\UsuarioMap.cs" />
-    <Compile Include="EntityTypeConfiguration\UsuarioNivelMap.cs" />
-    <Compile Include="Migrations\201605201752504_Primeiro.cs" />
-    <Compile Include="Migrations\201605201752504_Primeiro.Designer.cs">
-      <DependentUpon>201605201752504_Primeiro.cs</DependentUpon>
+    <Compile Include="EntityTypeConfiguration\Cadastro\ContatoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\EstadoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\EnderecoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\GeneroMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\ImagemMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\JogoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\NewsletterMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Operacao\PedidoItemMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Operacao\PedidoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\PessoaMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\ProdutoEstoqueMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\ProdutoImagemMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\ProdutoMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\SlideMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\UsuarioMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\UsuarioNivelMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Operacao\VendaMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Sistema\MenuAdminMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Sistema\MenuMap.cs" />
+    <Compile Include="Migrations\201605231834122_PrimeiroMigration.cs" />
+    <Compile Include="Migrations\201605231834122_PrimeiroMigration.Designer.cs">
+      <DependentUpon>201605231834122_PrimeiroMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605231922491_SegundoMigration.cs" />
+    <Compile Include="Migrations\201605231922491_SegundoMigration.Designer.cs">
+      <DependentUpon>201605231922491_SegundoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605231937190_TerceiroMigrationAdicionandoParteSistema.cs" />
+    <Compile Include="Migrations\201605231937190_TerceiroMigrationAdicionandoParteSistema.Designer.cs">
+      <DependentUpon>201605231937190_TerceiroMigrationAdicionandoParteSistema.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,8 +122,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605201752504_Primeiro.resx">
-      <DependentUpon>201605201752504_Primeiro.cs</DependentUpon>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605231834122_PrimeiroMigration.resx">
+      <DependentUpon>201605231834122_PrimeiroMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605231922491_SegundoMigration.resx">
+      <DependentUpon>201605231922491_SegundoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605231937190_TerceiroMigrationAdicionandoParteSistema.resx">
+      <DependentUpon>201605231937190_TerceiroMigrationAdicionandoParteSistema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

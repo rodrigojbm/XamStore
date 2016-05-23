@@ -12,7 +12,9 @@ namespace XamStore.Domain.Entities.Cadastro
         public string Nome { get; set; }
         public bool Multiplayer { get; set; }
         public int Jogadores { get; set; }
-        public Genero Genero { get; set; }
+
+        public int IdGenero { get; set; }
+        public virtual Genero Genero { get; set; }
 
     }
 }

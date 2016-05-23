@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XamStore.Domain.Entities.Enums;
+using XamStore.Domain.Entities.Operacao;
 
 namespace XamStore.Domain.Entities.Cadastro
 {
@@ -26,5 +27,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public PessoaTipoEnum PessoaTipo { get; set; }
 
         public virtual ICollection<Endereco> Enderecos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

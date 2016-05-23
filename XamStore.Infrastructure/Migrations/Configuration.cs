@@ -17,8 +17,7 @@ namespace XamStore.Infrastructure.Migrations
 
         protected override void Seed(Context.Context context)
         {
-            context.Pessoa.AddOrUpdate(c => c.Nome,
-                new Pessoa()
+            context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
                 {
                     Nome = "Rodrigo",
                     Sobrenome = "Maciel",
@@ -31,6 +30,49 @@ namespace XamStore.Infrastructure.Migrations
                     SexoTipo = SexoTipoEnum.Masculino
                 });
           
+            context.SaveChanges();
+
+            context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
+            {
+                Nome = "Jamal",
+                Sobrenome = "Malik",
+                Cpf = "1231244112",
+                DataNascimento = DateTime.Parse("12-04-1990"),
+                Email = "jamal@hotmail.com",
+                SexoTipo = SexoTipoEnum.Masculino,
+                Senha = "1234",
+                PessoaTipo = PessoaTipoEnum.Juridica
+            });
+
+            context.SaveChanges();
+
+            context.Estado.AddOrUpdate(c => c.Nome,
+                new Estado()
+                {
+                    Nome = "Mato Grosso",
+                    Abreviacao = "MT"
+                });
+
+            context.SaveChanges();
+
+            context.Cidade.AddOrUpdate(c => c.Nome, new Cidade()
+            {
+                Nome = "Cuiabá",
+                IdEstado = 1,
+            });
+
+            context.SaveChanges();
+
+            context.Endereco.AddOrUpdate(c => c.Logradouro, new Endereco()
+            {
+                Logradouro = "Rua 3.100",
+                Numero = "20",
+                Cep = "78075735",
+                Bairro = "Jardim imperial",
+                IdCidade = 1,
+                IdPessoa = 1
+            });
+
             context.SaveChanges();
         }
     }

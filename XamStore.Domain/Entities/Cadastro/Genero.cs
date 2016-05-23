@@ -11,5 +11,6 @@ namespace XamStore.Domain.Entities.Cadastro
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public virtual ICollection<Jogo> Jogos { get; set; }
     }
 }

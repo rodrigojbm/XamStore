@@ -13,9 +13,9 @@ namespace XamStore.Domain.Entities.Operacao
         public double Quantidade { get; set; }
 
         public int IdPedido { get; set; }
-        public Pedido Pedido { get; set; }
+        public virtual Pedido Pedido { get; set; }
 
         public int IdProduto { get; set; }
-        public Produto Produto { get; set; }
+        public virtual Produto Produto { get; set; }
     }
 }

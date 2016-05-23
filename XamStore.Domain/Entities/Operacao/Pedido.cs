@@ -19,11 +19,13 @@ namespace XamStore.Domain.Entities.Operacao
         public DateTime Data { get; set; }
 
         public int IdPessoa { get; set; }
-        public Pessoa Pessoa { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
 
         public int IdEndereco { get; set; }
-        public Endereco Endereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
 
         public bool IsNovo { get; set; }
+
+        public virtual ICollection<Venda> Vendas { get; set; }
     }
 }
