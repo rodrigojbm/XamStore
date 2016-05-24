@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +11,12 @@ namespace XamStore.Domain.Entities.Cadastro
         public string Nome { get; set; }
         public bool Multiplayer { get; set; }
         public int Jogadores { get; set; }
+        public int Classificacao { get; set; }
 
         public int IdGenero { get; set; }
         public virtual Genero Genero { get; set; }
 
+        public int IdConsole { get; set; }
+        public virtual Console Console { get; set; }
     }
 }

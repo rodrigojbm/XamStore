@@ -15,7 +15,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(u => u.Senha).HasColumnName("Senha").IsRequired();
 
             HasRequired(u => u.UsuarioNivel)
-                .WithMany(u => u.Usuarios)
+                .WithMany()
                 .HasForeignKey(u => u.IdUsuarioNivel);
         }
     }

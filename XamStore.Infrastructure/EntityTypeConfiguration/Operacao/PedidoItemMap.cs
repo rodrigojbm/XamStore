@@ -17,7 +17,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Operacao
                 .HasForeignKey(p => p.IdPedido);
 
             HasRequired(p => p.Produto)
-                .WithMany(p => p.PedidoItens)
+                .WithMany()
                 .HasForeignKey(p => p.IdProduto);
         }
     }

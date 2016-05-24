@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XamStore.Domain.Entities.Enums;
@@ -64,6 +63,41 @@ namespace XamStore.Resource.Menu
                     Controller = "Categoria",
                     Nome = "Categorias",
                     Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "ProdutosAdmin",
+                    Nome = "Produtos",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Usuario",
+                    Nome = "Usuários",
+                    Tipo = MenuAdminTipoEnum.Operacao
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Venda",
+                    Nome = "Vendas",
+                    Tipo = MenuAdminTipoEnum.Operacao
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "ProdutoEstoque",
+                    Nome = "Estoque",
+                    Tipo = MenuAdminTipoEnum.Operacao
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Relatorio",
+                    Nome = "Relatórios",
+                    Tipo = MenuAdminTipoEnum.Operacao
                 }
             };
 

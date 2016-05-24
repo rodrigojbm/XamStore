@@ -13,7 +13,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(s => s.Imagem).HasColumnName("Imagem").IsRequired();
 
             HasRequired(s => s.Produto)
-                .WithMany(s => s.Slides)
+                .WithMany()
                 .HasForeignKey(s => s.IdProduto);
         }
     }

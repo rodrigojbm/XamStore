@@ -3,21 +3,39 @@
 }
 
 <div class="jumbotron">
-    <h1>Teste</h1>
+    <h4>Teste</h4>
 </div>
 
-<div class="row">
-    <ul class="ei-slider-large">
-        @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Pessoa>)ViewBag.Pessoa)
-        {
-            <li>
-                <h4>@slide.Nome - @slide.Sobrenome</h4>
-                <div class="ei-title">
-                    <h6 class="btn">@($"{slide.Email}")</h6>
-                    <h5>@slide.Nome</h5>
-                    <h5>@slide.Sobrenome</h5>
-                </div>
-            </li>
-        }
-    </ul>
+<div class="slider">
+<div class="image-slider">
+    <div class="wrapper">
+        <div id="ei-slider" class="ei-slider">
+            <ul class="ei-slider-large">
+                @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Produto>) ViewBag.Produtos)
+                {
+
+                    <li>
+                        <img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg/ @slide.Nome" alt="image06" style="margin-top: 20px; height: 400px !important;"/>
+
+                        <div class="ei-title">
+                            <h3 class="btn">@($"{slide.Nome}")</h3>
+                            <h2>@slide.Descricao</h2>
+                            <h3>
+                                <a class="ei_icons" href="Produto/detalhar/@slide.Id"><img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg" alt=""></a>
+
+                            </h3>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <ul class="ei-slider-thumbs">
+                @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Slide>) ViewBag.Produtos)
+                {
+                    <li><a href="#"><span>@slide.Produto.Descricao</span></a><img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg/ @slide.Imagem" alt=""/></li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
 </div>

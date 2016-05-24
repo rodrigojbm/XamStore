@@ -18,12 +18,12 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
 
 
             HasRequired(p => p.Cidade)
-                .WithMany(p => p.Enderecos)
+                .WithMany()
                 .HasForeignKey(p => p.IdCidade);
 
             HasRequired(p => p.Pessoa)
-                .WithMany(p => p.Enderecos)
-                .HasForeignKey(p => p.IdPessoa);
+                .WithMany()
+                .HasForeignKey(p => p.IdPessoa).WillCascadeOnDelete(false);
         }
     }
 }

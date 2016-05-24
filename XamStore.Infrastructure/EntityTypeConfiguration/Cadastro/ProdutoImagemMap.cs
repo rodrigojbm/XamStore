@@ -16,7 +16,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
                 .HasForeignKey(p => p.IdProduto);
 
             HasRequired(p => p.Imagem)
-                .WithMany(p => p.ProdutoImagens)
+                .WithMany()
                 .HasForeignKey(p => p.IdImagem);
         }
     }

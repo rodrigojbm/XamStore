@@ -14,7 +14,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
 
             //Mapping the Relationship
             HasRequired(c => c.Estado)
-                .WithMany(c => c.Cidades)
+                .WithMany()
                 .HasForeignKey(c => c.IdEstado);
         }
     }

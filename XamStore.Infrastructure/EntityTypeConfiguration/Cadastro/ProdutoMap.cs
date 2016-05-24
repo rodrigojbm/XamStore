@@ -18,7 +18,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(p => p.Estoque).HasColumnName("Estoque").IsRequired();
 
             HasRequired(p => p.Categoria)
-                .WithMany(p => p.Produtos)
+                .WithMany()
                 .HasForeignKey(p => p.IdCategoria);
         }
     }

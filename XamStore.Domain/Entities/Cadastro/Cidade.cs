@@ -6,6 +6,7 @@ namespace XamStore.Domain.Entities.Cadastro
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+
         public int IdEstado { get; set; }
         public virtual Estado Estado { get; set; }
 

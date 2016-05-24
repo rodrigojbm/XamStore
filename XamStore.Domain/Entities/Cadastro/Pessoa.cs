@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XamStore.Domain.Entities.Enums;
@@ -26,7 +25,7 @@ namespace XamStore.Domain.Entities.Cadastro
         public string ConfirmaSenha { get; set; }
         public PessoaTipoEnum PessoaTipo { get; set; }
 
-        public virtual ICollection<Endereco> Enderecos { get; set; }
+        public virtual Endereco Endereco { get; set; }
         public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

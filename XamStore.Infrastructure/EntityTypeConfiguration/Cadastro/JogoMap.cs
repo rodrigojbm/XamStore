@@ -13,10 +13,15 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(j => j.Nome).HasColumnName("Nome");
             Property(j => j.Multiplayer).HasColumnName("Multiplayer").IsRequired();
             Property(j => j.Jogadores).HasColumnName("Jogadores").IsRequired();
+            Property(j => j.Classificacao).HasColumnName("Classificacao").IsRequired();
 
             HasRequired(j => j.Genero)
-                .WithMany(j => j.Jogos)
+                .WithMany()
                 .HasForeignKey(j => j.IdGenero);
+
+            HasRequired(j => j.Console)
+                .WithMany()
+                .HasForeignKey(j => j.IdConsole);
         }
     }
 }

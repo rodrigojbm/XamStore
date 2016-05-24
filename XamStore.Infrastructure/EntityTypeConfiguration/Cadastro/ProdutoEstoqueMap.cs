@@ -12,7 +12,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(p => p.Quantidade).HasColumnName("Quantidade").IsRequired();
 
             HasRequired(p => p.Produto)
-                .WithMany(p => p.ProdutoEstoques)
+                .WithMany()
                 .HasForeignKey(p => p.IdProduto);
         }
     }

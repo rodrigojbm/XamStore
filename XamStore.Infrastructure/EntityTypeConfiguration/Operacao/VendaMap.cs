@@ -15,7 +15,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Operacao
             Property(v => v.IsNova).HasColumnName("IsNova").IsRequired();
 
             HasRequired(v => v.Pedido)
-                .WithMany(v => v.Vendas)
+                .WithMany()
                 .HasForeignKey(v => v.IdPedido);
         }
     }

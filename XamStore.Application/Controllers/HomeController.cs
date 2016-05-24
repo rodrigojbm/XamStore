@@ -1,36 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
+using XamStore.Domain.Entities.Cadastro;
+using XamStore.Domain.Entities.Enums;
 using XamStore.Infrastructure.Context;
 
 namespace XamStore.Application.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly Context _db = new Context();
 
-        [Route("index")]
+        [Route("Inicio")]
         public ActionResult Index()
         {
-            ViewBag.Pessoa = _db.Pessoa;
+            ViewBag.Menus = _db.Menu;
+            ViewBag.Produtos = _db.Slide.Include(x => x.Produto);
 
             return View();
         }
 
-        public ActionResult About()
+        public string CadastrarNews(string email)
         {
-            ViewBag.Message = "Your application description page.";
+            try
+            {
+                var news = new Newsletter
+                {
+                    Email = email,
+                    Data = DateTime.Now,
+                    Status = StatusEnum.Ativo
+                };
 
-            return View();
-        }
+                var newsExists = _db.Newsletter.FirstOrDefault(x => x.Email == email);
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+                if (newsExists != null)
+                    return "0";
 
-            return View();
+                _db.Newsletter.Add(news);
+                _db.SaveChanges();
+
+                return "Email cadastrado com sucesso!";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

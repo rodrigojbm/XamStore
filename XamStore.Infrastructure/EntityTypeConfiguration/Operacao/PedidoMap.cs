@@ -17,13 +17,13 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Operacao
             Property(p => p.Data).HasColumnName("Data").IsRequired();
             Property(p => p.IsNovo).HasColumnName("IsNovo").IsRequired();
 
-            HasRequired(p => p.Endereco)
-                .WithMany(p => p.Pedidos)
-                .HasForeignKey(p => p.IdEndereco);
-
             HasRequired(p => p.Pessoa)
-                .WithMany(p => p.Pedidos)
-                .HasForeignKey(p => p.IdPessoa).WillCascadeOnDelete(false);
+                .WithMany()
+                .HasForeignKey(p => p.IdPessoa);
+
+            HasRequired(p => p.Endereco)
+                .WithMany()
+                .HasForeignKey(p => p.IdEndereco);
         }
     }
 }

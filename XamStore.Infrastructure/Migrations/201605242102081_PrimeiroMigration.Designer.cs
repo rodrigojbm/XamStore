@@ -7,13 +7,13 @@ namespace XamStore.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SegundoMigration : IMigrationMetadata
+    public sealed partial class PrimeiroMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SegundoMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PrimeiroMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605231922491_SegundoMigration"; }
+            get { return "201605242102081_PrimeiroMigration"; }
         }
         
         string IMigrationMetadata.Source

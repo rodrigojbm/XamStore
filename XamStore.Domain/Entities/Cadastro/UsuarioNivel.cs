@@ -7,6 +7,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public int Id { get; set; }
         public string Nome { get; set; }
 
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        //public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

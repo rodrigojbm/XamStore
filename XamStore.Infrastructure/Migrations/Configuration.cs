@@ -18,18 +18,18 @@ namespace XamStore.Infrastructure.Migrations
         protected override void Seed(Context.Context context)
         {
             context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
-                {
-                    Nome = "Rodrigo",
-                    Sobrenome = "Maciel",
-                    Rg = "20102911",
-                    Cpf = "05015961197",
-                    DataNascimento = DateTime.Parse("21-04-1995"),
-                    Email = "rodrigojbm@hotmail.com",
-                    Senha = "1234",
-                    PessoaTipo = PessoaTipoEnum.Fisica,
-                    SexoTipo = SexoTipoEnum.Masculino
-                });
-          
+            {
+                Nome = "Rodrigo",
+                Sobrenome = "Maciel",
+                Rg = "20102911",
+                Cpf = "05015961197",
+                DataNascimento = DateTime.Parse("21-04-1995"),
+                Email = "rodrigojbm@hotmail.com",
+                Senha = "1234",
+                PessoaTipo = PessoaTipoEnum.Fisica,
+                SexoTipo = SexoTipoEnum.Masculino
+            });
+
             context.SaveChanges();
 
             context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
