@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Painel Administrativo</title>
+
+    <link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/Site.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Mobile Shopping", "Index", "Admin", null, new { @class = "navbar-brand" })
+            </div>
+            @using XamStore.Domain.Entities.Sistema;
+            @{ var sessionAdmin = Session["autenticacaoAdmin"] as SessionAutenticacaoAdmin; }
+            @{
+                if (sessionAdmin != null)
+                {
+                    <div class="dropdown" style="float:right;margin-top:5px;">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            @Html.Raw(sessionAdmin.Nome)
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+                            <li><a href="@Url.Action("sair","LoginAdmin")">Sair</a></li>
+
+                        </ul>
+                    </div>
+                    <div style="clear:both"></div>
+                }
+            }
+
+        </div>
+    </div>
+    <div class="container body-content">
+
+
+        @RenderBody()
+
+        <div style="clear:both"></div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mobile Shopping</p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+    @{
+        var mensagem = ViewBag.Mensagem as string;
+        if (mensagem != null)
+        {
+            <script type="text/javascript">
+
+                $(function(){
+
+                    var url = window.location.href;
+
+                    var newUrl = String(url).replace("editar", "").replace("deletar", "");
+
+                    window.history.replaceState(url, "", newUrl);
+
+                    setTimeout(function(){
+
+                        $('.alert-success').hide();
+
+
+
+                    }, 5000);
+
+                });
+
+            </script>
+
+            <div class="alert alert-success" style="position:fixed;right:10px;bottom:10px;">@Html.Raw(mensagem)</div>
+        }
+    }
+</body>
+</html>

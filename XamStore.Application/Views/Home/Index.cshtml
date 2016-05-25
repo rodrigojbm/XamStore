@@ -15,13 +15,13 @@
                 {
 
                     <li>
-                        <img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg/ @slide.Nome" alt="image06" style="margin-top: 20px; height: 400px !important;"/>
+                        <img src="as.jpg/@slide.Nome" alt="image06" style="margin-top: 20px; height: 400px !important;"/>
 
                         <div class="ei-title">
                             <h3 class="btn">@($"{slide.Nome}")</h3>
                             <h2>@slide.Descricao</h2>
                             <h3>
-                                <a class="ei_icons" href="Produto/detalhar/@slide.Id"><img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg" alt=""></a>
+                                <a class="ei_icons" href="Produto/detalhar/@slide.Id"><img src="as.jgp" alt=""></a>
 
                             </h3>
                         </div>
@@ -31,7 +31,7 @@
             <ul class="ei-slider-thumbs">
                 @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Slide>) ViewBag.Produtos)
                 {
-                    <li><a href="#"><span>@slide.Produto.Descricao</span></a><img src="http://www.olhardireto.com.br/imgsite/banners/banners_anuncie200x290px(1)(1)(2).jpg/ @slide.Imagem" alt=""/></li>
+                    <li><a href="#"><span>@slide.Produto.Descricao</span></a><img src="as.jpg/@slide.Imagem" alt=""/></li>
                 }
 
             </ul>

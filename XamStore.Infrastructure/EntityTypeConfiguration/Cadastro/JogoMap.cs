@@ -22,6 +22,10 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             HasRequired(j => j.Console)
                 .WithMany()
                 .HasForeignKey(j => j.IdConsole);
+
+            HasRequired(j => j.Plataforma)
+                .WithMany()
+                .HasForeignKey(j => j.IdPlataforma);
         }
     }
 }

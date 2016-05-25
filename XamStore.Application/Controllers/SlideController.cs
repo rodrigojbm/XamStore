@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using XamStore.Domain.Entities.Cadastro;
+using XamStore.Domain.Services;
 using XamStore.Infrastructure.Context;
 
 namespace XamStore.Application.Controllers
@@ -23,8 +24,7 @@ namespace XamStore.Application.Controllers
         [Route("Slide")]
         public async Task<ActionResult> Index()
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
@@ -37,9 +37,7 @@ namespace XamStore.Application.Controllers
         [Route("Slide/Cadastrar")]
         public ActionResult Cadastrar()
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
@@ -53,56 +51,14 @@ namespace XamStore.Application.Controllers
         [Route("Slide/Cadastrar")]
         public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Imagem, IdProduto, File")] Slide slide, HttpPostedFile file)
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
 
-            var imageTypes = new List<string>
+            if (!ModelState.IsValid)
             {
-                "image/gif",
-                "image/jpeg",
-                "image/pjpeg",
-                "image/png"
-            };
-
-            if (slide.File == null || slide.File.ContentLength == 0)
-                ModelState.AddModelError("File", "Campo Requerido");
-            else if (!imageTypes.Contains(slide.File.ContentType))
-                ModelState.AddModelError("File", "Formatos suportados: GIF, JGP ou PNG.");
-
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    var extensao = "";
-
-                    switch (file.ContentType)
-                    {
-                        case "image/gif":
-                            extensao = ".gif";
-                            break;
-                        case "image/jpeg":
-                            extensao = ".jpg";
-                            break;
-                        case "image/pjpeg":
-                            extensao = ".jpg";
-                            break;
-                        default:
-                            extensao = ".png";
-                            break;
-                    }
-
-                    var imageCript = file.FileName + "imagem-slide";
-                    imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
-
-                    var fullPath = "~/Imagens/Produto/" + imageCript + extensao;
-                    file.SaveAs(Server.MapPath(fullPath));
-
-                    slide.Imagem = $"{imageCript}{extensao}";
-                }
+                new FileChecker().VefifyFileFormat(slide, file);
 
                 _db.Slide.Add(slide);
                 await _db.SaveChangesAsync();
@@ -121,9 +77,7 @@ namespace XamStore.Application.Controllers
         [Route("Slide/Editar")]
         public async Task<ActionResult> Editar(int? id, HttpPostedFile file)
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
@@ -141,13 +95,12 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("slide/editar")]
+        [Route("Slide/Editar")]
         public async Task<ActionResult> Editar([Bind(Include = "Id, Descricao, IdProduto, Imagem, File")] Slide slide, HttpPostedFileBase file)
         {
             try
             {
-                var isAutenticado = ChecarUsuarioAdminAutenticado();
-                if (!isAutenticado)
+                if (!ChecarUsuarioAdminAutenticado())
                     return RedirectToAction("Index", "LoginAdmin");
 
                 InitializeMenuAdmin();
@@ -156,10 +109,10 @@ namespace XamStore.Application.Controllers
                 {
                     if (file != null)
                     {
-                        var imageCript = file.FileName + "imagem-slide";
+                        var imageCript = $"{file.FileName}imagem-slide";
                         imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
 
-                        var fullPath = "~/Imagens/Produto/" + imageCript + ".png";
+                        var fullPath = $"~/Imagens/Produto/{imageCript}.png";
 
                         slide.Imagem = $"{imageCript}.png";
                         _db.Entry(slide).State = EntityState.Modified;
@@ -186,9 +139,7 @@ namespace XamStore.Application.Controllers
         [Route("Slide/Deletar/{id}")]
         public ActionResult Deletar(int? id)
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
@@ -203,9 +154,7 @@ namespace XamStore.Application.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeletarConfirmacao(int id)
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
@@ -228,4 +177,5 @@ namespace XamStore.Application.Controllers
 
             base.Dispose(disposing);
         }
+    }
 }

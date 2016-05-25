@@ -1,0 +1,50 @@
+﻿@model IEnumerable<XamStore.Domain.Entities.Cadastro.Slide>
+
+@{
+    ViewBag.Title = "Cadastro de slide";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.Partial("MenuAdmin");
+<div class="content-right">
+    <h2>Cadastro de slide</h2>
+
+    <p>
+        @Html.ActionLink("Novo slide", null, "Admin/Slide/Cadastrar")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto.Descricao)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    <img src="~/Imagens/Produto/@item.Imagem" width="30" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produto.Descricao)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Editar", "Admin/Slide", new { id = item.Id }, null) |
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/Slide", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -56,6 +56,7 @@
     <Compile Include="EntityTypeConfiguration\Cadastro\ImagemMap.cs" />
     <Compile Include="EntityTypeConfiguration\Cadastro\JogoMap.cs" />
     <Compile Include="EntityTypeConfiguration\Cadastro\NewsletterMap.cs" />
+    <Compile Include="EntityTypeConfiguration\Cadastro\PlataformaMap.cs" />
     <Compile Include="EntityTypeConfiguration\Operacao\PedidoItemMap.cs" />
     <Compile Include="EntityTypeConfiguration\Operacao\PedidoMap.cs" />
     <Compile Include="EntityTypeConfiguration\Cadastro\PessoaMap.cs" />
@@ -68,9 +69,9 @@
     <Compile Include="EntityTypeConfiguration\Operacao\VendaMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuAdminMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuMap.cs" />
-    <Compile Include="Migrations\201605242102081_PrimeiroMigration.cs" />
-    <Compile Include="Migrations\201605242102081_PrimeiroMigration.Designer.cs">
-      <DependentUpon>201605242102081_PrimeiroMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201605251809323_PrimeiroMigration.cs" />
+    <Compile Include="Migrations\201605251809323_PrimeiroMigration.Designer.cs">
+      <DependentUpon>201605251809323_PrimeiroMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +90,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605242102081_PrimeiroMigration.resx">
-      <DependentUpon>201605242102081_PrimeiroMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605251809323_PrimeiroMigration.resx">
+      <DependentUpon>201605251809323_PrimeiroMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

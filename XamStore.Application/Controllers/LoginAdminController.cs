@@ -26,7 +26,7 @@ namespace XamStore.Application.Controllers
             var usuarioData = _db.Usuario.FirstOrDefault(x => x.Senha == usuario.Senha && x.Login == usuario.Login);
 
             if (usuarioData == null)
-                return Json(new {RedirectUrl = "", message = "Usuaário ou senha inválidos!"}, JsonRequestBehavior.AllowGet);
+                return Json(new {RedirectUrl = "", message = "Usuário ou senha inválidos!"}, JsonRequestBehavior.AllowGet);
 
             var sessionAdmin = new SessionAutenticacaoAdmin
             {

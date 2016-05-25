@@ -44,6 +44,7 @@ namespace XamStore.Infrastructure.Context
         public DbSet<MenuAdmin> MenuAdmin { get; set; }
         public DbSet<Fabricante> Fabricante { get; set; }
         public DbSet<Domain.Entities.Cadastro.Console> Console { get; set; }
+        public DbSet<Plataforma> Plataforma { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -73,7 +74,7 @@ namespace XamStore.Infrastructure.Context
             modelBuilder.Configurations.Add(new MenuAdminMap());
             modelBuilder.Configurations.Add(new FabricanteMap());
             modelBuilder.Configurations.Add(new ConsoleMap());
-
+            modelBuilder.Configurations.Add(new PlataformaMap());
 
             Database.SetInitializer<Context>(null);
         }

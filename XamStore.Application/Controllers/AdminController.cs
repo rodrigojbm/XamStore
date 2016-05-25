@@ -10,8 +10,7 @@ namespace XamStore.Application.Controllers
     {
         public ActionResult Index()
         {
-            var isAutenticado = ChecarUsuarioAdminAutenticado();
-            if (!isAutenticado)
+            if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();

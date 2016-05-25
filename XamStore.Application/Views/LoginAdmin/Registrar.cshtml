@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model XamStore.Domain.Entities.Cadastro.Pessoa
+
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h4 class="style">Área de Autenticação</h4>
+        </div>
+    </div>
+</div>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="login_left">
+                <div class="registration_left">
+                    <h3>Cadastro no site</h3>
+                    <p>Digite seus dados abaixo</p>
+                    <script type="text/javascript">
+                        function OnSucessRegistro(data) {
+                            window.location.replace(data.RedirectUrl);
+                        }
+                    </script>
+                    <div class="registration_form">
+                        @using (Ajax.BeginForm("Registrar", "Login", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", OnSuccess = "OnSucessRegistro", LoadingElementId = "Registrar" }, new { Id = "Registrar" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Nome, new { placeholder = "Nome" })
+                                    @Html.ValidationMessageFor(m => m.Nome)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Sobrenome, new { placeholder = "Sobrenome" })
+                                    @Html.ValidationMessageFor(m => m.Sobrenome)
+                                </label>
+                            </div>
+                            <div class="sky_form">
+                                <ul>
+                                    <li><label class="radio left">@Html.RadioButtonFor(m => m.SexoTipo, "0", new { @checked = "checked" })<i>Masculino</i></label></li>
+                                    <li><label class="radio">@Html.RadioButtonFor(m => m.SexoTipo, "1")<i>Feminino</i></label></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail" })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha senha" })
+                                    @Html.ValidationMessageFor(m => m.Senha)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmaSenha)
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="submit" value="Criar conta" id="register-submit">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@using XamStore.Domain.Entities.Sistema
+
+<div class="top_bg">
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")" class="logo-principal">MulMurc TITLE</a>
+            </div>
+
+            @if (Session["autenticacao"] != null)
+            {
+                var profile = (SessionAutenticacaoClient)Session["autenticacao"];
+                <div class="log_reg">
+                    <ul>
+                        <li style="color:#fff">Olá @profile.Nome</li>
+                        <span style="color:#fff;">|</span>
+                        @Html.ActionLink("Meus dados", "perfil", "pessoa")
+                        <span style="color:#fff;">|</span>
+                        <li>@Html.ActionLink("Sair", "Sair", "Login")</li>
+
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="log_reg">
+                    <ul>
+                        <li>@Html.ActionLink("Entrar", "Index", "Login")</li>
+
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            }
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

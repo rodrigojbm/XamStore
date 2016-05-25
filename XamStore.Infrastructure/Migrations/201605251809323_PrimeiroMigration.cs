@@ -136,14 +136,26 @@ namespace XamStore.Infrastructure.Migrations
                         Multiplayer = c.Boolean(nullable: false),
                         Jogadores = c.Int(nullable: false),
                         Classificacao = c.Int(nullable: false),
+                        IdPlataforma = c.Int(nullable: false),
                         IdGenero = c.Int(nullable: false),
                         IdConsole = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Console", t => t.IdConsole, cascadeDelete: true)
                 .ForeignKey("dbo.Genero", t => t.IdGenero, cascadeDelete: true)
+                .ForeignKey("dbo.Plataforma", t => t.IdPlataforma, cascadeDelete: true)
+                .Index(t => t.IdPlataforma)
                 .Index(t => t.IdGenero)
                 .Index(t => t.IdConsole);
+            
+            CreateTable(
+                "dbo.Plataforma",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nome = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Menu",
@@ -322,6 +334,7 @@ namespace XamStore.Infrastructure.Migrations
             DropForeignKey("dbo.PedidoItem", "IdPedido", "dbo.Pedido");
             DropForeignKey("dbo.Pedido", "IdPessoa", "dbo.Pessoa");
             DropForeignKey("dbo.Pedido", "IdEndereco", "dbo.Endereco");
+            DropForeignKey("dbo.Jogo", "IdPlataforma", "dbo.Plataforma");
             DropForeignKey("dbo.Jogo", "IdGenero", "dbo.Genero");
             DropForeignKey("dbo.Jogo", "IdConsole", "dbo.Console");
             DropForeignKey("dbo.Endereco", "IdPessoa", "dbo.Pessoa");
@@ -341,6 +354,7 @@ namespace XamStore.Infrastructure.Migrations
             DropIndex("dbo.Pedido", new[] { "IdPessoa" });
             DropIndex("dbo.Jogo", new[] { "IdConsole" });
             DropIndex("dbo.Jogo", new[] { "IdGenero" });
+            DropIndex("dbo.Jogo", new[] { "IdPlataforma" });
             DropIndex("dbo.Endereco", new[] { "IdPessoa" });
             DropIndex("dbo.Endereco", new[] { "IdCidade" });
             DropIndex("dbo.Console", new[] { "IdFabricante" });
@@ -357,6 +371,7 @@ namespace XamStore.Infrastructure.Migrations
             DropTable("dbo.Newsletter");
             DropTable("dbo.MenuAdmin");
             DropTable("dbo.Menu");
+            DropTable("dbo.Plataforma");
             DropTable("dbo.Jogo");
             DropTable("dbo.Imagem");
             DropTable("dbo.Genero");

@@ -33,6 +33,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Cadastro\Categoria.cs" />
@@ -47,6 +51,7 @@
     <Compile Include="Entities\Cadastro\Newsletter.cs" />
     <Compile Include="Entities\Cadastro\Pessoa.cs" />
     <Compile Include="Entities\Cadastro\Endereco.cs" />
+    <Compile Include="Entities\Cadastro\Plataforma.cs" />
     <Compile Include="Entities\Cadastro\Produto.cs" />
     <Compile Include="Entities\Cadastro\ProdutoEstoque.cs" />
     <Compile Include="Entities\Cadastro\ProdutoImagem.cs" />
@@ -70,10 +75,12 @@
     <Compile Include="Entities\Sistema\SessionAutenticacaoClient.cs" />
     <Compile Include="Entities\Sistema\SessionCarrinho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FileChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
