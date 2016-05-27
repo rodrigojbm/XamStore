@@ -1,0 +1,238 @@
+﻿<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h2 class="style">Carrinho de compras</h2>
+        </div>
+    </div>
+</div>
+<script src="../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../Scripts/carrinho.js"></script>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="panel panel-default">
+                <div class="panel-heading">Produtos</div>
+                <ul class="list-group">
+                    @{
+                        var sessionCarrinho = Session["carrinho"] as XamStore.Domain.Entities.Sistema.SessionCarrinho;
+                        var pesoTotal = sessionCarrinho?.ProdutosCarrinho.Sum(x => x.Peso) ?? 0.0m;
+                        var totalCarrinho = 0.0m;
+
+                        if (sessionCarrinho == null || sessionCarrinho.ProdutosCarrinho.Count == 0)
+                        {
+                            <li class="list-group-item">Carrinho não contem produtos adicionados.</li>
+                        }
+                        else
+                        {
+                            var i = 0;
+                            try
+                            {
+                                foreach (var carrinho in sessionCarrinho.ProdutosCarrinho)
+                                {
+                                    totalCarrinho = totalCarrinho + carrinho.Valor;
+                                    <li class="list-group-item" id="@carrinho.Produto.Id" style="@if (i % 2 == 0) {@Html.Raw("background:#f8f8f8;")}">
+                                        <div class="carrinho-produto-imagem" style="float:left;"><img src="~/Imagens/Produto/@carrinho.Imagem" width="80" height="80" style="border-radius:50%;padding:3px; border:1px solid #ccc;" /></div>
+                                        <div class="carrinho-produto-descricao" style="float:left;margin-left:10%;width:20%;margin-top:30px;">@carrinho.Produto.Descricao</div>
+                                        <div class="carrinho-produto-quatidade" style="float:left;margin-left:10%;margin-top:30px;">Quantidade <input class="carrinho-quantidade" type="text" value="@carrinho.Quantidade" style="width:30px;text-align:center" /></div>
+                                        <div class="carrinho-produto-valor" style="float:left;margin-top:30px;margin-left:20%">@($"{carrinho.Valor}")</div>
+                                        <div class="carrinho-produto-close" style="float:right;margin-top:30px;margin-right:5%">@Ajax.ActionLink("x", "Remove", "Carrinho", new { id = @carrinho.Produto.Id }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "removeCarrinhoSuccess" })</div>
+                                        <div style="clear:both"></div>
+                                    </li>
+
+                                    i++;
+                                }
+                            }
+                            catch (ArgumentNullException ex)
+                            {
+                                throw;
+                            }
+
+                            <li class="list-group-item" style="text-align:right">Total :@($"{totalCarrinho}")</li>
+                        }
+                    }
+                </ul>
+            </div>
+            @{if (Session["autenticacao"] == null)
+                {
+                    @Html.ActionLink("Finalizar Comprar", "FinalizarCompra", "Carrinho", new { pedidoId = 0 }, new { @class = "btn btn-primary" })
+                }
+            }
+
+            <div style="width:32.5%;float:left;
+             @{
+
+                 if (Session["autenticacao"] == null)
+                 {
+                         @Html.Raw("display:none;");
+                 }
+
+                 if (sessionCarrinho == null)
+                 {
+                          @Html.Raw("display:none;");
+                 }
+
+                 if (sessionCarrinho != null && sessionCarrinho.ProdutosCarrinho.Count == 0)
+                 {
+                         @Html.Raw("display:none;");
+                 }
+                 }
+            ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Endereço de entrega</div>
+                    @{
+                        var enderecos = ViewBag.Enderecos as ICollection<XamStore.Domain.Entities.Cadastro.Endereco>;
+                    }
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Selecione
+                            </th>
+                            <th>
+                                Endereço
+                            </th>
+
+                            <th>
+                                Bairro
+                            </th>
+                            <th>
+                                Cidade
+                            </th>
+                        </tr>
+                        @{
+                            var enderecoSelecionado = Request.QueryString["endereco"];
+
+                            if (enderecos != null)
+                            {
+                                var i = 0;
+                                foreach (var endereco in enderecos)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="Endereco" value="@endereco.Id"
+                                                   @{ if (string.IsNullOrEmpty(enderecoSelecionado) || enderecoSelecionado == "undefined") { if (i == (enderecos.Count() - 1)) { @Html.Raw("checked")  ; } } else { if (endereco.Id.ToString() == enderecoSelecionado) { @Html.Raw("checked")  ; } } } />
+                                        </td>
+                                        <td> @endereco.Logradouro </td>
+                                        <td> @endereco.Bairro </td>
+                                        <td> @endereco.Cidade.Nome </td>
+                                    </tr>
+            i++;
+        }
+    }
+                        }
+
+                    </table>
+
+                    @Html.ActionLink("Novo endereço", "Endereco", "Pessoa", null, new { @class = "btn btn-primary", style = "float:right;margin:10px;" })
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+            <div style="width:32.5%;float:left;margin-left:1.1%;
+                 @{
+                     if (Session["autenticacao"] == null)
+                     {
+                         @Html.Raw("display:none;");
+                     }
+
+                     if (sessionCarrinho == null)
+                     {
+                          @Html.Raw("display:none;");
+                     }
+
+                     if (sessionCarrinho != null && sessionCarrinho.ProdutosCarrinho.Count == 0)
+                     {
+                         @Html.Raw("display:none;");
+                     }
+                 }">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Frete</div>
+                    <ul class="list-group">
+                        <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="pac" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == false) { @Html.Raw("checked=checked")  ; } } } /> Pac (Encomenda normal)</li>
+                        <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="sedex" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == true) { @Html.Raw("checked=checked")  ; } } } /> Sedex</li>
+                        <li class="list-group-item" style="text-align:left">Peso <span class="peso">@pesoTotal</span> g</li>
+                        @if (Session["autenticacao"] != null)
+                        {
+                            if (enderecos.Count > 0)
+                            {
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('.calcular-frete').click(function () {
+                                            var online = navigator.onLine;
+                                            if (!online) {
+                                                alert("Não é possivel calcular o frete! verifique sua conexão com a internet.");
+                                                return false;
+                                            }
+                                        });
+                                    })
+                                </script>
+                                <p>
+                                    <button class="btn btn-primary calcular-frete" style="float:right;margin:10px;">Calcular Frete</button>
+                                </p>
+                            }
+                        }
+
+                        <div style="clear:both"></div>
+                    </ul>
+                </div>
+            </div>
+            <div style="width:32.5%;float:left;margin-left:1.1%;
+            @{
+                if (Session["autenticacao"] == null)
+                {
+                    @Html.Raw("display:none;");
+                }
+
+                if (sessionCarrinho == null)
+                {
+                    @Html.Raw("display:none;");
+                }
+
+                if (sessionCarrinho != null && sessionCarrinho.ProdutosCarrinho.Count == 0)
+                {
+                    @Html.Raw("display:none;");
+                }
+            }
+            ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Totais</div>
+                    <ul class="list-group">
+                        <li class="list-group-item" style="text-align:left">Produtos <span class="produto-result">@($"{totalCarrinho}")</span></li>
+                        <li class="list-group-item" style="text-align:left">
+                            Frete <span class="frete-result">
+                                @{
+                                    if (sessionCarrinho != null)
+                                    {
+                                        @Html.Raw($"{sessionCarrinho.Frete}");
+                                    }
+                                 }
+                        </span>
+                    </li>
+                    <li class="list-group-item" style="text-align:left">
+                        Total Geral R$ <span class="total-result">
+                            @{
+                                if (sessionCarrinho != null)
+                                {
+                                    @Html.Raw($"{sessionCarrinho.TotalGeral + sessionCarrinho.Frete}");
+                                } 
+                             }
+                    </span>
+                </li>
+
+                @{
+                    if (sessionCarrinho != null && sessionCarrinho.Frete > 1)
+                    {
+                        <p>
+                            @Html.ActionLink("Finalizar pedido", "FinalizarPedido", "Carrinho", null, new { @class = "btn btn-primary", style = "float:right;margin:10px;" })
+                        </p>
+                    }
+                }
+
+                <div style="clear:both"></div>
+            </ul>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    </div>
+    </div>
+</div>
+
