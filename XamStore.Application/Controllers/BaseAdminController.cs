@@ -16,7 +16,7 @@ namespace XamStore.Application.Controllers
         {
             ViewBag.VendaCount = _db.Venda.Count(x => x.IsNova);
 
-            var sessionAdmin = Session["autenticacaoAdmin"] as SessionAutenticacaoAdmin;
+            var sessionAdmin = Session["AutenticacaoAdmin"] as SessionAutenticacaoAdmin;
             var usuario = _db.Usuario.FirstOrDefault(x => x.Id == sessionAdmin.Id);
             var menu = usuario?.UsuarioNivel.Id == 1 ? _db.MenuAdmin.ToList() : _db.MenuAdmin.Where(x => x.Tipo == 0).ToList();
 
@@ -25,7 +25,7 @@ namespace XamStore.Application.Controllers
 
         public bool ChecarUsuarioAdminAutenticado()
         {
-            var sessionAdmin = (SessionAutenticacaoAdmin) Session?["autenticacaoAdmin"];
+            var sessionAdmin = (SessionAutenticacaoAdmin) Session?["AutenticacaoAdmin"];
             return sessionAdmin != null;
         }
 

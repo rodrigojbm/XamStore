@@ -6,12 +6,12 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using E_Commerce.Web_References.br.com.correios.ws;
 using Uol.PagSeguro.Constants;
 using Uol.PagSeguro.Domain;
 using Uol.PagSeguro.Exception;
 using Uol.PagSeguro.Resources;
 using Uol.PagSeguro.Service;
+using XamStore.Application.br.com.correios.ws1;
 using XamStore.Domain.Entities.Cadastro;
 using XamStore.Domain.Entities.Enums;
 using XamStore.Domain.Entities.Operacao;
@@ -29,7 +29,7 @@ namespace XamStore.Application.Controllers
         public ActionResult Index()
         {
             ViewBag.Menus = _db.Menu.ToList();
-            var session = Session["autenticacao"] as SessionAutenticacaoClient;
+            var session = Session["Autenticacao"] as SessionAutenticacaoClient;
 
             if (session == null)
             {
@@ -175,7 +175,7 @@ namespace XamStore.Application.Controllers
                 newSessionCarrinho.ProdutosCarrinho.Add(produtoCarrinho);
             }
 
-            Session["carrinho"] = newSessionCarrinho;
+            Session["Carrinho"] = newSessionCarrinho;
 
             return Json(new {RedirectUrl = Url.Action("Index", "Carrinho")}, JsonRequestBehavior.AllowGet);
         }
@@ -186,8 +186,8 @@ namespace XamStore.Application.Controllers
             {
                 Response.AppendHeader("Access-Control-Allow-Origin", "https://sandbox.pagseguro.uol.com.br");
 
-                var session = Session["autenticacao"] as SessionAutenticacaoClient;
-                var sessionCarrinho = Session["carrinho"] as SessionCarrinho;
+                var session = Session["Autenticacao"] as SessionAutenticacaoClient;
+                var sessionCarrinho = Session["Carrinho"] as SessionCarrinho;
 
                 if (session == null)
                     return RedirectToAction("Index", "Login", new { actionRedirect = "index", controllerRedirect = "Carrinho" });
@@ -251,7 +251,7 @@ namespace XamStore.Application.Controllers
                 var credentials = PagSeguroConfiguration.Credentials(true);
                 var paymentRedirectUri = payment.Register(credentials);
 
-                Session.Remove("carrinho");
+                Session.Remove("Carrinho");
 
                 Response.Redirect(paymentRedirectUri.ToString());
 

@@ -112,7 +112,8 @@ namespace XamStore.Application.Controllers
                         var imageCript = $"{file.FileName}imagem-slide";
                         imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
 
-                        var fullPath = $"~/Imagens/Produto/{imageCript}.png";
+                        var fullPath = "~/Imagens/Produto/" + imageCript + ".png";
+                        file.SaveAs(Server.MapPath(fullPath));
 
                         slide.Imagem = $"{imageCript}.png";
                         _db.Entry(slide).State = EntityState.Modified;

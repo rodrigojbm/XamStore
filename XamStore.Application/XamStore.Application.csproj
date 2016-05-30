@@ -57,6 +57,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
@@ -135,15 +136,23 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAdminController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\SlideController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Web References\br.com.correios.ws\Reference.cs">
-      <SubType>code</SubType>
+    <Compile Include="Web References\br.com.correios.ws1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +168,204 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\0001-1.jpg" />
+    <Content Include="Imagens\0001-2.jpg" />
+    <Content Include="Imagens\0001-3.jpg" />
+    <Content Include="Imagens\0001-4.jpg" />
+    <Content Include="Imagens\0001-5.jpg" />
+    <Content Include="Imagens\32-facebook.png" />
+    <Content Include="Imagens\32-twitter.png" />
+    <Content Include="Imagens\about_pic.jpg" />
+    <Content Include="Imagens\arrow-next.png" />
+    <Content Include="Imagens\arrow-prev.png" />
+    <Content Include="Imagens\art.png" />
+    <Content Include="Imagens\blog-img.jpg" />
+    <Content Include="Imagens\blog-img1.jpg" />
+    <Content Include="Imagens\blog-img2.jpg" />
+    <Content Include="Imagens\cart.png" />
+    <Content Include="Imagens\close.png" />
+    <Content Include="Imagens\delivery.png" />
+    <Content Include="Imagens\det_pic1.jpg" />
+    <Content Include="Imagens\det_pic2.jpg" />
+    <Content Include="Imagens\down_arrow.png" />
+    <Content Include="Imagens\facebook.png" />
+    <Content Include="Imagens\f_pic1.jpg" />
+    <Content Include="Imagens\f_pic2.jpg" />
+    <Content Include="Imagens\f_pic3.jpg" />
+    <Content Include="Imagens\f_pic4.jpg" />
+    <Content Include="Imagens\f_pic5.jpg" />
+    <Content Include="Imagens\f_pic6.jpg" />
+    <Content Include="Imagens\gpluse.png" />
+    <Content Include="Imagens\icon1.png" />
+    <Content Include="Imagens\icon2.png" />
+    <Content Include="Imagens\icon3.png" />
+    <Content Include="Imagens\icon4.png" />
+    <Content Include="Imagens\icon5.png" />
+    <Content Include="Imagens\icon_1.png" />
+    <Content Include="Imagens\icon_2.png" />
+    <Content Include="Imagens\icon_3.png" />
+    <Content Include="Imagens\icon_4.png" />
+    <Content Include="Imagens\img1.jpg" />
+    <Content Include="Imagens\img2.jpg" />
+    <Content Include="Imagens\img3.jpg" />
+    <Content Include="Imagens\large\0001-1.jpg" />
+    <Content Include="Imagens\large\0001-2.jpg" />
+    <Content Include="Imagens\large\0001-3.jpg" />
+    <Content Include="Imagens\large\0001-4.jpg" />
+    <Content Include="Imagens\large\0001-5.jpg" />
+    <Content Include="Imagens\logo.png" />
+    <Content Include="Imagens\marker2.gif" />
+    <Content Include="Imagens\menu_novo.gif" />
+    <Content Include="Imagens\nav-icon.png" />
+    <Content Include="Imagens\pic1.jpg" />
+    <Content Include="Imagens\pic2.jpg" />
+    <Content Include="Imagens\pic3.jpg" />
+    <Content Include="Imagens\pic4.jpg" />
+    <Content Include="Imagens\pic5.jpg" />
+    <Content Include="Imagens\pic6.jpg" />
+    <Content Include="Imagens\Produto\0009f9b83ffce68015e951be879345b2.png" />
+    <Content Include="Imagens\Produto\01708e64b879437be74713f59a4f7f52.png" />
+    <Content Include="Imagens\Produto\01bdaf676a7d304f3bb1abef0b21e734.jpg" />
+    <Content Include="Imagens\Produto\021990a4826bf3a077912b3b7172b03c.jpg" />
+    <Content Include="Imagens\Produto\02d08fe0d4bcfb04a0b4a84e8791c867.png" />
+    <Content Include="Imagens\Produto\0332d1de7d1deb110629139099968f15.png" />
+    <Content Include="Imagens\Produto\0443cc830effcd032420230ddd04e3ac.png" />
+    <Content Include="Imagens\Produto\0bc65fbffd9b2690b8bfab54439f4a67.png" />
+    <Content Include="Imagens\Produto\0c5c84edd11fcb3b93297f8473def1fd.png" />
+    <Content Include="Imagens\Produto\0cdef453ecb254295894b9c592742cef.png" />
+    <Content Include="Imagens\Produto\0ddf41a9988b5d2162d446ab274dd57f.jpg" />
+    <Content Include="Imagens\Produto\10378250_1621465231421268_6162483883340622658_n.png" />
+    <Content Include="Imagens\Produto\1153f3a150ec45eb6dad06a127cc360d.jpg" />
+    <Content Include="Imagens\Produto\19526074c9ac0b55ce1511df0dab0151.png" />
+    <Content Include="Imagens\Produto\1a20a641b021eeb3f9053f80f60a8566.png" />
+    <Content Include="Imagens\Produto\1a5cda6ad0649bed4d95bedd61653045.jpg" />
+    <Content Include="Imagens\Produto\1d4993b01934d3fd76fe03cc23fbbd1c.png" />
+    <Content Include="Imagens\Produto\207d3fd7b25a1a1605e84a55745efb1a.png" />
+    <Content Include="Imagens\Produto\24e9c8c441a1f1bfc69938087632996b.png" />
+    <Content Include="Imagens\Produto\251d24107e0336aeef081230c66c27e3.png" />
+    <Content Include="Imagens\Produto\28ba01518a0da0f7eea09bf5ce191761.jpg" />
+    <Content Include="Imagens\Produto\29d110b0fb6ed9b0e224a5d8f186e720.png" />
+    <Content Include="Imagens\Produto\2ff50096af2e00ad272ba4ad1e3fdebf.jpg" />
+    <Content Include="Imagens\Produto\30727eaa4f94d03d69be21affd23f155.jpg" />
+    <Content Include="Imagens\Produto\3270c003bc8625e1307e71c872a0d552.jpg" />
+    <Content Include="Imagens\Produto\3270c003bc8625e1307e71c872a0d552.png" />
+    <Content Include="Imagens\Produto\3884b7522057890ee9231db78eddc115.png" />
+    <Content Include="Imagens\Produto\39b0fb5314bcff41cfe4d231ac5bede7.png" />
+    <Content Include="Imagens\Produto\39ef899ef864494ae3726e9d8d9eb009.png" />
+    <Content Include="Imagens\Produto\3a1cac52ca6ae93e2f68538a1fa1ebe1.jpg" />
+    <Content Include="Imagens\Produto\3c44bfd9f20bba775a343aef8b60ab8e.png" />
+    <Content Include="Imagens\Produto\3d50111d35211875ccf5acb5271c7d70.png" />
+    <Content Include="Imagens\Produto\3ee3bfa74bb6d492f1411f1b6324c73e.jpg" />
+    <Content Include="Imagens\Produto\41b78b3cd37403b3fd55c5467daf6750.jpg" />
+    <Content Include="Imagens\Produto\48144861f32e1616774c105350dacdf5.png" />
+    <Content Include="Imagens\Produto\4b94dca1398078b9dff1dac98db185db.png" />
+    <Content Include="Imagens\Produto\4c0a50c517466d1cf486876fba6cc1ac.png" />
+    <Content Include="Imagens\Produto\5009c2dd853a1aae843d7578a1868ae8.png" />
+    <Content Include="Imagens\Produto\526c40c0787308416127e82ec354594f.png" />
+    <Content Include="Imagens\Produto\52f587b6f36f5091ee6c13a044db6c16.jpg" />
+    <Content Include="Imagens\Produto\52f587b6f36f5091ee6c13a044db6c16.png" />
+    <Content Include="Imagens\Produto\54400e9424eb94f89d4f78a63bb69709.png" />
+    <Content Include="Imagens\Produto\54ccbb0dfcc65c3c75c0dfe2fadfa029.png" />
+    <Content Include="Imagens\Produto\5663ca562f5f648072a54b62153b8acc.jpg" />
+    <Content Include="Imagens\Produto\56b03e2b10e3c78ee0bb0eaf0851a644.png" />
+    <Content Include="Imagens\Produto\5a01f3aef7cac846c33f2c52626a5e96.png" />
+    <Content Include="Imagens\Produto\5c72b7126ad81619101a8e89ff0dad59.png" />
+    <Content Include="Imagens\Produto\630e40ffc98bfe14c452ffb9460a53ed.jpg" />
+    <Content Include="Imagens\Produto\65501fa90e437010cd8af6ecb2197cad.png" />
+    <Content Include="Imagens\Produto\698e537d3fafc6df27b84a51a15fb229.png" />
+    <Content Include="Imagens\Produto\6a535bcf7f248148a37f90bab519bce3.jpg" />
+    <Content Include="Imagens\Produto\6b3c6021d6521448c55d1c48df84f1a4.jpg" />
+    <Content Include="Imagens\Produto\6bbbaf916ffee39fb9f0a758bc2e7603.png" />
+    <Content Include="Imagens\Produto\6d2c37d10998d7d2cd552f5bb908f9b4.png" />
+    <Content Include="Imagens\Produto\75503969e241904773d44bfaca68b156.jpg" />
+    <Content Include="Imagens\Produto\76e7c6b273ad4245b4b0496afd40b4a3.jpg" />
+    <Content Include="Imagens\Produto\7a897a4d2be7ec72bc411f57d2dbb3bf.png" />
+    <Content Include="Imagens\Produto\7a8d94585442d357058dfa7ff5a69473.jpg" />
+    <Content Include="Imagens\Produto\7bc4178c31ea330371b0dc7613323d0d.png" />
+    <Content Include="Imagens\Produto\7d0163448d904e061dd1d5dd9b6d5d7e.jpg" />
+    <Content Include="Imagens\Produto\7d0163448d904e061dd1d5dd9b6d5d7e.png" />
+    <Content Include="Imagens\Produto\7da2fb599e165b7917a3aba7e2582149.jpg" />
+    <Content Include="Imagens\Produto\7da3a55f39e46969f9ca90267a616511.png" />
+    <Content Include="Imagens\Produto\82b0ccd67e0ee045d702007176c97e82.jpg" />
+    <Content Include="Imagens\Produto\87750b2e5cfe74cb889ea6fc15a243d9.png" />
+    <Content Include="Imagens\Produto\8946cc739d9ac3489883df52f08ae48c.jpg" />
+    <Content Include="Imagens\Produto\8946cc739d9ac3489883df52f08ae48c.png" />
+    <Content Include="Imagens\Produto\8ad19eaf01cf5cf61a12fdfcf1b74b1a.jpg" />
+    <Content Include="Imagens\Produto\8b697621f2326400ad03ceed1f0de9cf.png" />
+    <Content Include="Imagens\Produto\8d850f920dce7c76c7dcf8ac92ee4e82.png" />
+    <Content Include="Imagens\Produto\8fb81d3c782a59b0671eecbd5fa30bb4.png" />
+    <Content Include="Imagens\Produto\924ebf696911c2a4748b81c16941804b.png" />
+    <Content Include="Imagens\Produto\957cce9f44076fd6a33289e9edebfac2.jpg" />
+    <Content Include="Imagens\Produto\957cce9f44076fd6a33289e9edebfac2.png" />
+    <Content Include="Imagens\Produto\959cc2000b837ab5cb2b8b7373f83332.png" />
+    <Content Include="Imagens\Produto\96fff1927516a4e073fb668a4713c4d1.png" />
+    <Content Include="Imagens\Produto\975e3c90da8919e4ff8e3221a0e387a5.png" />
+    <Content Include="Imagens\Produto\9cac2aa4e0efac4e58e26e9aca34b89d.png" />
+    <Content Include="Imagens\Produto\a022487c4064b6d605116ff1bf4e6f32.png" />
+    <Content Include="Imagens\Produto\a30d44e0d5019a7a6a5bb5f602f8567a.png" />
+    <Content Include="Imagens\Produto\a78e9b28f67bb8063a9d9d610bd141ec.png" />
+    <Content Include="Imagens\Produto\a8e1bef61d5e286c78042a07aee74dd4.png" />
+    <Content Include="Imagens\Produto\a9c57d0b7cb62f999f0245071fbe549a.png" />
+    <Content Include="Imagens\Produto\a9d06ba23702cdcdac84de8f4422ad28.jpg" />
+    <Content Include="Imagens\Produto\ad97a1a9b7a242d47282ba3cb3ed655e.png" />
+    <Content Include="Imagens\Produto\b27db7bb972e0ce9a0f3102cb0d4b587.png" />
+    <Content Include="Imagens\Produto\b4e751106040fbd739f1638bbe846b85.png" />
+    <Content Include="Imagens\Produto\b921213d23eec9510639a46845d880b2.png" />
+    <Content Include="Imagens\Produto\b95c3d42fe4ef72b9fcec441a1f6ebd5.png" />
+    <Content Include="Imagens\Produto\bb0d1e5df42d7a8f13c920f796d21f68.png" />
+    <Content Include="Imagens\Produto\bcf4ae42e8b223378abd9cf99a064540.png" />
+    <Content Include="Imagens\Produto\bda6c673131f8f4b7ddf8eab29ed0f09.png" />
+    <Content Include="Imagens\Produto\bda795f488d90cc428a1d9f9f8311a79.png" />
+    <Content Include="Imagens\Produto\bffa08e74a8a44cbdeba6e1f19ce93a3.png" />
+    <Content Include="Imagens\Produto\ca8f4abd0b77a38bf2619f56bb930d99.png" />
+    <Content Include="Imagens\Produto\cd44d65d8ef02b7292e24dfacbdf01aa.png" />
+    <Content Include="Imagens\Produto\cfd72fe77d489a279b7f29c7b619c2d9.png" />
+    <Content Include="Imagens\Produto\d0b816258c8d8875d2f810b8da69611f.png" />
+    <Content Include="Imagens\Produto\d2d558648e07ddb59046db13e6335914.png" />
+    <Content Include="Imagens\Produto\d7c5fe11b19f8a99d8bd48db2315cc29.png" />
+    <Content Include="Imagens\Produto\de47cf4ed03314c68cfa2c9a9d2986b3.png" />
+    <Content Include="Imagens\Produto\deb9c1e3b744e91b2ccd75a5822d7d56.png" />
+    <Content Include="Imagens\Produto\e5e7a7211597b592f99a959f2fffacbd.jpg" />
+    <Content Include="Imagens\Produto\e63270c98f2b40dbedcbc78c2b318c63.jpg" />
+    <Content Include="Imagens\Produto\e71016b0fe9c7bcd5579b5719a21fc23.png" />
+    <Content Include="Imagens\Produto\e97a625428c08dd87094cccda71d2764.jpg" />
+    <Content Include="Imagens\Produto\eab9fbc71ccad17e510e3dc038c803ad.png" />
+    <Content Include="Imagens\Produto\eb55c24954e318941a27831731f31eda.jpg" />
+    <Content Include="Imagens\Produto\eba92a9f30645083847bd8033985895a.jpg" />
+    <Content Include="Imagens\Produto\ec283005bc2fed5a6d98173e0646d905.jpg" />
+    <Content Include="Imagens\Produto\ec283005bc2fed5a6d98173e0646d905.png" />
+    <Content Include="Imagens\Produto\eeff74746cf6d7041f6d626cb2aff605.jpg" />
+    <Content Include="Imagens\Produto\f1cc6b973698632381811a0de922230a.png" />
+    <Content Include="Imagens\Produto\f2f182d453f94f192435499b23693537.jpg" />
+    <Content Include="Imagens\Produto\f349b29bac507f3b717a1014ec27c196.png" />
+    <Content Include="Imagens\Produto\f6808cb98755ac40373b7d3679d2c00b.png" />
+    <Content Include="Imagens\Produto\f7dbfc91d4c66277a86e18fff9a7db48.png" />
+    <Content Include="Imagens\Produto\fb2b39ee1a55100026c5973b5ae927b4.jpg" />
+    <Content Include="Imagens\Produto\fba9d16ea1a848c0401439600cf1f3fa.png" />
+    <Content Include="Imagens\Produto\fbe38f462ad2533e7011f6292d618b26.png" />
+    <Content Include="Imagens\Produto\fc525c938c8d175ae310d6ba198f3539.png" />
+    <Content Include="Imagens\Produto\fe4795a0b349c9b97af6ab67254a8503.jpg" />
+    <Content Include="Imagens\rss.png" />
+    <Content Include="Imagens\search.png" />
+    <Content Include="Imagens\slider-image1.jpg" />
+    <Content Include="Imagens\slider-image2.jpg" />
+    <Content Include="Imagens\slider-image3.jpg" />
+    <Content Include="Imagens\slider-image4.jpg" />
+    <Content Include="Imagens\slider-image5.jpg" />
+    <Content Include="Imagens\small\0001-1.jpg" />
+    <Content Include="Imagens\small\0001-2.jpg" />
+    <Content Include="Imagens\small\0001-3.jpg" />
+    <Content Include="Imagens\small\0001-4.jpg" />
+    <Content Include="Imagens\small\0001-5.jpg" />
+    <Content Include="Imagens\smartphones.jpg" />
+    <Content Include="Imagens\thumbs\1.jpg" />
+    <Content Include="Imagens\thumbs\2.jpg" />
+    <Content Include="Imagens\thumbs\3.jpg" />
+    <Content Include="Imagens\thumbs\4.jpg" />
+    <Content Include="Imagens\thumbs\5.jpg" />
+    <Content Include="Imagens\top-move.jpg" />
+    <Content Include="Imagens\twitter.png" />
+    <Content Include="Imagens\up_arrow.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -166,6 +373,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Imagens\large\Thumbs.db" />
+    <Content Include="Imagens\small\Thumbs.db" />
+    <Content Include="Imagens\thumbs\Thumbs.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\carrinho.js" />
     <Content Include="Scripts\easing.js" />
@@ -192,8 +406,6 @@
     <Content Include="Views\Categoria\Editar.cshtml" />
     <Content Include="Views\Categoria\Deletar.cshtml" />
     <Content Include="Views\Categoria\Cadastrar.cshtml" />
-    <Content Include="Web References\br.com.correios.ws\cResultado.datasource" />
-    <Content Include="Web References\br.com.correios.ws\Reference.map" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -218,17 +430,24 @@
     <Content Include="Views\LoginAdmin\Login.cshtml" />
     <Content Include="Views\LoginAdmin\Registrar.cshtml" />
     <Content Include="Views\Admin\Home\Home.cshtml" />
-    <Content Include="Views\Admin\Login\Login.cshtml" />
     <Content Include="Views\Slide\Index.cshtml" />
     <Content Include="Views\Slide\Cadastrar.cshtml" />
     <Content Include="Views\Slide\Deletar.cshtml" />
     <Content Include="Views\Slide\Editar.cshtml" />
-    <None Include="Web References\br.com.correios.ws\CalcPrecoPrazo.disco" />
-    <None Include="Web References\br.com.correios.ws\CalcPrecoPrazo.wsdl" />
+    <Content Include="Views\Admin\Login\Index.cshtml" />
+    <None Include="Web References\br.com.correios.ws1\CalcPrecoPrazo.wsdl" />
+    <Content Include="Web References\br.com.correios.ws1\cResultado.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\br.com.correios.ws1\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Produto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -250,6 +469,22 @@
       <Project>{71664a5a-c017-4926-b8e0-0d21f59c40f6}</Project>
       <Name>XamStore.Resource</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.correios.ws1\</RelPath>
+      <UpdateFromURL>http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>XamStore_Application_br_com_correios_ws1_CalcPrecoPrazoWS</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

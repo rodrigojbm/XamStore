@@ -18,7 +18,7 @@ namespace XamStore.Application.Controllers
 
         public bool CheckUsuarioAutenticacao()
         {
-            var session = Session["autenticacao"] as SessionAutenticacaoClient;
+            var session = Session["Autenticacao"] as SessionAutenticacaoClient;
             return session != null;
         }
     }
