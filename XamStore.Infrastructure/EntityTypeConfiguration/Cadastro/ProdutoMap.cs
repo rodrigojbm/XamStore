@@ -14,12 +14,16 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             Property(p => p.Descricao).HasColumnName("Descricao");
             Property(p => p.Preco).HasColumnName("Preco").IsRequired();
             Property(p => p.Garantia).HasColumnName("Garantia").IsRequired();
-            Property(p => p.Peso).HasColumnName("Peso");
+            Property(p => p.Peso).HasColumnName("Peso").IsRequired();
             Property(p => p.Estoque).HasColumnName("Estoque").IsRequired();
 
             HasRequired(p => p.Categoria)
                 .WithMany()
                 .HasForeignKey(p => p.IdCategoria);
+
+            HasRequired(p => p.Jogo)
+                .WithMany()
+                .HasForeignKey(p => p.IdJogo);
         }
     }
 }

@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model XamStore.Domain.Entities.Cadastro.Pessoa
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h2 class="style">Área de Autenticação</h2>
+        </div>
+    </div>
+</div>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="login_left">
+                <h3>Novo no site?</h3>
+                <p>Ao criar uma conta na nossa loja, você será capaz de se mover através do processo de compra mais rápida, armazenar múltiplos endereços de envio, ver e rastrear seus pedidos e muito mais.</p>
+                <div class="btn">
+                    <form>
+                        <input type="button" onclick="location.href='Login/Registro';" value="Criar uma conta" />
+                    </form>
+                </div>
+
+                <div class="registration_form">
+                    <h3>Já possuo uma conta no site!</h3>
+                    <div id="fb-root"></div>
+                    @{
+                        var routeValueRedirect = new RouteValueDictionary();
+
+                        if (Request.QueryString["actionRedirect"] != "")
+                        {
+                            foreach (string queryString in Request.QueryString.Keys)
+                            {
+                                routeValueRedirect.Add(queryString, Request.QueryString[queryString]);
+                            }
+                        }
+                    }
+                    @using (Ajax.BeginForm("Entrar", "Login", routeValueRedirect, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "result", OnSuccess = "login_success" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div>
+                            <label>
+                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "email" })
+                                @Html.ValidationMessageFor(m => m.EmailAutenticacao)
+                                <!--<input placeholder="e-mail:" type="email" tabindex="3" required="">-->
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                @Html.PasswordFor(m => m.Senha, new { placeholder = "senha" })
+                                @Html.ValidationMessageFor(m => m.Senha)
+                            </label>
+                        </div>
+                        <div id="result" style="color:#ff0000"></div>
+                        <div>
+                            <input type="submit" value="Entrar" id="register-submit">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="login_left">
+                <h3>Redes Sociais</h3>
+                <p>Você pode se logar em nossa loja atravéz de umas das redes sociais abaixo.</p>
+                <div class="registration">
+                    <script>
+                        function login_success(data) {
+                            if (data.result === true) {
+                                window.location.replace(data.RedirectUrl);
+                            } else {
+                                $("#result").html(data.result);
+                            }
+                        }
+                    </script>
+
+                    <div class="registration_left">
+                        <a href="#" class="button-submit-facebook"><div class="reg_fb"><img src="~/Imagens/32-facebook.png" alt=""><i>Entrar com Facebook</i><div class="clear"></div></div></a>
+                        <a href="#" id="signin-button"><div class="reg_tw" style="background:#f34747"><img src="~/Imagens/gpluse.png" style="padding:15px;background:#ff0000;" alt=""><i>Entrar com Google +</i><div class="clear"></div></div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+

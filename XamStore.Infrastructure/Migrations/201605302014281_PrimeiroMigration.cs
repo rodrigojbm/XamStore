@@ -139,14 +139,17 @@ namespace XamStore.Infrastructure.Migrations
                         IdPlataforma = c.Int(nullable: false),
                         IdGenero = c.Int(nullable: false),
                         IdConsole = c.Int(nullable: false),
+                        IdFabricante = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Console", t => t.IdConsole, cascadeDelete: true)
+                .ForeignKey("dbo.Fabricante", t => t.IdFabricante)
                 .ForeignKey("dbo.Genero", t => t.IdGenero, cascadeDelete: true)
                 .ForeignKey("dbo.Plataforma", t => t.IdPlataforma, cascadeDelete: true)
                 .Index(t => t.IdPlataforma)
                 .Index(t => t.IdGenero)
-                .Index(t => t.IdConsole);
+                .Index(t => t.IdConsole)
+                .Index(t => t.IdFabricante);
             
             CreateTable(
                 "dbo.Plataforma",
@@ -236,13 +239,16 @@ namespace XamStore.Infrastructure.Migrations
                         Descricao = c.String(),
                         Preco = c.Double(nullable: false),
                         Garantia = c.String(nullable: false),
-                        Peso = c.String(),
+                        Peso = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Estoque = c.Int(nullable: false),
                         IdCategoria = c.Int(nullable: false),
+                        IdJogo = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categoria", t => t.IdCategoria, cascadeDelete: true)
-                .Index(t => t.IdCategoria);
+                .ForeignKey("dbo.Jogo", t => t.IdJogo, cascadeDelete: true)
+                .Index(t => t.IdCategoria)
+                .Index(t => t.IdJogo);
             
             CreateTable(
                 "dbo.ProdutoEstoque",
@@ -330,12 +336,14 @@ namespace XamStore.Infrastructure.Migrations
             DropForeignKey("dbo.ProdutoImagem", "IdImagem", "dbo.Imagem");
             DropForeignKey("dbo.ProdutoEstoque", "IdProduto", "dbo.Produto");
             DropForeignKey("dbo.PedidoItem", "IdProduto", "dbo.Produto");
+            DropForeignKey("dbo.Produto", "IdJogo", "dbo.Jogo");
             DropForeignKey("dbo.Produto", "IdCategoria", "dbo.Categoria");
             DropForeignKey("dbo.PedidoItem", "IdPedido", "dbo.Pedido");
             DropForeignKey("dbo.Pedido", "IdPessoa", "dbo.Pessoa");
             DropForeignKey("dbo.Pedido", "IdEndereco", "dbo.Endereco");
             DropForeignKey("dbo.Jogo", "IdPlataforma", "dbo.Plataforma");
             DropForeignKey("dbo.Jogo", "IdGenero", "dbo.Genero");
+            DropForeignKey("dbo.Jogo", "IdFabricante", "dbo.Fabricante");
             DropForeignKey("dbo.Jogo", "IdConsole", "dbo.Console");
             DropForeignKey("dbo.Endereco", "IdPessoa", "dbo.Pessoa");
             DropForeignKey("dbo.Endereco", "IdCidade", "dbo.Cidade");
@@ -347,11 +355,13 @@ namespace XamStore.Infrastructure.Migrations
             DropIndex("dbo.ProdutoImagem", new[] { "IdImagem" });
             DropIndex("dbo.ProdutoImagem", new[] { "IdProduto" });
             DropIndex("dbo.ProdutoEstoque", new[] { "IdProduto" });
+            DropIndex("dbo.Produto", new[] { "IdJogo" });
             DropIndex("dbo.Produto", new[] { "IdCategoria" });
             DropIndex("dbo.PedidoItem", new[] { "IdProduto" });
             DropIndex("dbo.PedidoItem", new[] { "IdPedido" });
             DropIndex("dbo.Pedido", new[] { "IdEndereco" });
             DropIndex("dbo.Pedido", new[] { "IdPessoa" });
+            DropIndex("dbo.Jogo", new[] { "IdFabricante" });
             DropIndex("dbo.Jogo", new[] { "IdConsole" });
             DropIndex("dbo.Jogo", new[] { "IdGenero" });
             DropIndex("dbo.Jogo", new[] { "IdPlataforma" });

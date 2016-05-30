@@ -1,0 +1,293 @@
+﻿
+@{
+    ViewBag.Title = "Produtos";
+}
+
+@using System.Linq;
+@using XamStore.Domain.Entities.Cadastro;
+
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h2 class="style">Produtos</h2>
+        </div>
+    </div>
+</div>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main" style="min-height:1000px;">
+            <div class="categoria-produto">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Fabricante</b></div>
+                    <ul class="list-group">
+
+                        @foreach (var dict in (Dictionary<Fabricante, int>)ViewBag.CountFabricantes)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                                @{
+                                    RouteValueDictionary routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueFabricanteDictionary.ContainsKey("Fabricante"))
+                                    {
+
+                                        routeValueFabricanteDictionary.Add("Fabricante", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueFabricanteDictionary.Remove("Fabricante");
+                                        routeValueFabricanteDictionary.Add("Fabricante", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                    dict.Key.Nome,
+                                    "Index",
+                                    "Produto",
+                                    routeValueFabricanteDictionary,
+                                    null
+                                )
+                            </li>
+                                    }
+                    </ul>
+
+                    <div class="panel-heading"><b>Processador</b></div>
+                    <ul class="list-group">
+                        @*@foreach (var dict in (Dictionary<Processador, int>)ViewBag.CountProcessadores)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                                @{
+                                    RouteValueDictionary routeValueProcessadorDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueProcessadorDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueProcessadorDictionary.ContainsKey("processador"))
+                                    {
+
+                                        routeValueProcessadorDictionary.Add("processador", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueProcessadorDictionary.Remove("processador");
+                                        routeValueProcessadorDictionary.Add("processador", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                     dict.Key.Descricao,
+                                    "index", //actionName
+                                    "Produto", //controllerName
+                                    routeValueProcessadorDictionary, //routeValues
+                                    null //htmlAttributes
+                                )
+
+                            </li>
+                                    }*@
+
+                    </ul>
+
+                    <div class="panel-heading"><b>Sistema Operacional</b></div>
+
+                    <div class="panel-heading"><b>Modelos</b></div>
+
+                </div>
+            </div>
+
+            <div class="produtos">
+                @{
+                    var queryString = new RouteValueDictionary(ViewContext.RouteData.Values);
+                    foreach (string key in Request.QueryString.Keys)
+                    {
+                        var descricao = "";
+
+                        var id = 0;
+                        @*if (key == "processador")
+                        {
+                            id = int.Parse(Request.QueryString[key]);
+                            var processador = (IEnumerable<Processador>)ViewBag.Processadores;
+                            descricao = processador.Where(x => x.Id == id).FirstOrDefault().Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                            </span>
+                        </span>
+
+                        }*@
+
+                        if (key == "fabricante")
+                        {
+                            id = int.Parse(Request.QueryString[key]);
+                            var fabricante = (IEnumerable<Fabricante>)ViewBag.Fabricantes;
+                            descricao = fabricante.Where(x => x.Id == id).FirstOrDefault()?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                            </span>
+                        </span>
+
+                        }
+                    }
+                }
+
+                <div class="panel panel-default" style="margin-top:15px;">
+                    <div class="panel-heading">
+                        <select class="form-control order" style="display:inline;width:150px;">
+                            @{ var queryOrder = ViewBag.Order;}
+                            <option @{ if (queryOrder == "asc") { @Html.Raw("selected = 'selected'")  ; } } value="asc">Crescente</option>
+                            <option @{ if (queryOrder == "desc") { @Html.Raw("selected = 'selected'")  ; } } value="desc">Decrescente</option>
+                            <option @{ if (queryOrder == "maiorPreco") { @Html.Raw("selected = 'selected'")   ; } } value="maiorPreco">Maior Preço</option>
+                            <option @{ if (queryOrder == "menorPreco") { @Html.Raw("selected = 'selected'")  ; } } value="menorPreco">Menor Preço</option>
+                        </select>
+                        <select class="form-control registroPorPagina" style="display: inline; width: 150px;">
+                            @{ var queryregistroPorPagina = ViewBag.RegiterPerPage;}
+                            <option @{ if (queryregistroPorPagina == "6") { @Html.Raw("selected = 'selected'")    ; } } value="6">6 por página</option>
+                            <option @{ if (queryregistroPorPagina == "9") { @Html.Raw("selected = 'selected'")     ; } } value="9">9 por página</option>
+                        </select>
+                        @{var pagina = Request.QueryString["pagina"];}
+                        <input type="hidden" name="pagina" class="pagina"
+                               @{ if (pagina == null) { @Html.Raw("value='1'") ; } else { @Html.Raw("value='" + pagina + "'") ; } } />
+                    </div>
+                </div>
+
+                @foreach (var produto in (IEnumerable<Produto>)ViewBag.Produtos)
+                {
+                    <div class="produto">
+                        <div class="produto-img">
+                            <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault()?.Imagem.Nome" width="180" height="131" />
+                        </div>
+
+                        <div class="produto-descricao">
+                            <div class="produto-titulo"><b>@produto.Descricao</b></div>
+                            <div class="produto-titulo-preco"></div>
+                            <div class="produto-preco">@($"{produto.Preco}")</div>
+                            <div class="produto-opcoes">
+                                <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
+
+                                <!-- <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
+
+                                 <a class="ei_icons add-carrinho" id="@produto.Id" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>-->
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="clear"></div>
+
+                <nav>
+                    <ul class="pagination" style="margin-left:50%">
+
+                        @{
+                            var produtos = (int)ViewBag.TotalPages;
+                            var paginationRouteValue = new RouteValueDictionary();
+
+                            foreach (string key in Request.QueryString.Keys)
+                            {
+                                var value = Request.QueryString[key];
+                                paginationRouteValue.Add(key, value);
+                            }
+                        }
+
+                        @{
+                            produtos = produtos == 0 ? 1 : produtos;
+                            for (var i = 1; i <= produtos; i++)
+                            {
+                                paginationRouteValue.Remove("pagina");
+                                paginationRouteValue.Add("pagina", i.ToString());
+                                var queryStringPagina = Request.QueryString["pagina"];
+                                var index = i.ToString();
+
+                                <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "index", "Produto", paginationRouteValue, null)</li>
+    }
+                        }
+
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    function produtoRemoveRedirect(url) {
+        window.location.replace(url.RedirectUrl);
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    $(".order, .registroPorPagina").change(function () {
+        var order = $('.order option:selected').val();
+        var registroPorPagina = $('.registroPorPagina option:selected').val();
+        var pagina = $('.pagina').val();
+
+        var modelo = getParameterByName("modelo");
+        var processador = getParameterByName("processador");
+        var sistemaOperacional = getParameterByName("sistemaOperacional");
+        var fabricante = getParameterByName("fabricante");
+
+        var url = window.location.origin;
+
+        var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
+
+        if (modelo !== "") {
+            url += "&modelo=" + modelo;
+        }
+
+        if (processador !== "") {
+            url += "&processador=" + processador;
+        }
+
+        if (sistemaOperacional !== "") {
+            url += "&sistemaOperacional=" + sistemaOperacional;
+        }
+
+        if (fabricante !== "") {
+            url += "&fabricante=" + fabricante;
+        }
+
+        window.location.replace(url);
+
+    })
+</script>

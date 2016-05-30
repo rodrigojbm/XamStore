@@ -13,7 +13,7 @@ namespace XamStore.Infrastructure.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201605251809323_PrimeiroMigration"; }
+            get { return "201605302014281_PrimeiroMigration"; }
         }
         
         string IMigrationMetadata.Source

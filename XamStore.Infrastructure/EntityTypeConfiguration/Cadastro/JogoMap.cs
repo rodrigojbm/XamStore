@@ -23,6 +23,10 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
                 .WithMany()
                 .HasForeignKey(j => j.IdConsole);
 
+            HasRequired(j => j.Fabricante)
+                .WithMany()
+                .HasForeignKey(j => j.IdFabricante).WillCascadeOnDelete(false);
+
             HasRequired(j => j.Plataforma)
                 .WithMany()
                 .HasForeignKey(j => j.IdPlataforma);

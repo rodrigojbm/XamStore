@@ -21,5 +21,8 @@ namespace XamStore.Domain.Entities.Cadastro
 
         public int IdConsole { get; set; }
         public virtual Console Console { get; set; }
+
+        public int IdFabricante { get; set; }
+        public virtual Fabricante Fabricante { get; set; }
     }
 }

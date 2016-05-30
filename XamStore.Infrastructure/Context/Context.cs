@@ -63,7 +63,7 @@ namespace XamStore.Infrastructure.Context
             modelBuilder.Configurations.Add(new GeneroMap().Ignore(g => g.Jogo));
             modelBuilder.Configurations.Add(new CategoriaMap().Ignore(c => c.Produto));
             modelBuilder.Configurations.Add(new JogoMap());
-            modelBuilder.Configurations.Add(new ProdutoMap().Ignore(p => p.ProdutoImagens));
+            modelBuilder.Configurations.Add(new ProdutoMap().Ignore(p => p.ProdutoImagens).Ignore(p => p.PesoString).Ignore(p => p.PrecoString));
             modelBuilder.Configurations.Add(new ProdutoImagemMap());
             modelBuilder.Configurations.Add(new ProdutoEstoqueMap());
             modelBuilder.Configurations.Add(new ContatoMap());

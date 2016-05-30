@@ -1,0 +1,206 @@
+﻿@model XamStore.Domain.Entities.Cadastro.Produto
+
+@{
+    ViewBag.Title = "Cadastro de Produtos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Html.Partial("MenuAdmin");
+<div class="content-right">
+    <h2>Editar Produtos</h2>
+    <hr />
+    @using (Html.BeginForm("editar", "admin/produto", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+            @Html.Hidden("Id", Model.Id)
+            <div class="panel panel-default">
+                <div class="panel-heading">Dados principais</div>
+                <div style="padding:20px;">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome)
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PesoString) gramas (g)
+                            @Html.ValidationMessageFor(model => model.PesoString)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Garantia, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Garantia)
+                            @Html.ValidationMessageFor(model => model.Garantia)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PrecoString)
+                            @Html.ValidationMessageFor(model => model.PrecoString)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdCategoria", "----------selecione----------")
+                            @Html.ValidationMessageFor(model => model.IdCategoria)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Hardware</div>
+                <div style="padding:20px;">
+                  <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownList("cCameraTraseira", "----------selecione----------")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Imagens</div>
+                <div style="padding:20px;">
+                    <div class="form-group">
+
+                        <div class="col-md-10 imagens">
+                            <a href="#" class="add">Adicionar mais imagens</a><br /><br />
+                            <input type="file" name="images[0]" id="images" /><br />
+                        </div>
+
+                        <div style="float:right">
+                            @foreach (var item in (IEnumerable<XamStore.Domain.Entities.Cadastro.ProdutoImagem>)ViewBag.Imagem)
+                            {
+                                <div style="float:left">
+                                    <img src="~/Imagens/Produto/@item.Imagem.Nome" width="80" height="71" style="padding:5px;border:1px solid #ccc;" />
+                                    <span style="">
+                                        <a href="@Url.Action("deletarImagem","ProdutoAdmin",new  { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Acessorios</div>
+                <div class="form-group">
+                    <div style="padding:20px;">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="col-md-10 acessorios">
+                                    @Html.DropDownList("cAcessorio", (MultiSelectList)ViewBag.Acessorio, new { multiple = "multiple" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Redes</div>
+                <div style="padding:20px;">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="col-md-10 redes">
+                                @Html.DropDownList("cRede", (MultiSelectList)ViewBag.Rede, new { multiple = "multiple" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Conectividades</div>
+                <div style="padding:20px;">
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            <div class="col-md-10 conectividades">
+                                @Html.DropDownList("cConectividade", (MultiSelectList)ViewBag.Conectividade, new { multiple = "multiple" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Sensores</div>
+                <div style="padding:20px;">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="col-md-10 sensores">
+                                @Html.DropDownList("cSensor", (MultiSelectList)ViewBag.Sensor, new { multiple = "multiple" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Editar" class="btn btn-default" style="float:right" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div style="clear:both"></div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(function () {
+        var i = 1;
+        $('.add').click(function (e) {
+
+            $(".imagens").append("<input type=\"file\" name=\"images[" + i + "]\" /><br />");
+            $(".imagens").append("<img");
+            i++;
+            return false;
+        });
+    });
+</script>
+<script src="~/Scripts/jquery.maskMoney.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#PesoString").maskMoney({ thousands: '', decimal: '.', allowZero: true, precision : 1 });
+        $("#AlturaString").maskMoney({ thousands: '', decimal: '.', affixesStay: true, precision : 1});
+        $("#LarguraString").maskMoney({ thousands: '', decimal: '.', affixesStay: true, precision: 1 });
+        $("#EspessuraString").maskMoney({ thousands: '', decimal: '.', affixesStay: true, precision: 1 });
+        $("#PrecoString").maskMoney({ thousands: ',', decimal: '.', affixesStay: true });
+
+        $("#PesoString").focus();
+        $("#AlturaString").focus();
+        $("#LarguraString").focus();
+        $("#EspessuraString").focus();
+        $("#PrecoString").focus();
+
+        $("#PrecoString").focus();
+
+    })
+</script>
