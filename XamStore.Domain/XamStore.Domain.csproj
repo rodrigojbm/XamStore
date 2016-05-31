@@ -56,25 +56,26 @@
     <Compile Include="Entities\Cadastro\ProdutoEstoque.cs" />
     <Compile Include="Entities\Cadastro\ProdutoImagem.cs" />
     <Compile Include="Entities\Cadastro\Slide.cs" />
-    <Compile Include="Entities\Enums\StatusEnum.cs" />
+    <Compile Include="Enums\StatusEnum.cs" />
     <Compile Include="Entities\Cadastro\Usuario.cs" />
     <Compile Include="Entities\Cadastro\UsuarioNivel.cs" />
-    <Compile Include="Entities\Enums\PessoaTipoEnum.cs" />
-    <Compile Include="Entities\Enums\SexoTipoEnum.cs" />
+    <Compile Include="Enums\PessoaTipoEnum.cs" />
+    <Compile Include="Enums\SexoTipoEnum.cs" />
     <Compile Include="Entities\Operacao\Pedido.cs" />
-    <Compile Include="Entities\Enums\PedidoStatusEnum.cs" />
+    <Compile Include="Enums\PedidoStatusEnum.cs" />
     <Compile Include="Entities\Operacao\PedidoItem.cs" />
     <Compile Include="Entities\Operacao\Relatorio.cs" />
     <Compile Include="Entities\Operacao\Venda.cs" />
-    <Compile Include="Entities\Enums\AutenticacaoTipoEnum.cs" />
+    <Compile Include="Enums\AutenticacaoTipoEnum.cs" />
     <Compile Include="Entities\Sistema\Menu.cs" />
     <Compile Include="Entities\Sistema\MenuAdmin.cs" />
-    <Compile Include="Entities\Enums\MenuAdminTipoEnum.cs" />
+    <Compile Include="Enums\MenuAdminTipoEnum.cs" />
     <Compile Include="Entities\Sistema\ProdutoCarrinho.cs" />
     <Compile Include="Entities\Sistema\SessionAutenticacaoAdmin.cs" />
     <Compile Include="Entities\Sistema\SessionAutenticacaoClient.cs" />
     <Compile Include="Entities\Sistema\SessionCarrinho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EnumUtils.cs" />
     <Compile Include="Services\FileChecker.cs" />
   </ItemGroup>
   <ItemGroup>

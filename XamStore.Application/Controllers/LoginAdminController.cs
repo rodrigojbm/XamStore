@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using XamStore.Domain.Entities.Cadastro;
-using XamStore.Domain.Entities.Enums;
 using XamStore.Domain.Entities.Sistema;
+using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
 
 namespace XamStore.Application.Controllers

@@ -1,4 +1,4 @@
-﻿using XamStore.Domain.Entities.Enums;
+﻿using XamStore.Domain.Enums;
 
 namespace XamStore.Domain.Entities.Sistema
 {

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Relatórios";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.Partial("MenuAdmin");
+<div class="content-right">
+    <div class="content-right">
+        <h2>Relatórios</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    Relatório de vendas
+                </td>
+                <td>
+                    @Html.ActionLink("Visualizar", "Venda")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Relatório de clientes
+                </td>
+                <td>
+                    @Html.ActionLink("Visualizar", "Cliente")
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

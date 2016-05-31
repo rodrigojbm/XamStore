@@ -1,6 +1,6 @@
 ﻿using System;
 using XamStore.Domain.Entities.Cadastro;
-using XamStore.Domain.Entities.Enums;
+using XamStore.Domain.Enums;
 
 namespace XamStore.Domain.Entities.Operacao
 {

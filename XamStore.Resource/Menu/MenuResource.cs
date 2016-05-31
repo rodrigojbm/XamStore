@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using XamStore.Domain.Entities.Enums;
 using XamStore.Domain.Entities.Sistema;
+using XamStore.Domain.Enums;
 
 namespace XamStore.Resource.Menu
 {

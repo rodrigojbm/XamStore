@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using XamStore.Domain.Entities.Enums;
 using XamStore.Domain.Entities.Operacao;
+using XamStore.Domain.Enums;
 
 namespace XamStore.Domain.Entities.Cadastro
 {

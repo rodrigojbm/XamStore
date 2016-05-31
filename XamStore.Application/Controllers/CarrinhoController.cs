@@ -11,9 +11,9 @@ using Uol.PagSeguro.Resources;
 using Uol.PagSeguro.Service;
 using XamStore.Application.br.com.correios.ws1;
 using XamStore.Domain.Entities.Cadastro;
-using XamStore.Domain.Entities.Enums;
 using XamStore.Domain.Entities.Operacao;
 using XamStore.Domain.Entities.Sistema;
+using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
 using static System.Convert;
 

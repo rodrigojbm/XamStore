@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Linq;
+@using XamStore.Domain.Enums
+@using XamStore.Domain.Services
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('.panel-heading span.clickable').on("click", function (e) {
+            if ($(this).hasClass('panel-collapsed')) {
+                // expand the panel
+                $(this).parent().next('.panel-body').slideDown();
+                $(this).removeClass('panel-collapsed');
+                $(this).find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            }
+            else {
+                $(this).parent().next('.panel-body').slideUp();
+                $(this).addClass('panel-collapsed');
+                $(this).find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            }
+        });
+    });
+</script>
+
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h4 class="style">Meus pedidos</h4>
+        </div>
+    </div>
+</div>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div style="width:20%;float:left;">
+                @Html.Partial("MenuPessoa")
+            </div>
+            <div class="panel panel-default" style="float:left; width:79%;margin-left:1%;">
+                <div class="panel-heading">Pedidos</div>
+                @{
+                    var pedidos = ViewBag.Pedidos as ICollection<XamStore.Domain.Entities.Operacao.Pedido>;
+                    var pedidoItens = ViewBag.PedidoItens as ICollection<XamStore.Domain.Entities.Operacao.PedidoItem>;
+                    foreach (var pedido in pedidos)
+                    {
+                        var valorTotal = pedido.Frete + pedido.Valor;
+                        <div class="panel panel-default" style="margin:15px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Pedido Nº @pedido.Id</h3>
+                                <span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down" style="top:-15px;"></i></span>
+                            </div>
+                            <div class="panel-body" style="overflow: hidden;display:none;padding:10px;">
+                                <div class="titulo"><b>Produtos</b></div><br />
+                                <div style="float:left;width:50%;">
+                                    @foreach (var pedidoItem in pedidoItens.Where(pedidoItem => pedidoItem.Pedido.Id == pedido.Id))
+                                    {
+                                        <div>
+                                            <div style="width:100%;margin-top:15px;">
+                                                <img src="~/Imagens/Produto/@pedidoItem.Produto.ProdutoImagens.FirstOrDefault()?.Imagem.Nome" width="30" height="30" style="border-radius:50%;padding:3px; border:1px solid #ccc;float:left;margin-top:-5px;" />
+                                                <div style="margin-top:10px;margin-left:40px;">@pedidoItem.Produto.Descricao</div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div style="clear:both"></div>
+                                    <br />
+                                    <div class="status">
+                                        <div class="titulo"><b>Status</b></div>
+                                        <div class="">@EnumUtils.GetEnumDescription(pedido.Status)</div>
+                                    </div>
+                                    <br />
+                                    @if (pedido.Status == PedidoStatusEnum.Delivering || pedido.Status == PedidoStatusEnum.Delivered)
+                                    {
+                                        foreach (var venda in (ViewBag.Vendas as IEnumerable<XamStore.Domain.Entities.Operacao.Venda>).Where(venda => venda.IdPedido == pedido.Id))
+                                        {
+                                            <br/>
+                                            <div class="status">
+                                                <div class="titulo"><b>Código de rastreio</b></div>
+                                                <div class="">@Html.Raw(venda.CodigoRastreioCorreios)</div>
+                                            </div>
+                                            <br/>
+                                        }
+                                    }
+
+                                    <div>
+                                        <br/>
+                                            Valor: R$<b />
+                                            @valorTotal
+                                    </div>
+                                </div>
+                                <div style="float:right;width:50%;">
+                                    <div class="titulo"><b>Endereço de entrega</b></div><br />
+                                    <div style="font-weight:normal">
+                                        @pedido.Endereco.Logradouro, @pedido.Endereco.Numero,<br />
+                                        @($"{int.Parse(pedido.Endereco.Cep):#####-###}"),
+                                        @pedido.Endereco.Bairro,<br />
+                                        @pedido.Endereco.Cidade.Nome - @pedido.Endereco.Cidade.Estado.Abreviacao
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>

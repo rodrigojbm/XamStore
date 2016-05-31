@@ -1,7 +1,7 @@
 using XamStore.Domain.Entities.Cadastro;
 using System;
 using System.Data.Entity.Migrations;
-using XamStore.Domain.Entities.Enums;
+using XamStore.Domain.Enums;
 
 namespace XamStore.Infrastructure.Migrations
 {
