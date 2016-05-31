@@ -3,7 +3,7 @@ using System.Web.Http.Cors;
 
 namespace XamStore.Application
 {
-    public class WebApiConfig
+    public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {

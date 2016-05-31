@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using XamStore.Domain.Entities.Cadastro;
+﻿using XamStore.Domain.Entities.Cadastro;
 
 namespace XamStore.Domain.Entities.Sistema
 {

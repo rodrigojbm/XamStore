@@ -1,9 +1,6 @@
-using System.Collections.Generic;
 using XamStore.Domain.Entities.Cadastro;
 using System;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Linq;
 using XamStore.Domain.Entities.Enums;
 
 namespace XamStore.Infrastructure.Migrations

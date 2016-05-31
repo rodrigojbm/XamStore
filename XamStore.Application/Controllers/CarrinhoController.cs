@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Uol.PagSeguro.Constants;
 using Uol.PagSeguro.Domain;

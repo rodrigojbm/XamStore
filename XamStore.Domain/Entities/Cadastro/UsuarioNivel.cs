@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XamStore.Domain.Entities.Cadastro
+﻿namespace XamStore.Domain.Entities.Cadastro
 {
     public class UsuarioNivel
     {

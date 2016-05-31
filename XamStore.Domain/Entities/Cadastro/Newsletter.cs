@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using XamStore.Domain.Entities.Enums;
 
 namespace XamStore.Domain.Entities.Cadastro

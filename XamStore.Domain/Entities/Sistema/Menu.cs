@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XamStore.Domain.Entities.Sistema
+﻿namespace XamStore.Domain.Entities.Sistema
 {
     public class Menu
     {

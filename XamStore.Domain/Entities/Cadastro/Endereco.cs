@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using XamStore.Domain.Entities.Operacao;
-
-namespace XamStore.Domain.Entities.Cadastro
+﻿namespace XamStore.Domain.Entities.Cadastro
 {
     public class Endereco
     {

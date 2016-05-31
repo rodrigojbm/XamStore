@@ -397,11 +397,14 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\carrinho.js" />
     <Content Include="Scripts\cloud-zoom.1.0.3.min.js" />
+    <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\easing.js" />
+    <Content Include="Scripts\facebook.js" />
     <Content Include="Scripts\globalize.culture.pt-BR.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.eislideshow.js" />
     <Content Include="Scripts\jquery.fancybox.pack.js" />
     <Content Include="Scripts\jquery.maskMoney.js" />
