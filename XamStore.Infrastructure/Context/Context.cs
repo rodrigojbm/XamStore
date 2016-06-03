@@ -55,7 +55,7 @@ namespace XamStore.Infrastructure.Context
             modelBuilder.Configurations.Add(new SlideMap().Ignore(s => s.File));
             modelBuilder.Configurations.Add(new NewsletterMap());
             modelBuilder.Configurations.Add(new ImagemMap().Ignore(i => i.ProdutoImagem));
-            modelBuilder.Configurations.Add(new GeneroMap().Ignore(g => g.Jogo));
+            modelBuilder.Configurations.Add(new GeneroMap());
             modelBuilder.Configurations.Add(new CategoriaMap().Ignore(c => c.Produto));
             modelBuilder.Configurations.Add(new JogoMap());
             modelBuilder.Configurations.Add(new ProdutoMap().Ignore(p => p.ProdutoImagens).Ignore(p => p.PesoString).Ignore(p => p.PrecoString));

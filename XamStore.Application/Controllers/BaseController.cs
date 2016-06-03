@@ -4,11 +4,11 @@ using XamStore.Infrastructure.Context;
 
 namespace XamStore.Application.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected Context Context = new Context();
 
-        public BaseController()
+        protected BaseController()
         {
         }
 

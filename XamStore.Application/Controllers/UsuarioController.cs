@@ -33,7 +33,7 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Descricao");
+            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Nome");
 
             return View();
         }
@@ -58,7 +58,7 @@ namespace XamStore.Application.Controllers
                 return View("Index", await _db.Usuario.ToListAsync());
             }
 
-            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Descricao", usuario.IdUsuarioNivel);
+            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Nome", usuario.IdUsuarioNivel);
             return View(usuario);
         }
 
@@ -78,7 +78,7 @@ namespace XamStore.Application.Controllers
             if (usuario == null)
                 return HttpNotFound();
 
-            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Descricao", usuario.IdUsuarioNivel);
+            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Nome", usuario.IdUsuarioNivel);
 
             return View(usuario);
         }
@@ -102,7 +102,7 @@ namespace XamStore.Application.Controllers
 
                 return View("Index", await _db.Usuario.ToListAsync());
             }
-            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Descricao", usuario.IdUsuarioNivel);
+            ViewBag.IdUsuarioNivel = new SelectList(_db.UsuarioNivel, "Id", "Nome", usuario.IdUsuarioNivel);
 
             return View(usuario);
         }

@@ -4,7 +4,7 @@ using XamStore.Domain.Enums;
 
 namespace XamStore.Resource.Menu
 {
-    public class MenuResource
+    public static class MenuResource
     {
         public static IEnumerable<Domain.Entities.Sistema.Menu> ListMenu()
         {
@@ -64,8 +64,15 @@ namespace XamStore.Resource.Menu
                 new MenuAdmin
                 {
                     Action = "Index",
-                    Controller = "ProdutosAdmin",
+                    Controller = "ProdutoAdmin",
                     Nome = "Produtos",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Plataforma",
+                    Nome = "Plataformas",
                     Tipo = MenuAdminTipoEnum.Cadastro
                 },
                 new MenuAdmin

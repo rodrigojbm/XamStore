@@ -19,7 +19,7 @@
     <div class="wrap">
         <div class="main">
             <div style="width:20%;float:left;margin-left:1.1%">
-                @Html.Partial("MenuPessoa");
+                @Html.Partial("MenuPessoa")
             </div>
 
             <div style="width:38%;float:left;margin-left:1%;">
@@ -85,7 +85,7 @@
 
                             <div>
                                 <label>
-                                    @Html.DropDownList("IdCidade", ViewBag.cCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
+                                    @Html.DropDownList("IdCidade", ViewBag.IdCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
                                     @Html.ValidationMessageFor(model => model.IdCidade)
                                 </label>
                             </div>
@@ -137,7 +137,6 @@
                                             <td>@endereco.Cidade.Nome</td>
                                             <td>@Html.ActionLink("Excluir", "ExcluirEndereco", "Pessoa", new { id = endereco.Id }, null)</td>
                                         </tr>
-
                                     }
                                 }
                             }

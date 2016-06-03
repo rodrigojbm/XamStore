@@ -69,9 +69,13 @@
     <Compile Include="EntityTypeConfiguration\Operacao\VendaMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuAdminMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuMap.cs" />
-    <Compile Include="Migrations\201605302014281_PrimeiroMigration.cs" />
-    <Compile Include="Migrations\201605302014281_PrimeiroMigration.Designer.cs">
-      <DependentUpon>201605302014281_PrimeiroMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201606021907572_PrimeiroMigration.cs" />
+    <Compile Include="Migrations\201606021907572_PrimeiroMigration.Designer.cs">
+      <DependentUpon>201606021907572_PrimeiroMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606022108193_SegundoMigration.cs" />
+    <Compile Include="Migrations\201606022108193_SegundoMigration.Designer.cs">
+      <DependentUpon>201606022108193_SegundoMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,13 +89,20 @@
       <Project>{6b158d76-6b9c-4bc9-b080-3442f4d55e32}</Project>
       <Name>XamStore.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XamStore.Resource\XamStore.Resource.csproj">
+      <Project>{71664a5a-c017-4926-b8e0-0d21f59c40f6}</Project>
+      <Name>XamStore.Resource</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605302014281_PrimeiroMigration.resx">
-      <DependentUpon>201605302014281_PrimeiroMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606021907572_PrimeiroMigration.resx">
+      <DependentUpon>201606021907572_PrimeiroMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606022108193_SegundoMigration.resx">
+      <DependentUpon>201606022108193_SegundoMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

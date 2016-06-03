@@ -7,9 +7,9 @@
                 <a href="@Url.Action("Index", "Home")" class="logo-principal">MulMurc TITLE</a>
             </div>
 
-            @if (Session["autenticacao"] != null)
+            @if (Session["Autenticacao"] != null)
             {
-                var profile = (SessionAutenticacaoClient)Session["autenticacao"];
+                var profile = (SessionAutenticacaoClient)Session["Autenticacao"];
                 <div class="log_reg">
                     <ul>
                         <li style="color:#fff">Olá @profile.Nome</li>

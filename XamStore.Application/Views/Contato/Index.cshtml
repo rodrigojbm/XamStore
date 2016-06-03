@@ -1,0 +1,72 @@
+﻿@model XamStore.Domain.Entities.Cadastro.Contato
+
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h2 class="style">Contato</h2>
+        </div>
+    </div>
+</div>
+<script src="../../Scripts/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#Celular').mask('(99) 9999-9999?9');
+    });
+</script>
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="contact">
+                <style>
+                    .field-validation-error {
+                        position: relative;
+                        left: -480px;
+                    }
+                        .field-validation-error span {
+                            color: #f00 !important;
+                            font-size: 12px;
+                        }
+                </style>
+                <div class="contact_right">
+                    <div class="contact-form">
+                        @using (Html.BeginForm("Enviar", "Contato"))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div>
+                                @Html.LabelFor(model => model.Nome)
+                                @Html.EditorFor(model => model.Nome)
+                                @Html.ValidationMessageFor(model => model.Nome)
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.Email)
+                                @Html.TextBoxFor(model => model.Email)
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.Telefone)
+                                @Html.EditorFor(model => model.Telefone)
+                                @Html.ValidationMessageFor(model => model.Telefone)
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.Mensagem)
+                                @Html.TextAreaFor(model => model.Mensagem)
+                                @Html.ValidationMessageFor(model => model.Mensagem)
+                            </div>
+                            <div style="color:#328a31">
+                                @{
+                                    var mensagem = Request.Params["mensagem"];
+                                }
+
+                                @Html.Raw(mensagem)
+                            </div>
+                            <div>
+                                <span><input type="submit" value="Enviar"></span>
+                            </div>
+                                    }
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

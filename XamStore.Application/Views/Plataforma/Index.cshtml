@@ -1,0 +1,32 @@
+﻿@model IEnumerable<XamStore.Domain.Entities.Cadastro.Plataforma>
+@{
+    ViewBag.Title = "Cadastro de Plataforma";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Html.Partial("MenuAdmin");
+<div class="content-right">
+    <h2>Cadastro de Plataforma</h2>
+    <p>
+        @Html.ActionLink("Nova Plataforma", "Cadastrar")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null) |
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/Plataforma", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

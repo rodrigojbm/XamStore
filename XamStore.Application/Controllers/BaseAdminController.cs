@@ -15,9 +15,9 @@ namespace XamStore.Application.Controllers
 
             var sessionAdmin = Session["AutenticacaoAdmin"] as SessionAutenticacaoAdmin;
             var usuario = _db.Usuario.FirstOrDefault(x => x.Id == sessionAdmin.Id);
-            var menu = usuario?.UsuarioNivel.Id == 1 ? _db.MenuAdmin.ToList() : _db.MenuAdmin.Where(x => x.Tipo == 0).ToList();
+            var menus = usuario?.UsuarioNivel.Id == 1 ? _db.MenuAdmin.ToList() : _db.MenuAdmin.Where(x => x.Tipo == 0).ToList();
 
-            ViewBag.Menu = menu;
+            ViewBag.Menus = menus;
         }
 
         public bool ChecarUsuarioAdminAutenticado()

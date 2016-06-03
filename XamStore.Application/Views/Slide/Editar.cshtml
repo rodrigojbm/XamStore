@@ -14,8 +14,6 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-
-
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.Imagem)
@@ -36,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.IdProduto, "Produto", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("cProduto", "---------selecione--------")
+                    @Html.DropDownList("IdProduto", "---------selecione--------")
                     @Html.ValidationMessageFor(model => model.IdProduto)
                 </div>
             </div>

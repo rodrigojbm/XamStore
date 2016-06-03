@@ -20,7 +20,7 @@ namespace XamStore.Application.Controllers
     {
         private readonly Context _db = new Context();
 
-        [Route("Produto")]
+        [Route("ProdutoAdmin")]
         public async Task<ActionResult> Index()
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -33,7 +33,7 @@ namespace XamStore.Application.Controllers
             return View(await produto.ToListAsync());
         }
 
-        [Route("Produto/Cadastrar")]
+        [Route("ProdutoAdmin/Cadastrar")]
         public ActionResult Cadastrar()
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -54,8 +54,8 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Produto/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Peso, Descricao, Garantia, PesoString, Estoque, IdCategoria, ")] Produto produto, List<HttpPostedFileBase> images)
+        [Route("ProdutoAdmin/Cadastrar")]
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Peso, Descricao, Garantia, PesoString, Estoque, IdCategoria")] Produto produto, List<HttpPostedFileBase> images)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
@@ -74,10 +74,10 @@ namespace XamStore.Application.Controllers
             if (!ModelState.IsValid) return View();
             produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
             produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
-            produto.Jogo.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
-            produto.Jogo.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
-            produto.Jogo.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
-            produto.Jogo.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
+            produto.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
+            produto.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
+            produto.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
+            produto.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
 
             produto.Preco = ToDouble($"{produto.PrecoString}", System.Globalization.CultureInfo.InvariantCulture);
             produto.Peso = ToDecimal($"{produto.PesoString}", System.Globalization.CultureInfo.InvariantCulture);
@@ -157,7 +157,7 @@ namespace XamStore.Application.Controllers
             return View("Index", await _db.Produto.ToListAsync());
         }
 
-        [Route("Produto/Editar/{id}")]
+        [Route("ProdutoAdmin/Editar/{id}")]
         public async Task<ActionResult> Editar(int? id)
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -188,7 +188,7 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Produto/Editar")]
+        [Route("ProdutoAdmin/Editar")]
         public async Task<ActionResult> Editar([Bind(Include="Id, Nome, Descricao, Garantia, Peso, PesoString, PrecoString, IdCategoria, Estoque")]
         Produto produto, List<HttpPostedFileBase> images)
         {
@@ -297,7 +297,7 @@ namespace XamStore.Application.Controllers
             return View("Index", await _db.Produto.ToListAsync());
         }
 
-        [Route("Produto/Deletar/{id}")]
+        [Route("ProdutoAdmin/Deletar/{id}")]
         public ActionResult Deletar(int? id)
         {
             try
@@ -317,7 +317,7 @@ namespace XamStore.Application.Controllers
             }
         }
 
-        [Route("Produto/Deletar")]
+        [Route("ProdutoAdmin/Deletar")]
         [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeletarConfirmacao(int id)

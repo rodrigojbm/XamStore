@@ -150,16 +150,22 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
+    <Compile Include="Controllers\FabricanteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JogoController.cs" />
     <Compile Include="Controllers\LoginAdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\PlataformaController.cs" />
     <Compile Include="Controllers\ProdutoAdminController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\ProdutoEstoqueController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\SlideController.cs" />
+    <Compile Include="Controllers\SobreController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -486,6 +492,18 @@
     <Content Include="Views\Relatorio\Cliente.cshtml" />
     <Content Include="Views\Estoque\Index.cshtml" />
     <Content Include="Views\Estoque\Editar.cshtml" />
+    <Content Include="Views\Sobre\Index.cshtml" />
+    <Content Include="Views\Venda\Index.cshtml" />
+    <Content Include="Views\Venda\Editar.cshtml" />
+    <Content Include="Views\Fabricante\Index.cshtml" />
+    <Content Include="Views\Fabricante\Editar.cshtml" />
+    <Content Include="Views\Fabricante\Deletar.cshtml" />
+    <Content Include="Views\Fabricante\Cadastrar.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Plataforma\Index.cshtml" />
+    <Content Include="Views\Plataforma\Editar.cshtml" />
+    <Content Include="Views\Plataforma\Deletar.cshtml" />
+    <Content Include="Views\Plataforma\Cadastrar.cshtml" />
     <None Include="Web References\br.com.correios.ws1\CalcPrecoPrazo.wsdl" />
     <Content Include="Web References\br.com.correios.ws1\cResultado.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -498,6 +516,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Jogo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -28,7 +28,7 @@
                                     <span>@dict.Value</span>
                                 </span>
                                 @{
-                                    RouteValueDictionary routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+                                    var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
 
                                     foreach (string key in Request.QueryString.Keys)
                                     {
@@ -47,13 +47,7 @@
                                     }
                                 }
 
-                                @Html.ActionLink(
-                                    dict.Key.Nome,
-                                    "Index",
-                                    "Produto",
-                                    routeValueFabricanteDictionary,
-                                    null
-                                )
+                                @Html.ActionLink(dict.Key.Nome, "Index", "Produto", routeValueFabricanteDictionary, null)
                             </li>
                                     }
                     </ul>
@@ -142,7 +136,7 @@
                         {
                             id = int.Parse(Request.QueryString[key]);
                             var fabricante = (IEnumerable<Fabricante>)ViewBag.Fabricantes;
-                            descricao = fabricante.Where(x => x.Id == id).FirstOrDefault()?.Nome;
+                            descricao = fabricante.FirstOrDefault(x => x.Id == id)?.Nome;
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
@@ -150,16 +144,14 @@
                                     "×",
                                     "RemoveQueryString",
                                     "Produto",
-                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new { filtro = @key, valor = @id, query = Request.Url?.Query },
                                     new AjaxOptions
                                     {
-
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
                             </span>
                         </span>
-
                         }
                     }
                 }
@@ -198,9 +190,8 @@
                             <div class="produto-opcoes">
                                 <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
 
-                                <!-- <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
-
-                                 <a class="ei_icons add-carrinho" id="@produto.Id" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>-->
+                                 <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
+                                 <a class="ei_icons add-carrinho" id="@produto.Id" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -221,9 +212,9 @@
                             }
                         }
 
-                        @{
+                        @*@{
                             produtos = produtos == 0 ? 1 : produtos;
-                            for (var i = 1; i <= produtos; i++)
+                            for (int i = 1; i <= produtos; i++)
                             {
                                 paginationRouteValue.Remove("pagina");
                                 paginationRouteValue.Add("pagina", i.ToString());
@@ -232,7 +223,7 @@
 
                                 <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "index", "Produto", paginationRouteValue, null)</li>
     }
-                        }
+                        }*@
 
                     </ul>
                 </nav>

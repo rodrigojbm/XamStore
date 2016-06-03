@@ -1,8 +1,8 @@
 ﻿var url = window.location.origin;
 
-function addSuccess(Quantidade) {
+function addSuccess(quantidade) {
     $(function () {
-        $('.count-carrinho').html(Quantidade);
+        $('.count-carrinho').html(quantidade);
         recalculaFrete(false);
     });
 }
@@ -17,7 +17,7 @@ function finalizaPedido() {
     $.ajax({
         type: "POST",
         url: url + "/Carrinho/finalizarPedido"
-    })
+    });
 }
 
 function recalculaFrete(only) {
@@ -35,26 +35,18 @@ function recalculaFrete(only) {
                 } 
 
                 window.location.replace(response.RedirectUrl + "?endereco=" + cep);
-                
-                
             }
         });
-    
 }
 
 $(function () {
-
-   
-
     $('.carrinho-quantidade').blur(function () {
         var id = $(this).closest(".list-group-item").attr("id");
         var quantidade = $(this).val();
-
         if (parseInt(quantidade) < 1) {
             $(this).val("1");
             return false;
         }
-
         $.ajax({
             type: "POST",
             url: url + "/Carrinho/Change",
@@ -62,9 +54,8 @@ $(function () {
             success: function (response) {
                 recalculaFrete(false);
                 return true;
-
             }
-        })
+        });
     });
     $('.calcular-frete').click(function () {
         recalculaFrete(false);
@@ -74,8 +65,8 @@ $(function () {
         recalculaFrete(false);
     });
 
-    /*$("input[name=tipoFrete]").click(function () {
+    //comentado
+    $("input[name=tipoFrete]").click(function () {
         recalculaFrete(false);
-    });*/
-
-})
+    });
+});

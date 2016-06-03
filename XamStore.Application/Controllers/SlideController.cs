@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
@@ -46,16 +47,56 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Slide/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Imagem, IdProduto, File")] Slide slide, HttpPostedFile file)
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Imagem, IdProduto, File")] Slide slide, HttpPostedFileBase file)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
 
-            if (!ModelState.IsValid)
+            var imageTypes = new string[]{
+                    "image/gif",
+                    "image/jpeg",
+                    "image/pjpeg",
+                    "image/png"
+                };
+
+            if (slide.File == null || slide.File.ContentLength == 0)
+                ModelState.AddModelError("File", "Campo é requerido");
+            else if (!imageTypes.Contains(slide.File.ContentType))
+                ModelState.AddModelError("File", "Formatos suportados : GIF, JPG or PNG.");
+
+            if (ModelState.IsValid)
             {
-                new FileChecker().VefifyFileFormat(slide, file);
+                if (file != null)
+                {
+                    var extensao = "";
+
+                    switch (file.ContentType)
+                    {
+                        case "image/gif":
+                            extensao = ".gif";
+                            break;
+                        case "image/jpeg":
+                            extensao = ".jpg";
+                            break;
+                        case "image/pjpeg":
+                            extensao = ".jpg";
+                            break;
+                        default:
+                            extensao = ".png";
+                            break;
+                    }
+
+                    var imageCript = file.FileName + "imagem-slide";
+
+                    imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
+
+                    var fullPath = "~/Imagens/Produto/" + imageCript + extensao;
+                    file.SaveAs(Server.MapPath(fullPath));
+
+                    slide.Imagem = imageCript + extensao;
+                }
 
                 _db.Slide.Add(slide);
                 await _db.SaveChangesAsync();
@@ -65,7 +106,7 @@ namespace XamStore.Application.Controllers
                 return View("Index", await _db.Slide.ToListAsync());
             }
 
-            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Descricao", slide.IdProduto);
+            ViewBag.cProduto = new SelectList(_db.Produto, "Id", "Descricao", slide.IdProduto);
             return View(slide);
         }
 

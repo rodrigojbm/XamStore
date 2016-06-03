@@ -1,8 +1,10 @@
 ﻿@model XamStore.Domain.Entities.Cadastro.Usuario
 @{
-    ViewBag.Title = "View1";
+    ViewBag.Title = "Deletar Usuario";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+@Html.Partial("MenuAdmin");
 
 <div class="content-right">
     <h2>Cadastro de usuário</h2>
@@ -33,8 +35,6 @@
         {
             @Html.HiddenFor(x => x.Id)
             @Html.AntiForgeryToken()
-
-
             <div class="form-actions no-color">
                 <input type="submit" value="Deletar" class="btn btn-default" style="float: right"/>
             </div>

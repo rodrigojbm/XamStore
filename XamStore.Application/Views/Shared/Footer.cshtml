@@ -3,27 +3,20 @@
         var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test($email);
     }
-
     $(function () {
-
         $(".cad_news").click(function () {
             var email = $("#email_news").val();
-
             if (email === "") {
                 $(".new_result").html("Email inválido");
-
                 return false;
             }
-
             if (!validateEmail(email)) {
                 $(".new_result").html("Email inválido");
-
                 return false;
             }
-
             $.ajax({
                 type: "POST",
-                url: "home/CadastrarNews",
+                url: "Home/CadastrarNews",
                 data: { email: $("#email_news").val() },
                 success: function (data) {
                     if (data === "0") {
@@ -32,16 +25,12 @@
                         $(".new_result").css("color", "darkgreen").html(data);
                         $("#email_news").val("");
                     }
-
                 }
             });
-
             return false;
-
         });
     });
 </script>
-<!-- start footer -->
 <div class="footer_mid">
     <div class="wrap">
         <div class="footer">
@@ -52,28 +41,21 @@
                     <input type="submit" value="Cadastrar" class="cad_news" />
                 </form>
             </div>
-
         </div>
     </div>
 </div>
-<!-- start footer -->
 <div class="footer_bg">
     <div class="wrap">
         <div class="footer">
-            <!-- scroll_top_btn -->
             <script type="text/javascript">
                 $(document).ready(function () {
-
                     var defaults = {
                         containerID: 'toTop', 
                         containerHoverID: 'toTopHover', 
                         scrollSpeed: 1200,
                         easingType: 'linear'
                     };
-
-
                     $().UItoTop({ easingType: 'easeOutQuart' });
-
                 });
             </script>
             <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>

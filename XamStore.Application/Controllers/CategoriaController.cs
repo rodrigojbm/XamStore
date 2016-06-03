@@ -45,7 +45,9 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            if (!ModelState.IsValid) return View(categoria);
+            if (!ModelState.IsValid)
+                return View(categoria);
+
             _db.Categoria.Add(categoria);
             await _db.SaveChangesAsync();
 

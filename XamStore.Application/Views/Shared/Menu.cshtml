@@ -32,11 +32,12 @@
             <a class="navicon" href="#menu-left"> </a>
         </div>
         <nav id="menu-left">
-
         </nav>
         <div class="header_right">
             <ul>
-                @{ var sessao = Session["carrinho"] as SessionCarrinho; }
+                @{
+                    var sessao = Session["Carrinho"] as SessionCarrinho;
+                }
                 <li>
                     <a href="~/carrinho/" style="border-left-color:#fff;">
                         <i class="cart"></i>

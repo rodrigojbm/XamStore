@@ -46,7 +46,7 @@ namespace XamStore.Application.Controllers
                     pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                     break;
                 case AutenticacaoTipoEnum.Sistema:
-                    pessoa = Context.Pessoa.Find(session.Id);
+                    pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                     break;
             }
 
@@ -279,7 +279,7 @@ namespace XamStore.Application.Controllers
                         pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == sessaoPessoa.Id.ToString());
                         break;
                     case AutenticacaoTipoEnum.Sistema:
-                        pessoa = Context.Pessoa.Find(sessaoPessoa.Id);
+                        pessoa = Context.Pessoa.Find(ToInt32(sessaoPessoa.Id));
                         break;
                 }
 
@@ -357,7 +357,7 @@ namespace XamStore.Application.Controllers
                     pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                     break;
                     case AutenticacaoTipoEnum.Sistema:
-                    pessoa = Context.Pessoa.Find(session.Id);
+                    pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                     break;
             }
 

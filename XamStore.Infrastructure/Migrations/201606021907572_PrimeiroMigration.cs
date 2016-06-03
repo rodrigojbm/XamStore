@@ -1,5 +1,6 @@
 namespace XamStore.Infrastructure.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
     public partial class PrimeiroMigration : DbMigration
@@ -39,18 +40,6 @@ namespace XamStore.Infrastructure.Migrations
             
             CreateTable(
                 "dbo.Console",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Nome = c.String(nullable: false),
-                        IdFabricante = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Fabricante", t => t.IdFabricante, cascadeDelete: true)
-                .Index(t => t.IdFabricante);
-            
-            CreateTable(
-                "dbo.Fabricante",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -105,6 +94,15 @@ namespace XamStore.Infrastructure.Migrations
                         Sexo = c.Int(nullable: false),
                         Senha = c.String(nullable: false),
                         Tipo = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Fabricante",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nome = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -241,12 +239,24 @@ namespace XamStore.Infrastructure.Migrations
                         Peso = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Estoque = c.Int(nullable: false),
                         IdCategoria = c.Int(nullable: false),
+                        IdPlataforma = c.Int(nullable: false),
+                        IdGenero = c.Int(nullable: false),
+                        IdFabricante = c.Int(nullable: false),
+                        IdConsole = c.Int(nullable: false),
                         IdJogo = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categoria", t => t.IdCategoria, cascadeDelete: true)
-                .ForeignKey("dbo.Jogo", t => t.IdJogo, cascadeDelete: true)
+                .ForeignKey("dbo.Console", t => t.IdConsole)
+                .ForeignKey("dbo.Fabricante", t => t.IdFabricante, cascadeDelete: true)
+                .ForeignKey("dbo.Genero", t => t.IdGenero, cascadeDelete: true)
+                .ForeignKey("dbo.Jogo", t => t.IdJogo)
+                .ForeignKey("dbo.Plataforma", t => t.IdPlataforma, cascadeDelete: true)
                 .Index(t => t.IdCategoria)
+                .Index(t => t.IdPlataforma)
+                .Index(t => t.IdGenero)
+                .Index(t => t.IdFabricante)
+                .Index(t => t.IdConsole)
                 .Index(t => t.IdJogo);
             
             CreateTable(
@@ -335,7 +345,11 @@ namespace XamStore.Infrastructure.Migrations
             DropForeignKey("dbo.ProdutoImagem", "IdImagem", "dbo.Imagem");
             DropForeignKey("dbo.ProdutoEstoque", "IdProduto", "dbo.Produto");
             DropForeignKey("dbo.PedidoItem", "IdProduto", "dbo.Produto");
+            DropForeignKey("dbo.Produto", "IdPlataforma", "dbo.Plataforma");
             DropForeignKey("dbo.Produto", "IdJogo", "dbo.Jogo");
+            DropForeignKey("dbo.Produto", "IdGenero", "dbo.Genero");
+            DropForeignKey("dbo.Produto", "IdFabricante", "dbo.Fabricante");
+            DropForeignKey("dbo.Produto", "IdConsole", "dbo.Console");
             DropForeignKey("dbo.Produto", "IdCategoria", "dbo.Categoria");
             DropForeignKey("dbo.PedidoItem", "IdPedido", "dbo.Pedido");
             DropForeignKey("dbo.Pedido", "IdPessoa", "dbo.Pessoa");
@@ -346,7 +360,6 @@ namespace XamStore.Infrastructure.Migrations
             DropForeignKey("dbo.Jogo", "IdConsole", "dbo.Console");
             DropForeignKey("dbo.Endereco", "IdPessoa", "dbo.Pessoa");
             DropForeignKey("dbo.Endereco", "IdCidade", "dbo.Cidade");
-            DropForeignKey("dbo.Console", "IdFabricante", "dbo.Fabricante");
             DropForeignKey("dbo.Cidade", "IdEstado", "dbo.Estado");
             DropIndex("dbo.Venda", new[] { "IdPedido" });
             DropIndex("dbo.Usuario", new[] { "IdUsuarioNivel" });
@@ -355,6 +368,10 @@ namespace XamStore.Infrastructure.Migrations
             DropIndex("dbo.ProdutoImagem", new[] { "IdProduto" });
             DropIndex("dbo.ProdutoEstoque", new[] { "IdProduto" });
             DropIndex("dbo.Produto", new[] { "IdJogo" });
+            DropIndex("dbo.Produto", new[] { "IdConsole" });
+            DropIndex("dbo.Produto", new[] { "IdFabricante" });
+            DropIndex("dbo.Produto", new[] { "IdGenero" });
+            DropIndex("dbo.Produto", new[] { "IdPlataforma" });
             DropIndex("dbo.Produto", new[] { "IdCategoria" });
             DropIndex("dbo.PedidoItem", new[] { "IdProduto" });
             DropIndex("dbo.PedidoItem", new[] { "IdPedido" });
@@ -366,7 +383,6 @@ namespace XamStore.Infrastructure.Migrations
             DropIndex("dbo.Jogo", new[] { "IdPlataforma" });
             DropIndex("dbo.Endereco", new[] { "IdPessoa" });
             DropIndex("dbo.Endereco", new[] { "IdCidade" });
-            DropIndex("dbo.Console", new[] { "IdFabricante" });
             DropIndex("dbo.Cidade", new[] { "IdEstado" });
             DropTable("dbo.Venda");
             DropTable("dbo.UsuarioNivel");
@@ -384,10 +400,10 @@ namespace XamStore.Infrastructure.Migrations
             DropTable("dbo.Jogo");
             DropTable("dbo.Imagem");
             DropTable("dbo.Genero");
+            DropTable("dbo.Fabricante");
             DropTable("dbo.Pessoa");
             DropTable("dbo.Endereco");
             DropTable("dbo.Contato");
-            DropTable("dbo.Fabricante");
             DropTable("dbo.Console");
             DropTable("dbo.Estado");
             DropTable("dbo.Cidade");

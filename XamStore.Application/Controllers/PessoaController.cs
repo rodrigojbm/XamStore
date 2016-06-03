@@ -12,6 +12,7 @@ using XamStore.Domain.Entities.Operacao;
 using XamStore.Domain.Entities.Sistema;
 using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
+using static System.Convert;
 
 namespace XamStore.Application.Controllers
 {
@@ -43,7 +44,7 @@ namespace XamStore.Application.Controllers
                     pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                     break;
                 case AutenticacaoTipoEnum.Sistema:
-                    pessoa = Context.Pessoa.Find(session.Id);
+                    pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                     break;
             }
 
@@ -72,7 +73,7 @@ namespace XamStore.Application.Controllers
                     pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                     break;
                 case AutenticacaoTipoEnum.Sistema:
-                    pessoa = Context.Pessoa.Find(session.Id);
+                    pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                     break;
             }
 
@@ -80,7 +81,7 @@ namespace XamStore.Application.Controllers
 
             ViewBag.Menus = _db.Menu;
             ViewBag.Enderecos = enderecos;
-            ViewBag.IdCidade = new SelectList(_db.Cidade, "Id", "Descricao");
+            ViewBag.IdCidade = new SelectList(_db.Cidade, "Id", "Nome");
 
             return View();
         }
@@ -106,7 +107,7 @@ namespace XamStore.Application.Controllers
                         pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                         break;
                     case AutenticacaoTipoEnum.Sistema:
-                        pessoa = Context.Pessoa.Find(int.Parse(session.Id));
+                        pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                         break;
                 }
 
@@ -163,7 +164,7 @@ namespace XamStore.Application.Controllers
             if (!ChecarUsuarioAutenticado())
                 return RedirectToAction("Index", "Login");
 
-            var session = Session["autenticacao"] as SessionAutenticacaoClient;
+            var session = Session["Autenticacao"] as SessionAutenticacaoClient;
 
             Pessoa pessoa = null;
             switch (session?.AutenticacaoTipo)
@@ -175,7 +176,7 @@ namespace XamStore.Application.Controllers
                     pessoa = Context.Pessoa.FirstOrDefault(x => x.GoogleId == session.Id.ToString());
                     break;
                 case AutenticacaoTipoEnum.Sistema:
-                    pessoa = Context.Pessoa.Find(int.Parse(session.Id));
+                    pessoa = Context.Pessoa.Find(ToInt32(session.Id));
                     break;
             }
 
@@ -205,7 +206,7 @@ namespace XamStore.Application.Controllers
         public ActionResult AlterarPerfil([Bind(Include = "Nome, Sobrenome, Senha, SexoTipo, Email, Id, Cpf, Rg, DataNascimento")] Pessoa pessoa)
         {
             ModelState.Remove("EmailAutenticacao");
-            ModelState.Remove("ConfirmarSenha");
+            ModelState.Remove("ConfirmaSenha");
 
             try
             {
@@ -246,21 +247,21 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RedefinirSenha([Bind(Include = "NomeRazao, ApelidoFantasia, Senha, Sexo, Email, Id, CpfCnpj, RgIe, DataNascimento, ConfirmarSenha")] Pessoa Pessoa)
+        public ActionResult RedefinirSenha([Bind(Include = "Nome, Sobrenome, Senha, Sexo, Email, Id, Cpf, Rg, DataNascimento, ConfirmaSenha")] Pessoa pessoa)
         {
             try
             {
-                var pessoa = _db.Pessoa.Find(Pessoa.Id);
-                pessoa.Senha = Pessoa.Senha;
-                pessoa.ConfirmaSenha = Pessoa.Senha;
-                pessoa.EmailAutenticacao = pessoa.Email;
+                var usuario = _db.Pessoa.Find(pessoa.Id);
+                usuario.Senha = pessoa.Senha;
+                usuario.ConfirmaSenha = pessoa.Senha;
+                usuario.EmailAutenticacao = usuario.Email;
 
-                _db.Entry(pessoa).State = EntityState.Modified;
+                _db.Entry(usuario).State = EntityState.Modified;
                 _db.SaveChanges();
 
                 var route = new RouteValueDictionary { { "mensagem", "Senha alterada com sucesso!" } };
 
-                return RedirectToAction("perfil", route);
+                return RedirectToAction("Perfil", route);
             }
             catch (DbEntityValidationException ex)
             {

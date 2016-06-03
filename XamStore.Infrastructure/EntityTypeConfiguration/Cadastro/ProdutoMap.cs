@@ -23,7 +23,23 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
 
             HasRequired(p => p.Jogo)
                 .WithMany()
-                .HasForeignKey(p => p.IdJogo);
+                .HasForeignKey(p => p.IdJogo).WillCascadeOnDelete(false);
+
+            HasRequired(p => p.Plataforma)
+                .WithMany()
+                .HasForeignKey(p => p.IdPlataforma);
+
+            HasRequired(p => p.Genero)
+                .WithMany()
+                .HasForeignKey(p => p.IdGenero);
+
+            HasRequired(p => p.Fabricante)
+                .WithMany()
+                .HasForeignKey(p => p.IdFabricante);
+
+            HasRequired(p => p.Console)
+                .WithMany()
+                .HasForeignKey(p => p.IdConsole).WillCascadeOnDelete(false);
         }
     }
 }

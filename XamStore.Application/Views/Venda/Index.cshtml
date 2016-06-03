@@ -1,0 +1,56 @@
+﻿@model IEnumerable<XamStore.Domain.Entities.Operacao.Venda>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Html.Partial("MenuAdmin");
+
+<div class="content-right">
+    <h2>Gerenciar vendas</h2>
+    <table class="table">
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Pedido Nº
+            </th>
+            <th>
+                Data
+            </th>
+            <th>
+                Ações
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pedido.Pessoa.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pedido.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pedido.Data)
+                </td>
+                <td>
+                    @Html.ActionLink("Gerenciar", null, $"Admin/Venda/Editar/{item.Id}")
+                </td>
+                <td>
+                    @if (item.IsNova == true)
+                    {
+                        <img src="~/Imagens/menu_novo.gif" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

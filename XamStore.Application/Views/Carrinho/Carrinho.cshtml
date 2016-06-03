@@ -14,7 +14,7 @@
                 <div class="panel-heading">Produtos</div>
                 <ul class="list-group">
                     @{
-                        var sessionCarrinho = Session["carrinho"] as XamStore.Domain.Entities.Sistema.SessionCarrinho;
+                        var sessionCarrinho = Session["Carrinho"] as XamStore.Domain.Entities.Sistema.SessionCarrinho;
                         var pesoTotal = sessionCarrinho?.ProdutosCarrinho.Sum(x => x.Peso) ?? 0.0m;
                         var totalCarrinho = 0.0m;
 
@@ -42,7 +42,7 @@
                                     i++;
                                 }
                             }
-                            catch (ArgumentNullException ex)
+                            catch (ArgumentNullException)
                             {
                                 throw;
                             }
@@ -52,7 +52,7 @@
                     }
                 </ul>
             </div>
-            @{if (Session["autenticacao"] == null)
+            @{if (Session["Autenticacao"] == null)
                 {
                     @Html.ActionLink("Finalizar Comprar", "FinalizarCompra", "Carrinho", new { pedidoId = 0 }, new { @class = "btn btn-primary" })
                 }
@@ -61,7 +61,7 @@
             <div style="width:32.5%;float:left;
              @{
 
-                 if (Session["autenticacao"] == null)
+                 if (Session["Autenticacao"] == null)
                  {
                          @Html.Raw("display:none;");
                  }
@@ -100,7 +100,7 @@
                             </th>
                         </tr>
                         @{
-                            var enderecoSelecionado = Request.QueryString["endereco"];
+                            var enderecoSelecionado = Request.QueryString["Endereco"];
 
                             if (enderecos != null)
                             {
@@ -116,9 +116,9 @@
                                         <td> @endereco.Bairro </td>
                                         <td> @endereco.Cidade.Nome </td>
                                     </tr>
-            i++;
-        }
-    }
+                                    i++;
+                                 }
+                             }
                         }
 
                     </table>
@@ -129,7 +129,7 @@
             </div>
             <div style="width:32.5%;float:left;margin-left:1.1%;
                  @{
-                     if (Session["autenticacao"] == null)
+                     if (Session["Autenticacao"] == null)
                      {
                          @Html.Raw("display:none;");
                      }
@@ -150,7 +150,7 @@
                         <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="pac" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == false) { @Html.Raw("checked=checked")  ; } } } /> Pac (Encomenda normal)</li>
                         <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="sedex" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == true) { @Html.Raw("checked=checked")  ; } } } /> Sedex</li>
                         <li class="list-group-item" style="text-align:left">Peso <span class="peso">@pesoTotal</span> g</li>
-                        @if (Session["autenticacao"] != null)
+                        @if (Session["Autenticacao"] != null)
                         {
                             if (enderecos.Count > 0)
                             {
@@ -159,7 +159,7 @@
                                         $('.calcular-frete').click(function () {
                                             var online = navigator.onLine;
                                             if (!online) {
-                                                alert("Não é possivel calcular o frete! verifique sua conexão com a internet.");
+                                                alert("Não é possivel calcular o frete! Verifique sua conexão com a internet.");
                                                 return false;
                                             }
                                         });
@@ -177,7 +177,7 @@
             </div>
             <div style="width:32.5%;float:left;margin-left:1.1%;
             @{
-                if (Session["autenticacao"] == null)
+                if (Session["Autenticacao"] == null)
                 {
                     @Html.Raw("display:none;");
                 }

@@ -2,6 +2,7 @@ using XamStore.Domain.Entities.Cadastro;
 using System;
 using System.Data.Entity.Migrations;
 using XamStore.Domain.Enums;
+using XamStore.Resource.Menu;
 
 namespace XamStore.Infrastructure.Migrations
 {
@@ -14,6 +15,17 @@ namespace XamStore.Infrastructure.Migrations
 
         protected override void Seed(Context.Context context)
         {
+            var menuList = MenuResource.ListMenu();
+            var menuAdminList = MenuResource.ListMenuAdmin();
+
+            foreach (var menu in menuList)
+                context.Menu.Add(menu);
+
+            foreach (var menuAdmin in menuAdminList)
+                context.MenuAdmin.Add(menuAdmin);
+
+            context.SaveChanges();
+
             context.Pessoa.AddOrUpdate(c => c.Nome, new Pessoa()
             {
                 Nome = "Rodrigo",
