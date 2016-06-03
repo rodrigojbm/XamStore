@@ -192,6 +192,7 @@
     <Content Include="Content\jquery.mmenu.all.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\productviewgallery.css" />
+    <Content Include="Content\SelecionarCategoriaProduto.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -253,6 +254,7 @@
     <Content Include="Imagens\pic4.jpg" />
     <Content Include="Imagens\pic5.jpg" />
     <Content Include="Imagens\pic6.jpg" />
+    <Content Include="Imagens\ProdutoCategoria\tetris.jpg" />
     <Content Include="Imagens\Produto\0009f9b83ffce68015e951be879345b2.png" />
     <Content Include="Imagens\Produto\01708e64b879437be74713f59a4f7f52.png" />
     <Content Include="Imagens\Produto\01bdaf676a7d304f3bb1abef0b21e734.jpg" />
@@ -440,6 +442,7 @@
     <Content Include="Scripts\productviewgallery.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SelecionarCategoriaProduto.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Carrinho\Carrinho.cshtml" />
     <Content Include="Views\Carrinho\PedidoConcluido.cshtml" />

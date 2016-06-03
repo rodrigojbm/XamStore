@@ -20,7 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("XamStore", "Index", "Admin", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Mobile Shopping", "Index", "Admin", null, new { @class = "navbar-brand" })
             </div>
             @using XamStore.Domain.Entities.Sistema;
             @{ var sessionAdmin = Session["AutenticacaoAdmin"] as SessionAutenticacaoAdmin; }
@@ -33,16 +33,22 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
                             <li><a href="@Url.Action("Sair","LoginAdmin")">Sair</a></li>
+
                         </ul>
                     </div>
                     <div style="clear:both"></div>
                 }
             }
+
         </div>
     </div>
     <div class="container body-content">
+
+
         @RenderBody()
+
         <div style="clear:both"></div>
         <hr />
         <footer>
@@ -55,14 +61,25 @@
         if (mensagem != null)
         {
             <script type="text/javascript">
+
                 $(function(){
+
                     var url = window.location.href;
+
                     var newUrl = String(url).replace("editar", "").replace("deletar", "");
+
                     window.history.replaceState(url, "", newUrl);
+
                     setTimeout(function(){
+
                         $('.alert-success').hide();
+
+
+
                     }, 5000);
+
                 });
+
             </script>
 
             <div class="alert alert-success" style="position:fixed;right:10px;bottom:10px;">@Html.Raw(mensagem)</div>

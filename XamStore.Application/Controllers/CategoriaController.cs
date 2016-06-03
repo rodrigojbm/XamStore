@@ -38,7 +38,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Categoria/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Descricao")] Categoria categoria)
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome")] Categoria categoria)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");

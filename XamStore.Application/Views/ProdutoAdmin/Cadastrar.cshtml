@@ -6,6 +6,8 @@
 }
 @Html.Partial("MenuAdmin");
 
+<link href="~/Content/SelecionarCategoriaProduto.css" rel="stylesheet" type="text/css" />
+
 <div class="content-right">
     <h2>Cadastro de Produtos</h2>
     <hr/>
@@ -18,11 +20,32 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dados principais</div>
                 <div style="padding: 20px;">
+                    @*<div class="container text-center">
+                        
+                        <h4>Selecione uma categoria</h4>
+                        <br>
+                        
+                        <div class="row">
+                            <div class="col-sm-4 jogo1">
+                                <p class="text-center"><strong>Jogo</strong></p><br>
+                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="text-center"><strong>Console</strong></p><br>
+                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="text-center"><strong>Acessórios</strong></p><br>
+                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                            </div>
+                        </div>
+                    </div>*@
+                    
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Jogo.Nome, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nome)
-                            @Html.ValidationMessageFor(model => model.Nome)
+                            @Html.EditorFor(model => model.Jogo.Nome)
+                            @Html.ValidationMessageFor(model => model.Jogo.Nome)
                         </div>
                     </div>
 
@@ -51,18 +74,26 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.PrecoString, new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.PrecoString) R$
                             @Html.ValidationMessageFor(model => model.PrecoString)
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.IdCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("IdCategoria", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
+                            @Html.DropDownList("IdJogo", null, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.IdJogo, "", new {@class = "text-danger"})
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdJogo", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdJogo)
                         </div>
                     </div>
 

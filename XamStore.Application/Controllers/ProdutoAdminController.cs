@@ -55,7 +55,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("ProdutoAdmin/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Peso, Descricao, Garantia, PesoString, Estoque, IdCategoria")] Produto produto, List<HttpPostedFileBase> images)
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Peso, Descricao, Garantia, PesoString, Preco, PrecoString Estoque, IdCategoria")] Produto produto, List<HttpPostedFileBase> images)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
@@ -75,8 +75,8 @@ namespace XamStore.Application.Controllers
             produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
             produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
 
-            produto.Preco = ToDouble($"{produto.PrecoString}", System.Globalization.CultureInfo.InvariantCulture);
-            produto.Peso = ToDecimal($"{produto.PesoString}", System.Globalization.CultureInfo.InvariantCulture);
+            produto.Preco = ToDouble($"{produto.PrecoString:N}", System.Globalization.CultureInfo.InvariantCulture);
+            produto.Peso = ToDecimal($"{produto.PesoString:N}", System.Globalization.CultureInfo.InvariantCulture);
 
             var estoque = new ProdutoEstoque
             {
