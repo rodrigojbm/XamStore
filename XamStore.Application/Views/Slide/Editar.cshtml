@@ -9,7 +9,7 @@
     <h2>Editar slide </h2>
     <hr />
 
-    @using (Html.BeginForm("Editar", "Admin/Slide", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
+    @using (Html.BeginForm("Editar", "Slide", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
     {
         @Html.AntiForgeryToken()
 
@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.IdProduto, "Produto", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("IdProduto", "---------selecione--------")
+                    @Html.DropDownList("IdProduto", "---------SELECIONE--------")
                     @Html.ValidationMessageFor(model => model.IdProduto)
                 </div>
             </div>

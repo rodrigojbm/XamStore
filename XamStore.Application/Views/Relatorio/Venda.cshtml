@@ -7,7 +7,7 @@
 @Html.Partial("MenuAdmin");
 
 <div class="content-right">
-    @using (Html.BeginForm("venda", "Admin/Relatorio", FormMethod.Post))
+    @using (Html.BeginForm("venda", "Relatorio", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">

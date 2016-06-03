@@ -69,13 +69,9 @@
     <Compile Include="EntityTypeConfiguration\Operacao\VendaMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuAdminMap.cs" />
     <Compile Include="EntityTypeConfiguration\Sistema\MenuMap.cs" />
-    <Compile Include="Migrations\201606021907572_PrimeiroMigration.cs" />
-    <Compile Include="Migrations\201606021907572_PrimeiroMigration.Designer.cs">
-      <DependentUpon>201606021907572_PrimeiroMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606022108193_SegundoMigration.cs" />
-    <Compile Include="Migrations\201606022108193_SegundoMigration.Designer.cs">
-      <DependentUpon>201606022108193_SegundoMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201606031855104_PrimeiroMigration.cs" />
+    <Compile Include="Migrations\201606031855104_PrimeiroMigration.Designer.cs">
+      <DependentUpon>201606031855104_PrimeiroMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,11 +94,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606021907572_PrimeiroMigration.resx">
-      <DependentUpon>201606021907572_PrimeiroMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606022108193_SegundoMigration.resx">
-      <DependentUpon>201606022108193_SegundoMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606031855104_PrimeiroMigration.resx">
+      <DependentUpon>201606031855104_PrimeiroMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

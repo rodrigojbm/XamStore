@@ -31,7 +31,7 @@
                 @Html.DisplayFor(model => model.Login)
             </dd>
         </dl>
-        @using (Html.BeginForm("Deletar", "Admin/Usuario"))
+        @using (Html.BeginForm("Deletar", "Usuario"))
         {
             @Html.HiddenFor(x => x.Id)
             @Html.AntiForgeryToken()

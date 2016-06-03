@@ -74,10 +74,6 @@ namespace XamStore.Application.Controllers
             if (!ModelState.IsValid) return View();
             produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
             produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
-            produto.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
-            produto.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
-            produto.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
-            produto.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
 
             produto.Preco = ToDouble($"{produto.PrecoString}", System.Globalization.CultureInfo.InvariantCulture);
             produto.Peso = ToDecimal($"{produto.PesoString}", System.Globalization.CultureInfo.InvariantCulture);
@@ -178,10 +174,10 @@ namespace XamStore.Application.Controllers
 
             ViewBag.IdCategoria = new SelectList(_db.Categoria, "Id", "Nome");
             ViewBag.IdJogo = new SelectList(_db.Jogo, "Id", "Nome");
-            ViewBag.IdPlataforma = new SelectList(_db.Plataforma, "Id", "Nome");
-            ViewBag.IdGenero = new SelectList(_db.Genero, "Id", "Nome");
-            ViewBag.IdFabricante = new SelectList(_db.Fabricante, "Id", "Nome");
-            ViewBag.IdConsole = new SelectList(_db.Console, "Id", "Nome");
+            //ViewBag.IdPlataforma = new SelectList(_db.Plataforma, "Id", "Nome");
+            //ViewBag.IdGenero = new SelectList(_db.Genero, "Id", "Nome");
+            //ViewBag.IdFabricante = new SelectList(_db.Fabricante, "Id", "Nome");
+            //ViewBag.IdConsole = new SelectList(_db.Console, "Id", "Nome");
 
             return View(produto);
         }
@@ -247,10 +243,10 @@ namespace XamStore.Application.Controllers
 
                 produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
                 produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
-                produto.Jogo.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
-                produto.Jogo.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
-                produto.Jogo.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
-                produto.Jogo.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
+                //produto.Jogo.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
+                //produto.Jogo.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
+                //produto.Jogo.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
+                //produto.Jogo.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
 
                 produto.Preco = ToDouble(produto.PrecoString, System.Globalization.CultureInfo.InvariantCulture);
                 produto.Peso = ToDecimal(produto.PesoString, System.Globalization.CultureInfo.InvariantCulture);

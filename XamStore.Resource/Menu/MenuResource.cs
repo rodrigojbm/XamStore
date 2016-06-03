@@ -71,8 +71,36 @@ namespace XamStore.Resource.Menu
                 new MenuAdmin
                 {
                     Action = "Index",
+                    Controller = "JogoAdmin",
+                    Nome = "Jogos",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
                     Controller = "Plataforma",
                     Nome = "Plataformas",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Genero",
+                    Nome = "Generos",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Console",
+                    Nome = "Consoles",
+                    Tipo = MenuAdminTipoEnum.Cadastro
+                },
+                new MenuAdmin
+                {
+                    Action = "Index",
+                    Controller = "Fabricante",
+                    Nome = "Fabricantes",
                     Tipo = MenuAdminTipoEnum.Cadastro
                 },
                 new MenuAdmin

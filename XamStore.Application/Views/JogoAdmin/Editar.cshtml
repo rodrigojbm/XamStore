@@ -1,14 +1,14 @@
-﻿@model XamStore.Domain.Entities.Cadastro.Produto
+﻿@model XamStore.Domain.Entities.Cadastro.Jogo
 
 @{
-    ViewBag.Title = "Cadastro de Produtos";
+    ViewBag.Title = "Cadastro de Jogos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
 <div class="content-right">
-    <h2>Editar Produtos</h2>
+    <h2>Editar Jogos</h2>
     <hr />
-    @using (Html.BeginForm("Editar", "ProdutoAdmin", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
+    @using (Html.BeginForm("Editar", "JogoAdmin", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
@@ -19,51 +19,72 @@
                 <div class="panel-heading">Dados principais</div>
                 <div style="padding:20px;">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Nome, new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.Nome)
                             @Html.ValidationMessageFor(model => model.Nome)
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.Multiplayer, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.PesoString) gramas (g)
-                            @Html.ValidationMessageFor(model => model.PesoString)
+                            @Html.EditorFor(model => model.Multiplayer)
+                            @Html.ValidationMessageFor(model => model.Multiplayer)
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Jogadores, new {@class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Jogadores)
+                            @Html.ValidationMessageFor(model => model.Jogadores)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Classificacao, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Classificacao)
+                            @Html.ValidationMessageFor(model => model.Classificacao)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Garantia, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.IdPlataforma, "Plataforma", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Garantia)
-                            @Html.ValidationMessageFor(model => model.Garantia)
+                            @Html.DropDownList("IdPlataforma", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdPlataforma)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.IdGenero, "Genero", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.PrecoString)
-                            @Html.ValidationMessageFor(model => model.PrecoString)
+                            @Html.DropDownList("IdGenero", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdGenero)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.IdCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.IdConsole, "Console", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdCategoria", "----------selecione----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
+                            @Html.DropDownList("IdConsole", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdConsole)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdFabricante, "Fabricante", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdFabricante", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdFabricante)
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            @*<div class="panel panel-default">
                 <div class="panel-heading">Hardware</div>
                 <div style="padding:20px;">
-                  <div class="form-group">
+                    <div class="form-group">
                         <div class="col-md-10">
                             @Html.DropDownList("cCameraTraseira", "----------selecione----------")
                         </div>
@@ -93,67 +114,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Acessorios</div>
-                <div class="form-group">
-                    <div style="padding:20px;">
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <div class="col-md-10 acessorios">
-                                    @Html.DropDownList("cAcessorio", (MultiSelectList)ViewBag.Acessorio, new { multiple = "multiple" })
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Redes</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <div class="col-md-10 redes">
-                                @Html.DropDownList("cRede", (MultiSelectList)ViewBag.Rede, new { multiple = "multiple" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Conectividades</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-
-                        <div class="col-md-10">
-                            <div class="col-md-10 conectividades">
-                                @Html.DropDownList("cConectividade", (MultiSelectList)ViewBag.Conectividade, new { multiple = "multiple" })
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Sensores</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <div class="col-md-10 sensores">
-                                @Html.DropDownList("cSensor", (MultiSelectList)ViewBag.Sensor, new { multiple = "multiple" })
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
+            </div>*@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

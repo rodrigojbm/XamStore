@@ -17,18 +17,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public int IdCategoria { get; set; }
         public virtual Categoria Categoria { get; set; }
 
-        public int IdPlataforma { get; set; }
-        public Plataforma Plataforma { get; set; }
-
-        public int IdGenero { get; set; }
-        public Genero Genero { get; set; }
-
-        public int IdFabricante { get; set; }
-        public Fabricante Fabricante { get; set; }
-
-        public int IdConsole { get; set; }
-        public Console Console { get; set; }
-
         public int IdJogo { get; set; }
         public virtual Jogo Jogo { get; set; }
 

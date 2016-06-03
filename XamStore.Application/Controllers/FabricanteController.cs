@@ -108,7 +108,7 @@ namespace XamStore.Application.Controllers
 
             var fabricante = await _db.Fabricante.FindAsync(id);
 
-            ViewBag.Produtos = _db.Produto.Where(x => x.Jogo.IdFabricante == id).ToList();
+            ViewBag.Jogos = _db.Jogo.Where(x => x.IdFabricante == id).ToList();
 
             return View(fabricante);
         }

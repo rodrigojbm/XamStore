@@ -18,7 +18,7 @@
                 @Html.DisplayFor(model => model.Produto.Descricao)
             </dd>
         </dl>
-        @using (Html.BeginForm("Deletar", "Admin/Slide"))
+        @using (Html.BeginForm("Deletar", "Slide"))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(x => x.Id)

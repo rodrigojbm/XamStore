@@ -1,0 +1,61 @@
+﻿@model IEnumerable<XamStore.Domain.Entities.Cadastro.Jogo>
+
+@{
+    ViewBag.Title = "Cadastro de Jogos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@Html.Partial("MenuAdmin");
+<div class="content-right">
+    <h2>Cadastro de Jogos</h2>
+    <hr />
+    <p>
+        @Html.ActionLink("Novo jogo", "Cadastrar")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Multiplayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jogadores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Classificacao)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Multiplayer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jogadores)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Classificacao)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", "JogoAdmin", new { id = item.Id }, null) |
+                    @Html.ActionLink("Deletar", "Deletar", "JogoAdmin", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

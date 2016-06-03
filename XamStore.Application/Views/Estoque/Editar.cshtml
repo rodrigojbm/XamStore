@@ -6,7 +6,7 @@
 @Html.Partial("MenuAdmin");
 
 <div class="content-right">
-    @using (Html.BeginForm("editar", "Admin/Estoque", FormMethod.Post))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
@@ -22,9 +22,9 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.IdProduto, "cProduto", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.IdProduto, "IdProduto", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("cProduto", "----------selecione----------")
+                    @Html.DropDownList("IdProduto", "----------SELECIONE----------")
                     @Html.ValidationMessageFor(model => model.IdProduto)
                 </div>
             </div>

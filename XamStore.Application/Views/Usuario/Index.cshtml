@@ -41,7 +41,7 @@
                         if (item.UsuarioNivel.Id != 1)
                         {
                             @Html.Raw("|")
-                            @Html.ActionLink("Deletar", "Deletar", "Admin/Usuario", new { id = item.Id }, null)
+                            @Html.ActionLink("Deletar", "Deletar", "Usuario", new { id = item.Id }, null)
                         }
                     }
                 </td>

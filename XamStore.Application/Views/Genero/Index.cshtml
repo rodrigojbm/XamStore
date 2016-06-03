@@ -1,14 +1,14 @@
-﻿@model IEnumerable<XamStore.Domain.Entities.Cadastro.Categoria>
-
+﻿@model IEnumerable<XamStore.Domain.Entities.Cadastro.Genero>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cadastro de Gênero";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 @Html.Partial("MenuAdmin");
 <div class="content-right">
-    <h2>Cadastro de Categoria</h2>
-    <p> @Html.ActionLink("Nova Categoria", "Cadastrar") </p>
+    <h2>Cadastro de Gênero</h2>
+    <p>
+        @Html.ActionLink("Novo Genero", "Cadastrar")
+    </p>
     <table class="table">
         <tr>
             <th>
@@ -16,7 +16,6 @@
             </th>
             <th></th>
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -25,10 +24,9 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "Categoria", new { id = item.Id }, null)
+                    @Html.ActionLink("Deletar", "Deletar", "Genero", new { id = item.Id }, null)
                 </td>
             </tr>
         }
-
     </table>
 </div>

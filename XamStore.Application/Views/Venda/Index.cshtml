@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Pedido.Data)
                 </td>
                 <td>
-                    @Html.ActionLink("Gerenciar", null, $"Admin/Venda/Editar/{item.Id}")
+                    @Html.ActionLink("Gerenciar", null, $"Venda/Editar/{item.Id}")
                 </td>
                 <td>
                     @if (item.IsNova == true)

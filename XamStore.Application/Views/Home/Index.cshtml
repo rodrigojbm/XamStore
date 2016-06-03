@@ -16,10 +16,9 @@
 
                             <div class="ei-title">
                                 <h3 class="btn">@($"{slide.Produto.Preco}")</h3>
-                                <h2>@slide.Produto.Descricao</h2>
+                                <h2>@slide.Produto.Nome</h2>
                                 <h3>
-                                    <a class="ei_icons" href="Produto/detalhar/@slide.Produto.Id"><img src="~/Imagens/icon_1.png" alt=""></a>
-
+                                    <a class="ei_icons" href="/Views/Produto/@slide.Produto.Id"><img src="~/Imagens/icon_1.png" alt=""></a>
                                 </h3>
                             </div>
                         </li>
@@ -28,7 +27,7 @@
                 <ul class="ei-slider-thumbs">
                     @foreach (var slide in (IEnumerable<XamStore.Domain.Entities.Cadastro.Slide>)ViewBag.Produtos)
                     {
-                        <li><a href="#"><span>@slide.Produto.Descricao</span></a><img src="/Imagens/Produto/@slide.Imagem" alt="" /></li>
+                        <li><a href="#"><span>@slide.Produto.Nome</span></a><img src="/Imagens/Produto/@slide.Imagem" alt="" /></li>
                     }
                 </ul>
             </div>

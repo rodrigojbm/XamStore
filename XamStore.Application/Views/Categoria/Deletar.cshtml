@@ -32,7 +32,7 @@
                 }
             }
         </dl>
-        @using (Html.BeginForm("Deletar", "Admin/Categoria"))
+        @using (Html.BeginForm("Deletar", "Categoria"))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(x => x.Id)

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.ModelBinding;
 using System.Web.Mvc;
 using XamStore.Domain.Entities.Cadastro;
 using XamStore.Infrastructure.Context;
@@ -13,11 +12,11 @@ using XamStore.Infrastructure.Context;
 namespace XamStore.Application.Controllers
 {
     [RoutePrefix("Admin")]
-    public class PlataformaController : BaseAdminController
+    public class GeneroController : BaseAdminController
     {
         private readonly Context _db = new Context();
 
-        [Route("Plataforma")]
+        [Route("Genero")]
         public async Task<ActionResult> Index()
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -25,10 +24,10 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            return View(await _db.Plataforma.ToListAsync());
+            return View(await _db.Genero.ToListAsync());
         }
 
-        [Route("Plataforma/Cadastrar")]
+        [Route("Genero/Cadastrar")]
         public ActionResult Cadastrar()
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -40,26 +39,26 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Plataforma/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome")] Plataforma plataforma)
-        { 
+        [Route("Genero/Cadastrar")]
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome")] Genero genero)
+        {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
 
             InitializeMenuAdmin();
 
             if (!ModelState.IsValid)
-                return View(plataforma);
+                return View(genero);
 
-            _db.Plataforma.Add(plataforma);
+            _db.Genero.Add(genero);
             await _db.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Plataforma cadastrada com sucesso!";
+            ViewBag.Mensagem = "Gênero cadastrada com sucesso!";
 
-            return View("Index", await _db.Plataforma.ToListAsync());
+            return View("Index", await _db.Genero.ToListAsync());
         }
 
-        [Route("Plataforma/Editar/{id}")]
+        [Route("Genero/Editar/{id}")]
         public async Task<ActionResult> Editar(int? id)
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -70,17 +69,17 @@ namespace XamStore.Application.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var plataforma = await _db.Plataforma.FindAsync(id);
-            if (plataforma == null)
+            var genero = await _db.Genero.FindAsync(id);
+            if (genero == null)
                 return HttpNotFound();
 
-            return View(plataforma);
+            return View(genero);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Plataforma/Editar/{id}")]
-        public async Task<ActionResult> Editar([Bind(Include = "Id, Nome")] Plataforma plataforma)
+        [Route("Genero/Editar/{id}")]
+        public async Task<ActionResult> Editar([Bind(Include = "Id, Nome")] Genero genero)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
@@ -88,17 +87,17 @@ namespace XamStore.Application.Controllers
             InitializeMenuAdmin();
 
             if (!ModelState.IsValid)
-                return View(plataforma);
+                return View(genero);
 
-            _db.Entry(plataforma).State = EntityState.Modified;
+            _db.Entry(genero).State = EntityState.Modified;
             await _db.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Plataforma editado com sucesso!";
+            ViewBag.Mensagem = "Gênero editado com sucesso!";
 
-            return View("Index", await _db.Plataforma.ToListAsync());
+            return View("Index", await _db.Genero.ToListAsync());
         }
 
-        [Route("Plataforma/Deletar/{id}")]
+        [Route("Genero/Deletar/{id}")]
         public async Task<ActionResult> Deletar(int? id)
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -106,14 +105,14 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            var plataforma = await _db.Plataforma.FindAsync(id);
+            var genero = await _db.Genero.FindAsync(id);
 
-            ViewBag.Jogos = _db.Jogo.Where(x => x.IdPlataforma == id).ToList();
+            ViewBag.Jogos = _db.Jogo.Where(x => x.IdGenero == id).ToList();
 
-            return View(plataforma);
+            return View(genero);
         }
 
-        [Route("Plataforma/Deletar")]
+        [Route("Genero/Deletar")]
         [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeletarConfirmacao(int id)
@@ -123,14 +122,14 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            var plataforma = await _db.Plataforma.FindAsync(id);
+            var genero = await _db.Genero.FindAsync(id);
 
-            _db.Plataforma.Remove(plataforma);
+            _db.Genero.Remove(genero);
             await _db.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Plataforma deletado com sucesso!";
+            ViewBag.Mensagem = "Genero deletado com sucesso!";
 
-            return View("Index", await _db.Plataforma.ToListAsync());
+            return View("Index", await _db.Genero.ToListAsync());
         }
 
         protected override void Dispose(bool disposing)

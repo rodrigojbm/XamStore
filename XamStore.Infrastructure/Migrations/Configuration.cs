@@ -83,6 +83,30 @@ namespace XamStore.Infrastructure.Migrations
             });
 
             context.SaveChanges();
+
+            context.UsuarioNivel.AddOrUpdate(x => x.Nome, new UsuarioNivel()
+            {
+                Nome = "Admin"
+            });
+
+            context.SaveChanges();
+
+            context.UsuarioNivel.AddOrUpdate(x => x.Nome, new UsuarioNivel()
+            {
+                Nome = "Usuario"
+            });
+
+            context.SaveChanges();
+
+            context.Usuario.AddOrUpdate(x => x.Nome, new Usuario()
+            {
+                Nome = "Admin",
+                Login = "admin",
+                Senha = "1234",
+                IdUsuarioNivel = 1
+            });
+
+            context.SaveChanges();
         }
     }
 }
