@@ -40,7 +40,7 @@ namespace XamStore.Application.Controllers
 
             InitializeMenuAdmin();
 
-            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Descricao");
+            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Nome");
             return View();
         }
 
@@ -106,7 +106,7 @@ namespace XamStore.Application.Controllers
                 return View("Index", await _db.Slide.ToListAsync());
             }
 
-            ViewBag.cProduto = new SelectList(_db.Produto, "Id", "Descricao", slide.IdProduto);
+            ViewBag.cProduto = new SelectList(_db.Produto, "Id", "Nome", slide.IdProduto);
             return View(slide);
         }
 
@@ -127,14 +127,14 @@ namespace XamStore.Application.Controllers
             if (slide == null)
                 return HttpNotFound();
 
-            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Descricao", slide.IdProduto);
+            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Nome", slide.IdProduto);
             return View(slide);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Slide/Editar")]
-        public async Task<ActionResult> Editar([Bind(Include = "Id, Descricao, IdProduto, Imagem, File")] Slide slide, HttpPostedFileBase file)
+        public async Task<ActionResult> Editar([Bind(Include = "Id, Nome, IdProduto, Imagem, File")] Slide slide, HttpPostedFileBase file)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace XamStore.Application.Controllers
                     return View("Index", await _db.Slide.ToListAsync());
                 }
 
-                ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Descricao", slide.IdProduto);
+                ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Nome", slide.IdProduto);
                 return View(slide);
             }
             catch (DbEntityValidationException ex)

@@ -110,6 +110,9 @@ namespace XamStore.Application.Controllers
 
                 if (pessoaGoogle == null)
                 {
+                    var saida = pessoa.Nome.Split(' ');
+                    pessoa.Sobrenome = saida[1];
+
                     pessoa.SexoTipo = SexoTipoEnum.Masculino;
                     pessoa.Senha = "senha_google";
                     pessoa.PessoaTipo = PessoaTipoEnum.Fisica;

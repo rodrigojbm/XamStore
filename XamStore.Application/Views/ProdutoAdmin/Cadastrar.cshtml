@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PesoString, "Peso", new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.PesoString) gramas (g)
                         @Html.ValidationMessageFor(model => model.PesoString)
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PrecoString, "Preço", new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.PrecoString) R$
                         @Html.ValidationMessageFor(model => model.PrecoString)

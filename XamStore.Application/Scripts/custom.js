@@ -16,8 +16,7 @@ $(function () {
         startApp();
     
     });
-})
-
+});
 
 function Login() {
     if (!online) {
@@ -32,7 +31,7 @@ function Login() {
                 //indow.location.replace();
                 $.ajax({
                     type: "POST",
-                    data: { FacebookId: response.id, Email: response.email, NomeRazao: response.name },
+                    data: { FacebookId: response.id, Email: response.email, Nome: response.name },
                     url: "Login/Facebook",
                     success: function (data) {
                         window.location.replace(data.RedirectUrl);
@@ -51,11 +50,8 @@ var onSuccess = function (user) {
     var usuario = user.getBasicProfile();
     $.ajax({
         type: "POST",
-        data: { GoogleId: usuario.wc, Email: usuario.po, NomeRazao: usuario.zt },
+        data: { GoogleId: usuario.wc, Email: usuario.getEmail(), Nome: usuario.getName() },
         url: "Login/Google",
-
-
-    
 
         success: function (data) {
             window.location.replace(data.RedirectUrl);
@@ -79,7 +75,7 @@ var startApp = function () {
 
     gapi.load('auth2', function () {
         auth2 = gapi.auth2.init({
-            client_id: '1035537579914-su809tar1augpqpj0hcrl2tmgdc080r0.apps.googleusercontent.com',
+            client_id: '787069133384-faqoslbpk143ohjkngf1io72ndilncpq.apps.googleusercontent.com',
             cookiepolicy: 'single_host_origin',
         });
 
