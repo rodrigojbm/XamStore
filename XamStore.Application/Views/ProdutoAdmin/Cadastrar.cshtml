@@ -6,82 +6,79 @@
 }
 @Html.Partial("MenuAdmin");
 
-<link href="~/Content/SelecionarCategoriaProduto.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/SelecionarCategoriaProduto.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/Scripts/SelecionarCategoriaProduto.js"></script>
 
 <div class="content-right">
-    <h2>Cadastro de Produtos</h2>
-    <hr/>
-    @using (Html.BeginForm("Cadastrar", "ProdutoAdmin", null, FormMethod.Post, new {enctype = "multipart/form-data", id = "validateManually"}))
+    <h2>Cadastro de Produto</h2>
+    <hr />
+
+    @using (Html.BeginForm("Cadastrar", "ProdutoAdmin", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validadeManually" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true)
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Dados principais</div>
-                <div style="padding: 20px;">
-                    @*<div class="container text-center">
-                        
-                        <h4>Selecione uma categoria</h4>
-                        <br>
-                        
-                        <div class="row">
-                            <div class="col-sm-4 jogo1">
-                                <p class="text-center"><strong>Jogo</strong></p><br>
-                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="text-center"><strong>Console</strong></p><br>
-                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="text-center"><strong>Acessórios</strong></p><br>
-                                <img src="~/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-                            </div>
-                        </div>
-                    </div>*@
-                    
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Jogo.Nome, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Jogo.Nome)
-                            @Html.ValidationMessageFor(model => model.Jogo.Nome)
-                        </div>
+            <div class="container text-center">
+                <h4>Selecione uma categoria</h4>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4" id="jogo">
+                        <p class="text-center"><strong>Jogo</strong></p><br>
+                        <img src="/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
                     </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PesoString) gramas (g)
-                            @Html.ValidationMessageFor(model => model.PesoString)
-                        </div>
+                    <div class="col-sm-4">
+                        <p class="text-center"><strong>Console</strong></p><br>
+                        <img src="/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
                     </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Estoque, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Estoque)
-                            @Html.ValidationMessageFor(model => model.Estoque)
-                        </div>
+                    <div class="col-sm-4">
+                        <p class="text-center"><strong>Nada</strong></p><br>
+                        <img src="/Imagens/ProdutoCategoria/tetris.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
                     </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Garantia, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Garantia) meses
-                            @Html.ValidationMessageFor(model => model.Garantia)
-                        </div>
+                </div>
+            </div>
+            <div id="jogos">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nome)
+                        @Html.ValidationMessageFor(model => model.Nome)
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PrecoString, new {@class = "control-label col-md-2"})
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PrecoString) R$
-                            @Html.ValidationMessageFor(model => model.PrecoString)
-                        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PesoString) gramas (g)
+                        @Html.ValidationMessageFor(model => model.PesoString)
                     </div>
+                </div>
 
-                    @*<div class="form-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Estoque, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Estoque)
+                        @Html.ValidationMessageFor(model => model.Estoque)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Garantia, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Garantia) meses
+                        @Html.ValidationMessageFor(model => model.Garantia)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PrecoString) R$
+                        @Html.ValidationMessageFor(model => model.PrecoString)
+                    </div>
+                </div>
+
+                @*<div class="form-group">
                         @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.DropDownList("IdJogo", null, new {@class = "form-control"})
@@ -89,89 +86,61 @@
                         </div>
                     </div>*@
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("IdJogo", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdJogo)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Jogo.IdPlataforma, "Plataforma", new {@class = "control-label col-md-2"})
-                        <div class="col-md-10">
-                            @Html.DropDownList("IdPlataforma", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Jogo.IdGenero, "Genero", new {@class = "control-label col-md-2"})
-                        <div class="col-md-10">
-                            @Html.DropDownList("IdGenero", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Jogo.IdFabricante, "Fabricante", new {@class = "control-label col-md-2"})
-                        <div class="col-md-10">
-                            @Html.DropDownList("IdFabricante", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Jogo.IdConsole, "Console", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("IdConsole", "----------SELECIONE----------")
-                            @Html.ValidationMessageFor(model => model.IdCategoria)
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Imagens</div>
-                <div style="padding: 20px;">
-                    <div class="form-group">
-                        <div class="col-md-10 imagens">
-                            <a href="#" class="add">Adicionar mais imagens</a><br/><br/>
-                            <input type="file" name="images[0]" id="images"/><br/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*<div class="panel panel-default">
-                <div class="panel-heading">Plataforma</div>
                 <div class="form-group">
+                    @Html.LabelFor(model => model.IdCategoria, "Categoria", new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdCategoria", "----------SELECIONE----------")
+                        @Html.ValidationMessageFor(model => model.IdCategoria)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdJogo, "Jogo", new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdJogo", "----------SELECIONE----------")
+                        @Html.ValidationMessageFor(model => model.IdJogo)
+                    </div>
+                </div>
+
+               <div class="panel panel-default">
+                    <div class="panel-heading">Imagens</div>
                     <div style="padding: 20px;">
-                        <div class="col-md-10">
-                            <div class="col-md-10 conectividades">
-                                @Html.DropDownList("IdPlataforma", (SelectList)ViewBag.Plataforma, new { multiple = "multiple" })
+                        <div class="form-group">
+                            <div class="col-md-10 imagens">
+                                <a href="#" class="add">Adicionar mais imagens</a><br /><br />
+                                <input type="file" name="images[0]" id="images" /><br />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>*@
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-default" style="float: right"/>
+                @*<div class="panel panel-default">
+                        <div class="panel-heading">Plataforma</div>
+                        <div class="form-group">
+                            <div style="padding: 20px;">
+                                <div class="col-md-10">
+                                    <div class="col-md-10 conectividades">
+                                        @Html.DropDownList("IdPlataforma", (SelectList)ViewBag.Plataforma, new { multiple = "multiple" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cadastrar" class="btn btn-default" style="float: right" />
+                    </div>
+                </div>
             </div>
         </div>
     }
+    <div>
+        @Html.ActionLink("Voltar para lista", "Index")
+    </div>
+    <div style="clear:both"></div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-<div style="clear:both"></div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 <script type="text/javascript">
     $(function () {
         var i = 1;
@@ -193,4 +162,3 @@
     $("#EspessuraString").maskMoney({ thousands: '', decimal: '.', affixesStay: true, precision: 1 });
     $("#PrecoString").maskMoney({ thousands: ',', decimal: '.', affixesStay: true });
 </script>
-

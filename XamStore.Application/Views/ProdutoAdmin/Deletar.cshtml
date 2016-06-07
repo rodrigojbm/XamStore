@@ -44,7 +44,7 @@
                 @Html.DisplayFor(model => model.Preco)
             </dd>
         </dl>
-        @using (Html.BeginForm("Deletar", "Produto"))
+        @using (Html.BeginForm("Deletar", "ProdutoAdmin"))
         {
             @Html.HiddenFor(x => x.Id)
             @Html.AntiForgeryToken()

@@ -6,6 +6,7 @@
 
 @model XamStore.Domain.Entities.Cadastro.Pessoa
 
+<!-- start top_bg -->
 <div class="top_bg">
     <div class="wrap">
         <div class="main_top">
@@ -13,6 +14,7 @@
         </div>
     </div>
 </div>
+<!-- start main -->
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
@@ -20,13 +22,13 @@
                 <div class="registration_left">
                     <h3>Cadastro no site</h3>
                     <p>Digite seus dados abaixo</p>
-
                     <script type="text/javascript">
                         function OnSucessRegistro(data) {
                             window.location.replace(data.RedirectUrl);
                         }
                     </script>
                     <div class="registration_form">
+                        <!-- Form -->
                         @using (Ajax.BeginForm("Registrar", "Login", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", OnSuccess = "OnSucessRegistro", LoadingElementId = "Registrar" }, new { Id = "Registrar" }))
                         {
                             @Html.AntiForgeryToken()
@@ -35,6 +37,12 @@
                                 <label>
                                     @Html.TextBoxFor(m => m.Nome, new { placeholder = "Nome" })
                                     @Html.ValidationMessageFor(m => m.Nome)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Sobrenome, new { placeholder = "Sobrenome" })
+                                    @Html.ValidationMessageFor(m => m.Sobrenome)
                                 </label>
                             </div>
                             <div class="sky_form">
@@ -61,10 +69,12 @@
                                     @Html.ValidationMessageFor(m => m.ConfirmaSenha)
                                 </label>
                             </div>
+
                             <div>
                                 <input type="submit" value="Criar conta" id="register-submit">
                             </div>
                         }
+                        <!-- /Form -->
                     </div>
                 </div>
             </div>

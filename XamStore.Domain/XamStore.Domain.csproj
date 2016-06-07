@@ -76,7 +76,6 @@
     <Compile Include="Entities\Sistema\SessionCarrinho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EnumUtils.cs" />
-    <Compile Include="Services\FileChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

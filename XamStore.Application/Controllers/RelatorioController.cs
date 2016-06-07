@@ -8,6 +8,7 @@ using Rotativa;
 using XamStore.Domain.Entities.Operacao;
 using XamStore.Domain.Entities.Sistema;
 using XamStore.Infrastructure.Context;
+using SessionAutenticacaoAdmin = XamStore.Domain.Entities.Sistema.SessionAutenticacaoAdmin;
 
 namespace XamStore.Application.Controllers
 {

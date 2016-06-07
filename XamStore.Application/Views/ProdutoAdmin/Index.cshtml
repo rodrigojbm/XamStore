@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria.Nome)
+                @Html.DisplayNameFor(model => model.Categoria)
             </th>
             <th></th>
         </tr>
@@ -41,8 +41,8 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink("Editar", "Editar", "Produto", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "Produto", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", "Admin/ProdutoAdmin", new { id = item.Id }, null) |
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/ProdutoAdmin", new { id = item.Id }, null)
 
                 </td>
             </tr>

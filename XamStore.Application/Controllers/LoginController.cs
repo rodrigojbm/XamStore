@@ -6,6 +6,7 @@ using XamStore.Domain.Entities.Cadastro;
 using XamStore.Domain.Entities.Sistema;
 using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
+using SessionAutenticacaoClient = XamStore.Domain.Entities.Sistema.SessionAutenticacaoClient;
 
 namespace XamStore.Application.Controllers
 {

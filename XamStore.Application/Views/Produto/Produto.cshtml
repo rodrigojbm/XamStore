@@ -4,8 +4,9 @@
 }
 
 @using System.Linq;
-@using XamStore.Domain.Entities.Cadastro;
+@using XamStore.Domain.Entities.Cadastro
 
+<!-- start top_bg -->
 <div class="top_bg">
     <div class="wrap">
         <div class="main_top">
@@ -13,6 +14,7 @@
         </div>
     </div>
 </div>
+<!-- start main -->
 <div class="main_bg">
     <div class="wrap">
         <div class="main" style="min-height:1000px;">
@@ -47,73 +49,28 @@
                                     }
                                 }
 
-                                @Html.ActionLink(dict.Key.Nome, "Index", "Produto", routeValueFabricanteDictionary, null)
-                            </li>
-                                    }
-                    </ul>
-
-                    <div class="panel-heading"><b>Processador</b></div>
-                    <ul class="list-group">
-                        @*@foreach (var dict in (Dictionary<Processador, int>)ViewBag.CountProcessadores)
-                        {
-                            <li class="list-group-item">
-                                <span class="badge">
-                                    <span>@dict.Value</span>
-                                </span>
-                                @{
-                                    RouteValueDictionary routeValueProcessadorDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
-
-                                    foreach (string key in Request.QueryString.Keys)
-                                    {
-                                        routeValueProcessadorDictionary[key] = Request.QueryString[key].ToString();
-                                    }
-
-                                    if (!routeValueProcessadorDictionary.ContainsKey("processador"))
-                                    {
-
-                                        routeValueProcessadorDictionary.Add("processador", dict.Key.Id);
-                                    }
-                                    else
-                                    {
-                                        routeValueProcessadorDictionary.Remove("processador");
-                                        routeValueProcessadorDictionary.Add("processador", dict.Key.Id);
-                                    }
-                                }
-
                                 @Html.ActionLink(
-                                     dict.Key.Descricao,
-                                    "index", //actionName
-                                    "Produto", //controllerName
-                                    routeValueProcessadorDictionary, //routeValues
-                                    null //htmlAttributes
+                                    dict.Key.Nome,
+                                    "index",
+                                    "Produto",
+                                    routeValueFabricanteDictionary,
+                                    null
                                 )
-
                             </li>
-                                    }*@
-
+                                    }
                     </ul>
-
-                    <div class="panel-heading"><b>Sistema Operacional</b></div>
-
-                    <div class="panel-heading"><b>Modelos</b></div>
-
-                </div>
-            </div>
-
             <div class="produtos">
                 @{
                     var queryString = new RouteValueDictionary(ViewContext.RouteData.Values);
                     foreach (string key in Request.QueryString.Keys)
                     {
                         var descricao = "";
-
-                        var id = 0;
-                        @*if (key == "processador")
+                        int id = 0;
+                       if (key == "fabricante")
                         {
                             id = int.Parse(Request.QueryString[key]);
-                            var processador = (IEnumerable<Processador>)ViewBag.Processadores;
-                            descricao = processador.Where(x => x.Id == id).FirstOrDefault().Nome;
-
+                            var fabricante = (IEnumerable<Fabricante>)ViewBag.Fabricantes;
+                            descricao = fabricante.FirstOrDefault(x => x.Id == id).Nome;
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
                                 @Ajax.ActionLink(
@@ -121,30 +78,6 @@
                                     "RemoveQueryString",
                                     "Produto",
                                     new { filtro = @key, valor = @id, query = Request.Url.Query },
-                                    new AjaxOptions
-                                    {
-
-                                        HttpMethod = "POST", // <-- HTTP method
-                                        OnSuccess = "produtoRemoveRedirect"
-                                    })
-                            </span>
-                        </span>
-
-                        }*@
-
-                        if (key == "fabricante")
-                        {
-                            id = int.Parse(Request.QueryString[key]);
-                            var fabricante = (IEnumerable<Fabricante>)ViewBag.Fabricantes;
-                            descricao = fabricante.FirstOrDefault(x => x.Id == id)?.Nome;
-
-                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
-                                @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
-                                @Ajax.ActionLink(
-                                    "×",
-                                    "RemoveQueryString",
-                                    "Produto",
-                                    new { filtro = @key, valor = @id, query = Request.Url?.Query },
                                     new AjaxOptions
                                     {
                                         HttpMethod = "POST", // <-- HTTP method
@@ -184,27 +117,25 @@
                         </div>
 
                         <div class="produto-descricao">
-                            <div class="produto-titulo"><b>@produto.Descricao</b></div>
+                            <div class="produto-titulo"><b>@produto.Nome</b></div>
                             <div class="produto-titulo-preco"></div>
-                            <div class="produto-preco">@($"{produto.Preco}")</div>
+                            <div class="produto-preco">@($"{produto.Preco:C}")</div>
                             <div class="produto-opcoes">
-                                <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
+                                <a class="ei_icons" href="/Views/Produto/Detalhe.cshtml/@produto.Id">Detalhes</a>
 
-                                 <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
-                                 <a class="ei_icons add-carrinho" id="@produto.Id" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>
+                                <!-- <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
+
+                                 <a class="ei_icons add-carrinho" id="@*@produto.Id*@" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>-->
                             </div>
                         </div>
                     </div>
                 }
                 <div class="clear"></div>
-
                 <nav>
                     <ul class="pagination" style="margin-left:50%">
-
                         @{
                             var produtos = (int)ViewBag.TotalPages;
                             var paginationRouteValue = new RouteValueDictionary();
-
                             foreach (string key in Request.QueryString.Keys)
                             {
                                 var value = Request.QueryString[key];
@@ -212,7 +143,7 @@
                             }
                         }
 
-                        @*@{
+                        @{
                             produtos = produtos == 0 ? 1 : produtos;
                             for (int i = 1; i <= produtos; i++)
                             {
@@ -222,12 +153,10 @@
                                 var index = i.ToString();
 
                                 <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "index", "Produto", paginationRouteValue, null)</li>
-    }
-                        }*@
-
+                            }
+                        }
                     </ul>
                 </nav>
-
             </div>
             <div class="clear"></div>
         </div>
@@ -235,50 +164,50 @@
 </div>
 <div class="clear"></div>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function produtoRemoveRedirect(url) {
-        window.location.replace(url.RedirectUrl);
-    }
-
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    $(".order, .registroPorPagina").change(function () {
-        var order = $('.order option:selected').val();
-        var registroPorPagina = $('.registroPorPagina option:selected').val();
-        var pagina = $('.pagina').val();
-
-        var modelo = getParameterByName("modelo");
-        var processador = getParameterByName("processador");
-        var sistemaOperacional = getParameterByName("sistemaOperacional");
-        var fabricante = getParameterByName("fabricante");
-
-        var url = window.location.origin;
-
-        var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
-
-        if (modelo !== "") {
-            url += "&modelo=" + modelo;
+        function produtoRemoveRedirect(url) {
+            window.location.replace(url.RedirectUrl);
         }
 
-        if (processador !== "") {
-            url += "&processador=" + processador;
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
-        if (sistemaOperacional !== "") {
-            url += "&sistemaOperacional=" + sistemaOperacional;
-        }
+        $(".order, .registroPorPagina").change(function() {
+            var order = $('.order option:selected').val();
+            var registroPorPagina = $('.registroPorPagina option:selected').val();
+            var pagina = $('.pagina').val();
 
-        if (fabricante !== "") {
-            url += "&fabricante=" + fabricante;
-        }
+            var modelo = getParameterByName("modelo");
+            var processador = getParameterByName("processador");
+            var sistemaOperacional = getParameterByName("sistemaOperacional");
+            var fabricante = getParameterByName("fabricante");
 
-        window.location.replace(url);
+            var url = window.location.origin;
 
-    })
-</script>
+            var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
+
+            if (modelo !== "") {
+                url += "&modelo=" + modelo;
+            }
+
+            if (processador !== "") {
+                url += "&processador=" + processador;
+            }
+
+            if (sistemaOperacional !== "") {
+                url += "&sistemaOperacional=" + sistemaOperacional;
+            }
+
+            if (fabricante !== "") {
+                url += "&fabricante=" + fabricante;
+            }
+            window.location.replace(url);
+        });
+    </script>
+    </div>
+</div>

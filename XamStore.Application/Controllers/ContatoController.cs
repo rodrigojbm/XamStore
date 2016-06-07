@@ -51,14 +51,14 @@ namespace XamStore.Application.Controllers
 
                     smtp.Send(message);
 
-                    var routeValue = new RouteValueDictionary { {"mensagem", "Sua mensagem foi enviada, entraremos em contato."} };
+                    var routeValue = new RouteValueDictionary { {"Mensagem", "Sua mensagem foi enviada, entraremos em contato."} };
 
                     return RedirectToAction("Index", routeValue);
                 }
             }
             catch (Exception)
             {
-                var routeValue = new RouteValueDictionary { {"mensagem", "Erro ao enviar mensagem, tente novamente mais tarde."} };
+                var routeValue = new RouteValueDictionary { {"Mensagem", "Erro ao enviar mensagem, tente novamente mais tarde."} };
                 return RedirectToAction("Index", routeValue);
             }
         }

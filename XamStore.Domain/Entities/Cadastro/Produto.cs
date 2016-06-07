@@ -20,11 +20,6 @@ namespace XamStore.Domain.Entities.Cadastro
         public int IdJogo { get; set; }
         public virtual Jogo Jogo { get; set; }
 
-
-
         public virtual ICollection<ProdutoImagem> ProdutoImagens { get; set; }
-        //public virtual ICollection<Slide> Slides { get; set; }
-        //public virtual ICollection<ProdutoEstoque> ProdutoEstoques { get; set; }
-        //public virtual ICollection<PedidoItem> PedidoItens { get; set; }
     }
 }

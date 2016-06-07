@@ -45,7 +45,7 @@ namespace XamStore.Application.Controllers
             if (produtoEstoque == null)
                 return HttpNotFound();
 
-            ViewBag.cProduto = new SelectList(_db.Produto, "Id", "Descricao", produtoEstoque.IdProduto);
+            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Nome", produtoEstoque.IdProduto);
 
             return View("~/Views/Estoque/Editar.cshtml", produtoEstoque);
         }
@@ -67,7 +67,7 @@ namespace XamStore.Application.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cProduto = new SelectList(_db.Produto, "Id", "Descricao", produtoEstoque.IdProduto);
+            ViewBag.IdProduto = new SelectList(_db.Produto, "Id", "Nome", produtoEstoque.IdProduto);
             return View(produtoEstoque);
         }
 

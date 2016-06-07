@@ -38,7 +38,7 @@ namespace XamStore.Infrastructure.Context
         public DbSet<Menu> Menu { get; set; }
         public DbSet<MenuAdmin> MenuAdmin { get; set; }
         public DbSet<Fabricante> Fabricante { get; set; }
-        public DbSet<Domain.Entities.Cadastro.Console> Console { get; set; }
+        public DbSet<Console> Console { get; set; }
         public DbSet<Plataforma> Plataforma { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

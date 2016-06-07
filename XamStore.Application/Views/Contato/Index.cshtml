@@ -1,5 +1,5 @@
 ﻿@model XamStore.Domain.Entities.Cadastro.Contato
-
+<!-- start top_bg -->
 <div class="top_bg">
     <div class="wrap">
         <div class="main_top">
@@ -13,6 +13,7 @@
         $('#Celular').mask('(99) 9999-9999?9');
     });
 </script>
+<!-- start main -->
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
@@ -22,6 +23,7 @@
                         position: relative;
                         left: -480px;
                     }
+
                         .field-validation-error span {
                             color: #f00 !important;
                             font-size: 12px;
@@ -54,7 +56,7 @@
                             </div>
                             <div style="color:#328a31">
                                 @{
-                                    var mensagem = Request.Params["mensagem"];
+                                    var mensagem = Request.Params["Mensagem"];
                                 }
 
                                 @Html.Raw(mensagem)

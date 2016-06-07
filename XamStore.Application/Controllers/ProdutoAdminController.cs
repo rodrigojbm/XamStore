@@ -47,7 +47,6 @@ namespace XamStore.Application.Controllers
             ViewBag.IdGenero = new SelectList(_db.Genero, "Id", "Nome");
             ViewBag.IdFabricante = new SelectList(_db.Fabricante, "Id", "Nome");
             ViewBag.IdConsole = new SelectList(_db.Console, "Id", "Nome");
-            //ViewBag.Rede = new MultiSelectList(_db.Rede, "Id", "Descricao");
 
             return View();
         }
@@ -55,7 +54,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("ProdutoAdmin/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Peso, Descricao, Garantia, PesoString, Preco, PrecoString Estoque, IdCategoria")] Produto produto, List<HttpPostedFileBase> images)
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Descricao, Preco, Garantia, Peso, Estoque, PesoString, PrecoString, IdCategoria, IdJogo")] Produto produto, List<HttpPostedFileBase> images)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
@@ -71,12 +70,13 @@ namespace XamStore.Application.Controllers
 
             ModelState.Remove("Preco");
 
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+                return View();
             produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
             produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
 
-            produto.Preco = ToDouble($"{produto.PrecoString:N}", System.Globalization.CultureInfo.InvariantCulture);
-            produto.Peso = ToDecimal($"{produto.PesoString:N}", System.Globalization.CultureInfo.InvariantCulture);
+            produto.Preco = ToDouble($"{produto.PrecoString}", System.Globalization.CultureInfo.InvariantCulture);
+            produto.Peso = ToDecimal($"{produto.PesoString}", System.Globalization.CultureInfo.InvariantCulture);
 
             var estoque = new ProdutoEstoque
             {
@@ -114,7 +114,6 @@ namespace XamStore.Application.Controllers
                             break;
                     }
 
-
                     var imagem = new Imagem();
                     var imageCript = $"{image.FileName}{produto.Descricao}";
                     imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
@@ -131,20 +130,6 @@ namespace XamStore.Application.Controllers
                     _db.ProdutoImagem.Add(produtoImagem);
                 }
             }
-
-            //if (produto.IdCategoria != null)
-            //{
-            //    foreach (var categoria in produto.IdCategoria)
-            //    {
-            //        var produtoCategoria = new Categoria
-            //        {
-            //            Nome = categoria,
-            //            Produto = produto
-            //        };
-
-            //        _db.Categoria.Add(produtoCategoria);
-            //    }
-            //}
 
             await _db.SaveChangesAsync();
 
@@ -174,10 +159,7 @@ namespace XamStore.Application.Controllers
 
             ViewBag.IdCategoria = new SelectList(_db.Categoria, "Id", "Nome");
             ViewBag.IdJogo = new SelectList(_db.Jogo, "Id", "Nome");
-            //ViewBag.IdPlataforma = new SelectList(_db.Plataforma, "Id", "Nome");
-            //ViewBag.IdGenero = new SelectList(_db.Genero, "Id", "Nome");
-            //ViewBag.IdFabricante = new SelectList(_db.Fabricante, "Id", "Nome");
-            //ViewBag.IdConsole = new SelectList(_db.Console, "Id", "Nome");
+            ViewBag.Imagem = await _db.ProdutoImagem.Where(x => x.Produto.Id == produto.Id).ToListAsync();
 
             return View(produto);
         }
@@ -185,7 +167,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("ProdutoAdmin/Editar")]
-        public async Task<ActionResult> Editar([Bind(Include="Id, Nome, Descricao, Garantia, Peso, PesoString, PrecoString, IdCategoria, Estoque")]
+        public async Task<ActionResult> Editar([Bind(Include="Id, Nome, Descricao, Preco, Garantia, Peso, Estoque, PesoString, PrecoString, IdCategoria, IdJogo")]
         Produto produto, List<HttpPostedFileBase> images)
         {
             if (!ChecarUsuarioAdminAutenticado())
@@ -243,50 +225,13 @@ namespace XamStore.Application.Controllers
 
                 produto.Categoria = await _db.Categoria.FindAsync(produto.IdCategoria);
                 produto.Jogo = await _db.Jogo.FindAsync(produto.IdJogo);
-                //produto.Jogo.Plataforma = await _db.Plataforma.FindAsync(produto.Jogo.IdPlataforma);
-                //produto.Jogo.Genero = await _db.Genero.FindAsync(produto.Jogo.IdGenero);
-                //produto.Jogo.Fabricante = await _db.Fabricante.FindAsync(produto.Jogo.IdFabricante);
-                //produto.Jogo.Console = await _db.Console.FindAsync(produto.Jogo.IdConsole);
 
                 produto.Preco = ToDouble(produto.PrecoString, System.Globalization.CultureInfo.InvariantCulture);
                 produto.Peso = ToDecimal(produto.PesoString, System.Globalization.CultureInfo.InvariantCulture);
 
                 _db.Entry(produto).State = EntityState.Modified;
                 await _db.SaveChangesAsync();
-
             }
-
-            //if (produto.IdCategoria != null)
-            //{
-            //    var categoriaDataList = await _db.Categoria.Where(x => x.Produto.Id == produto.Id).ToListAsync();
-
-            //    foreach (var categoriaData in categoriaDataList)
-            //        _db.Categoria.Remove(categoriaData);
-
-            //    await _db.SaveChangesAsync();
-
-            //    foreach (var categoria in produto.IdCategoria)
-            //    {
-            //        var produtoCategoria = new Categoria
-            //        {
-            //            Nome = categoria,
-            //            Produto = produto
-            //        };
-
-            //        _db.Categoria.Add(produtoCategoria);
-            //    }
-
-            //    await _db.SaveChangesAsync();
-            //}
-            //else
-            //{
-            //    var categoriaDataList = await _db.Categoria.Where(x => x.Produto.Id == produto.Id).ToListAsync();
-
-            //    foreach (var categoriaData in categoriaDataList)
-            //        _db.Categoria.Remove(categoriaData);
-
-            //    await _db.SaveChangesAsync();
-            //}
 
             ViewBag.Mensagem = "Produto editado com sucesso!";
 
@@ -355,7 +300,7 @@ namespace XamStore.Application.Controllers
 
                 _db.SaveChanges();
 
-                Response.Redirect(Url.Action($"editar/{produtoId}", "Admin/Produto"));
+                Response.Redirect(Url.Action($"Editar/{produtoId}", "Admin/ProdutoAdmin"));
             }
             catch (Exception)
             {

@@ -10,13 +10,15 @@
                 $(".new_result").html("Email inválido");
                 return false;
             }
+
             if (!validateEmail(email)) {
                 $(".new_result").html("Email inválido");
                 return false;
             }
+
             $.ajax({
                 type: "POST",
-                url: "Home/CadastrarNews",
+                url: "home/CadastrarNews",
                 data: { email: $("#email_news").val() },
                 success: function (data) {
                     if (data === "0") {
@@ -27,10 +29,12 @@
                     }
                 }
             });
+
             return false;
         });
     });
 </script>
+<!-- start footer -->
 <div class="footer_mid">
     <div class="wrap">
         <div class="footer">
@@ -44,14 +48,16 @@
         </div>
     </div>
 </div>
+<!-- start footer -->
 <div class="footer_bg">
     <div class="wrap">
         <div class="footer">
+            <!-- scroll_top_btn -->
             <script type="text/javascript">
                 $(document).ready(function () {
                     var defaults = {
-                        containerID: 'toTop', 
-                        containerHoverID: 'toTopHover', 
+                        containerID: 'toTop', // fading element id
+                        containerHoverID: 'toTopHover', // fading element hover id
                         scrollSpeed: 1200,
                         easingType: 'linear'
                     };

@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PesoString, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.PesoString, "Peso", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.PesoString) gramas (g)
                             @Html.ValidationMessageFor(model => model.PesoString)
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.PrecoString, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.PrecoString, "Preço", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.PrecoString)
                             @Html.ValidationMessageFor(model => model.PrecoString)
@@ -51,25 +51,23 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.IdCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.IdCategoria, "Categoria", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdCategoria", "----------selecione----------")
+                            @Html.DropDownList("IdCategoria", "----------SELECIONE----------")
                             @Html.ValidationMessageFor(model => model.IdCategoria)
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Hardware</div>
-                <div style="padding:20px;">
-                  <div class="form-group">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("cCameraTraseira", "----------selecione----------")
+                            @Html.DropDownList("IdJogo", "----------SELECIONE----------")
+                            @Html.ValidationMessageFor(model => model.IdJogo)
                         </div>
                     </div>
                 </div>
             </div>
+     
             <div class="panel panel-default">
                 <div class="panel-heading">Imagens</div>
                 <div style="padding:20px;">
@@ -86,7 +84,7 @@
                                 <div style="float:left">
                                     <img src="~/Imagens/Produto/@item.Imagem.Nome" width="80" height="71" style="padding:5px;border:1px solid #ccc;" />
                                     <span style="">
-                                        <a href="@Url.Action("deletarImagem","ProdutoAdmin",new  { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
+                                        <a href="@Url.Action("DeletarImagem","ProdutoAdmin",new  { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
                                     </span>
                                 </div>
                             }
@@ -94,65 +92,6 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Acessorios</div>
-                <div class="form-group">
-                    <div style="padding:20px;">
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <div class="col-md-10 acessorios">
-                                    @Html.DropDownList("cAcessorio", (MultiSelectList)ViewBag.Acessorio, new { multiple = "multiple" })
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Redes</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <div class="col-md-10 redes">
-                                @Html.DropDownList("cRede", (MultiSelectList)ViewBag.Rede, new { multiple = "multiple" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Conectividades</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-
-                        <div class="col-md-10">
-                            <div class="col-md-10 conectividades">
-                                @Html.DropDownList("cConectividade", (MultiSelectList)ViewBag.Conectividade, new { multiple = "multiple" })
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Sensores</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <div class="col-md-10 sensores">
-                                @Html.DropDownList("cSensor", (MultiSelectList)ViewBag.Sensor, new { multiple = "multiple" })
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
 
 
             <div class="form-group">

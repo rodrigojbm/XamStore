@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using XamStore.Domain.Entities.Sistema;
 using XamStore.Infrastructure.Context;
+using SessionAutenticacaoClient = XamStore.Domain.Entities.Sistema.SessionAutenticacaoClient;
 
 namespace XamStore.Application.Controllers
 {

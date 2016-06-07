@@ -16,6 +16,8 @@ using XamStore.Domain.Entities.Sistema;
 using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
 using static System.Convert;
+using SessionAutenticacaoClient = XamStore.Domain.Entities.Sistema.SessionAutenticacaoClient;
+using SessionCarrinho = XamStore.Domain.Entities.Sistema.SessionCarrinho;
 
 namespace XamStore.Application.Controllers
 {
