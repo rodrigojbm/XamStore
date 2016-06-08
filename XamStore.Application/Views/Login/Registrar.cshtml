@@ -41,8 +41,26 @@
                             </div>
                             <div>
                                 <label>
-                                    @Html.TextBoxFor(m => m.Sobrenome, new { placeholder = "Sobrenome" })
+                                    @Html.TextBoxFor(m => m.Sobrenome, new {placeholder = "Sobrenome"})
                                     @Html.ValidationMessageFor(m => m.Sobrenome)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Rg, new {placeholder = "RG"})
+                                    @Html.ValidationMessageFor(m => m.Rg)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF"})
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.DataNascimento, new {placeholder = "Data De Nascimento"})
+                                    @Html.ValidationMessageFor(m => m.DataNascimento)
                                 </label>
                             </div>
                             <div class="sky_form">
@@ -53,8 +71,14 @@
                             </div>
                             <div>
                                 <label>
-                                    @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail" })
+                                    @Html.TextBoxFor(m => m.Email, new {placeholder = "E-mail"})
                                     @Html.ValidationMessageFor(m => m.Email)
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail" })
+                                    @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                                 </label>
                             </div>
                             <div>
@@ -65,9 +89,15 @@
                             </div>
                             <div>
                                 <label>
-                                    @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha" })
+                                    @Html.PasswordFor(m => m.ConfirmaSenha, new {placeholder = "Repita a senha"})
                                     @Html.ValidationMessageFor(m => m.ConfirmaSenha)
                                 </label>
+                            </div>
+                            <div class="sky_form">
+                                <ul>
+                                    <li><label class="radio left">@Html.RadioButtonFor(m => m.PessoaTipo, "0", new { @checked = "checked" })<i>Física</i></label></li>
+                                    <li><label class="radio">@Html.RadioButtonFor(m => m.PessoaTipo, "1")<i>Jurídica</i></label></li>
+                                </ul>
                             </div>
 
                             <div>

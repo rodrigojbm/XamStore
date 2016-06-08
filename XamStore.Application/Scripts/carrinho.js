@@ -7,6 +7,7 @@ function addSuccess(quantidade) {
     });
 }
 
+
 function removeCarrinhoSuccess(response) {
     recalculaFrete(false);
 }
@@ -27,7 +28,7 @@ function recalculaFrete(only) {
 
         $.ajax({
             type: "POST",
-            url: url + "/Carrinho/CalculaFrente",
+            url: url + "/Carrinho/CalculaFrete",
             data: { cep: cep, peso: peso, tipoFrete: tipoFrete },
             success: function (response) {
                 if (only) {
@@ -66,7 +67,7 @@ $(function () {
     });
 
     //comentado
-    $("input[name=tipoFrete]").click(function () {
-        recalculaFrete(false);
-    });
+    //$("input[name=tipoFrete]").click(function () {
+    //    recalculaFrete(false);
+    //});
 });

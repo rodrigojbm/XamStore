@@ -4,7 +4,7 @@
 }
 
 @using System.Linq;
-@using XamStore.Domain.Entities.Cadastro
+@using XamStore.Domain.Entities.Cadastro;
 
 <!-- start top_bg -->
 <div class="top_bg">
@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../../Scripts/carrinho.js"></script>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -25,6 +26,7 @@
 
                         @foreach (var dict in (Dictionary<Fabricante, int>)ViewBag.CountFabricantes)
                         {
+
                             <li class="list-group-item">
                                 <span class="badge">
                                     <span>@dict.Value</span>
@@ -37,15 +39,15 @@
                                         routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
                                     }
 
-                                    if (!routeValueFabricanteDictionary.ContainsKey("Fabricante"))
+                                    if (!routeValueFabricanteDictionary.ContainsKey("fabricante"))
                                     {
 
-                                        routeValueFabricanteDictionary.Add("Fabricante", dict.Key.Id);
+                                        routeValueFabricanteDictionary.Add("fabricante", dict.Key.Id);
                                     }
                                     else
                                     {
-                                        routeValueFabricanteDictionary.Remove("Fabricante");
-                                        routeValueFabricanteDictionary.Add("Fabricante", dict.Key.Id);
+                                        routeValueFabricanteDictionary.Remove("fabricante");
+                                        routeValueFabricanteDictionary.Add("fabricante", dict.Key.Id);
                                     }
                                 }
 
@@ -59,20 +61,151 @@
                             </li>
                                     }
                     </ul>
+
+                    <div class="panel-heading"><b>Console</b></div>
+                    <ul class="list-group">
+                        @foreach (var dict in (Dictionary<XamStore.Domain.Entities.Cadastro.Console, int>)ViewBag.CountConsoles)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                                @{
+                                    var routeValueProcessadorDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueProcessadorDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueProcessadorDictionary.ContainsKey("console"))
+                                    {
+
+                                        routeValueProcessadorDictionary.Add("console", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueProcessadorDictionary.Remove("console");
+                                        routeValueProcessadorDictionary.Add("console", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                     dict.Key.Nome,
+                                    "Index", //actionName
+                                    "Produto", //controllerName
+                                    routeValueProcessadorDictionary, //routeValues
+                                    null //htmlAttributes
+                                )
+
+                            </li>
+                                    }
+
+                    </ul>
+
+                    <div class="panel-heading"><b>Plataforma</b></div>
+                    <ul class="list-group">
+
+                        @foreach (var dict in (Dictionary<Plataforma, int>)ViewBag.CountPlataformas)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                                @{
+                                    var routeValueDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueDictionary.ContainsKey("plataforma"))
+                                    {
+                                        routeValueDictionary.Add("plataforma", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueDictionary.Remove("plataforma");
+                                        routeValueDictionary.Add("plataforma", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                         dict.Key.Nome,
+                                        "index", //actionName
+                                        "Produto", //controllerName
+                                        routeValueDictionary, //routeValues
+                                        null //htmlAttributes
+                                    )
+
+                            </li>
+                                    }
+
+                    </ul>
+
+                    <div class="panel-heading"><b>Genero</b></div>
+                    <ul class="list-group">
+                        @foreach (var dict in (Dictionary<Genero, int>)ViewBag.CountGeneros)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+
+                                    <span>@dict.Value</span>
+                                </span>
+
+                                @{
+                                    var routeValueDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueDictionary.ContainsKey("genero"))
+                                    {
+
+                                        routeValueDictionary.Add("genero", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueDictionary.Remove("genero");
+                                        routeValueDictionary.Add("genero", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                        dict.Key.Nome,
+                                        "index", //actionName
+                                        "Produto", //controllerName
+                                        routeValueDictionary, //routeValues
+                                        null //htmlAttributes
+                                    )
+                            </li>
+                                    }
+
+                    </ul>
+
+                </div>
+            </div>
+
             <div class="produtos">
                 @{
                     var queryString = new RouteValueDictionary(ViewContext.RouteData.Values);
+
                     foreach (string key in Request.QueryString.Keys)
                     {
-                        var descricao = "";
+                        var nome = "";
                         int id = 0;
-                       if (key == "fabricante")
+
+                        if (key == "fabricante")
                         {
-                            id = int.Parse(Request.QueryString[key]);
+                            id = int.Parse(Request.QueryString[key].ToString());
                             var fabricante = (IEnumerable<Fabricante>)ViewBag.Fabricantes;
-                            descricao = fabricante.FirstOrDefault(x => x.Id == id).Nome;
+                            nome = fabricante.FirstOrDefault(x => x.Id == id)?.Nome;
+
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
-                                @descricao <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
                                 @Ajax.ActionLink(
                                     "×",
                                     "RemoveQueryString",
@@ -80,11 +213,85 @@
                                     new { filtro = @key, valor = @id, query = Request.Url.Query },
                                     new AjaxOptions
                                     {
+
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
                             </span>
                         </span>
+
+                        }
+
+                        if (key == "genero")
+                        {
+                            id = int.Parse(Request.QueryString[key].ToString());
+                            var genero = (IEnumerable<Genero>)ViewBag.Genero;
+                            nome = genero.FirstOrDefault(x => x.Id == id)?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                            </span>
+                        </span>
+
+                        }
+
+                        if (key == "plataforma")
+                        {
+                            id = int.Parse(Request.QueryString[key]);
+                            var plataforma = (IEnumerable<Plataforma>)ViewBag.Plataforma;
+                            nome = plataforma.FirstOrDefault(x => x.Id == id)?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                            </span>
+                        </span>
+
+                        }
+
+                        if (key == "console")
+                        {
+                            id = int.Parse(Request.QueryString[key]);
+                            var console = (IEnumerable<XamStore.Domain.Entities.Cadastro.Console>)ViewBag.Console;
+                            nome = console.FirstOrDefault(x => x.Id == id)?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                            </span>
+                        </span>
+
                         }
                     }
                 }
@@ -111,41 +318,60 @@
 
                 @foreach (var produto in (IEnumerable<Produto>)ViewBag.Produtos)
                 {
-                    <div class="produto">
-                        <div class="produto-img">
-                            <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault()?.Imagem.Nome" width="180" height="131" />
-                        </div>
+                    <a href="Produto/detalhar/@produto.Id">
+                        <div class="produto">
+                            <div class="produto-img">
+                                <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="180" height="131" />
+                            </div>
+                            <div class="produto-descricao">
+                                <div class="produto-titulo">
+                                    <b>@produto.Nome</b>
+                                </div>
+                                <div class="produto-titulo-preco"></div>
+                                <div class="produto-preco">@($"{produto.Preco:C}")</div>
 
-                        <div class="produto-descricao">
-                            <div class="produto-titulo"><b>@produto.Nome</b></div>
-                            <div class="produto-titulo-preco"></div>
-                            <div class="produto-preco">@($"{produto.Preco:C}")</div>
-                            <div class="produto-opcoes">
-                                <a class="ei_icons" href="/Views/Produto/Detalhe.cshtml/@produto.Id">Detalhes</a>
+                                <div class="produto-opcoes">
+                                    <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
 
-                                <!-- <a class="ei_icons" href="details.html"><img src="~/Imagens/icon_1.png" alt=""></a>
+                                    <a class="ei_icons" href="Produto/detalhar/@produto.Id"><img src="/Imagens/icon_1.png" alt=""></a>
+                                    <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"><img src="/Imagens/icon_4.png" alt=""></a>
+                                    <div class="avaliable">
+                                        @{
+                                            var carrinho = Session["Carrinho"] as XamStore.Domain.Entities.Sistema.SessionCarrinho;
+                                            XamStore.Domain.Entities.Sistema.ProdutoCarrinho produtoCarrinho = null;
 
-                                 <a class="ei_icons add-carrinho" id="@*@produto.Id*@" href="#"><img src="~/Imagens/icon_4.png" alt=""></a>-->
+                                            if (carrinho != null)
+                                            {
+                                                produtoCarrinho = carrinho.ProdutosCarrinho.FirstOrDefault(x => x.Produto.Id == produto.Id);
+                                            }
+                                        }
+                                        @(produtoCarrinho == null ? Ajax.ActionLink(".", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}) : Ajax.ActionLink("Remover do carrinho", "Remove", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}))
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 }
                 <div class="clear"></div>
                 <nav>
                     <ul class="pagination" style="margin-left:50%">
                         @{
                             var produtos = (int)ViewBag.TotalPages;
+
                             var paginationRouteValue = new RouteValueDictionary();
+
                             foreach (string key in Request.QueryString.Keys)
                             {
                                 var value = Request.QueryString[key];
+
                                 paginationRouteValue.Add(key, value);
                             }
                         }
 
                         @{
                             produtos = produtos == 0 ? 1 : produtos;
-                            for (int i = 1; i <= produtos; i++)
+                            for (var i = 1; i <= produtos; i++)
                             {
                                 paginationRouteValue.Remove("pagina");
                                 paginationRouteValue.Add("pagina", i.ToString());
@@ -153,10 +379,12 @@
                                 var index = i.ToString();
 
                                 <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "index", "Produto", paginationRouteValue, null)</li>
-                            }
+    }
                         }
+
                     </ul>
                 </nav>
+
             </div>
             <div class="clear"></div>
         </div>
@@ -164,50 +392,49 @@
 </div>
 <div class="clear"></div>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
+    function produtoRemoveRedirect(url) {
+        window.location.replace(url.RedirectUrl);
+    }
 
-        function produtoRemoveRedirect(url) {
-            window.location.replace(url.RedirectUrl);
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    $(".order, .registroPorPagina").change(function() {
+        var order = $('.order option:selected').val();
+        var registroPorPagina = $('.registroPorPagina option:selected').val();
+        var pagina = $('.pagina').val();
+
+        var fabricante = getParameterByName("fabricante");
+        var genero = getParameterByName("genero");
+        var plataforma = getParameterByName("plataforma");
+        var console = getParameterByName("console");
+
+        var url = window.location.origin;
+
+        var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
+
+        if (fabricante !== "") {
+            url += "&fabricante=" + fabricante;
         }
 
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        if (genero !== "") {
+            url += "&genero=" + genero;
         }
 
-        $(".order, .registroPorPagina").change(function() {
-            var order = $('.order option:selected').val();
-            var registroPorPagina = $('.registroPorPagina option:selected').val();
-            var pagina = $('.pagina').val();
+        if (plataforma !== "") {
+            url += "&plataforma=" + plataforma;
+        }
 
-            var modelo = getParameterByName("modelo");
-            var processador = getParameterByName("processador");
-            var sistemaOperacional = getParameterByName("sistemaOperacional");
-            var fabricante = getParameterByName("fabricante");
+        if (console !== "") {
+            url += "&console=" + console;
+        }
 
-            var url = window.location.origin;
+        window.location.replace(url);
 
-            var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
-
-            if (modelo !== "") {
-                url += "&modelo=" + modelo;
-            }
-
-            if (processador !== "") {
-                url += "&processador=" + processador;
-            }
-
-            if (sistemaOperacional !== "") {
-                url += "&sistemaOperacional=" + sistemaOperacional;
-            }
-
-            if (fabricante !== "") {
-                url += "&fabricante=" + fabricante;
-            }
-            window.location.replace(url);
-        });
-    </script>
-    </div>
-</div>
+    });
+</script>

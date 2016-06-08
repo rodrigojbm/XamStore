@@ -106,9 +106,9 @@ namespace XamStore.Application.Controllers
 
             ViewBag.CountFabricantes = countFabricanteDictionary;
             ViewBag.CountGeneros = countGeneroDictionary;
-            ViewBag.Plataformas = countPlataformaDictionary;
-            ViewBag.Consoles = countConsoleDictionary;
-            ViewBag.Jogos = countJogoDictionary;
+            ViewBag.CountPlataformas = countPlataformaDictionary;
+            ViewBag.CountConsoles = countConsoleDictionary;
+            ViewBag.CountJogos = countJogoDictionary;
 
             return View("Produto");
         }

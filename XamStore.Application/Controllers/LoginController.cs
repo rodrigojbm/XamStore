@@ -149,7 +149,7 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Registrar([Bind(Include = "Nome, Senha, Sexo, Email, ConfirmaSenha")] Pessoa pessoa)
+        public JsonResult Registrar([Bind(Include = "Nome, Sobrenome, Rg, Cpf, DataNascimento, Email, SexoTipo, Senha, ConfirmaSenha")] Pessoa pessoa)
         {
             ViewBag.Menus = _db.Menu;
             ViewBag.Produtos = _db.Slide;
