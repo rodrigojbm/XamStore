@@ -444,6 +444,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\move-top.js" />
     <Content Include="Scripts\productviewgallery.js" />
+    <Content Include="Scripts\RefreshPage.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\SelecionarCategoriaProduto.js" />

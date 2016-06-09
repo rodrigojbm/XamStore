@@ -149,17 +149,19 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Registrar([Bind(Include = "Nome, Sobrenome, Rg, Cpf, DataNascimento, Email, SexoTipo, Senha, ConfirmaSenha")] Pessoa pessoa)
+        public JsonResult Registrar([Bind(Include = "Nome, Sobrenome, DataNascimento, Rg, Cpf, SexoTipo, Email, Senha, PessoaTipo")] Pessoa pessoa)
         {
             ViewBag.Menus = _db.Menu;
             ViewBag.Produtos = _db.Slide;
 
             ModelState.Remove("EmailAutenticacao");
 
-            if (!ModelState.IsValid)
-                return Json(new { RedirectUrl = Url.Action("Registro", "Login") }, JsonRequestBehavior.AllowGet);
+            //if (!ModelState.IsValid)
+            //    return Json(new { RedirectUrl = Url.Action("Registro", "Login") }, JsonRequestBehavior.AllowGet);
 
             pessoa.EmailAutenticacao = pessoa.Email;
+            pessoa.DataNascimento = pessoa.DataNascimento.Date;
+
             _db.Pessoa.Add(pessoa);
 
             try

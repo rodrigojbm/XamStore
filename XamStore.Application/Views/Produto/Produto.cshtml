@@ -21,10 +21,49 @@
         <div class="main" style="min-height:1000px;">
             <div class="categoria-produto">
                 <div class="panel panel-default">
+
+                    <div class="panel-heading"><b>Jogos</b></div>
+                    <ul class="list-group">
+                        @foreach (var dict in (Dictionary<Jogo, int>)ViewBag.CountJogos)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                                @{
+                                    var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
+                                    {
+
+                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueFabricanteDictionary.Remove("jogos");
+                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                    }
+                                }
+
+                                @Html.ActionLink(
+                                    dict.Key.Nome,
+                                    "index",
+                                    "Produto",
+                                    routeValueFabricanteDictionary,
+                                    null
+                                    )
+                            </li>
+                                    }
+                    </ul>
+
                     <div class="panel-heading"><b>Fabricante</b></div>
                     <ul class="list-group">
-
-                        @foreach (var dict in (Dictionary<Fabricante, int>)ViewBag.CountFabricantes)
+                        @foreach (var dict in (Dictionary<Fabricante, int>) ViewBag.CountFabricantes)
                         {
 
                             <li class="list-group-item">
@@ -57,14 +96,15 @@
                                     "Produto",
                                     routeValueFabricanteDictionary,
                                     null
-                                )
+                                    )
                             </li>
-                                    }
+                        }
                     </ul>
 
-                    <div class="panel-heading"><b>Console</b></div>
+                    <div class="panel-heading"><b>Console</b>
+                    </div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<XamStore.Domain.Entities.Cadastro.Console, int>)ViewBag.CountConsoles)
+                        @foreach (var dict in (Dictionary<XamStore.Domain.Entities.Cadastro.Console, int>) ViewBag.CountConsoles)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -91,22 +131,23 @@
                                 }
 
                                 @Html.ActionLink(
-                                     dict.Key.Nome,
+                                    dict.Key.Nome,
                                     "Index", //actionName
                                     "Produto", //controllerName
                                     routeValueProcessadorDictionary, //routeValues
                                     null //htmlAttributes
-                                )
+                                    )
 
                             </li>
-                                    }
+                        }
 
                     </ul>
 
-                    <div class="panel-heading"><b>Plataforma</b></div>
+                    <div class="panel-heading"><b>Plataforma</b>
+                    </div>
                     <ul class="list-group">
 
-                        @foreach (var dict in (Dictionary<Plataforma, int>)ViewBag.CountPlataformas)
+                        @foreach (var dict in (Dictionary<Plataforma, int>) ViewBag.CountPlataformas)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -132,21 +173,22 @@
                                 }
 
                                 @Html.ActionLink(
-                                         dict.Key.Nome,
-                                        "index", //actionName
-                                        "Produto", //controllerName
-                                        routeValueDictionary, //routeValues
-                                        null //htmlAttributes
+                                    dict.Key.Nome,
+                                    "index", //actionName
+                                    "Produto", //controllerName
+                                    routeValueDictionary, //routeValues
+                                    null //htmlAttributes
                                     )
 
                             </li>
-                                    }
+                        }
 
                     </ul>
 
-                    <div class="panel-heading"><b>Genero</b></div>
+                    <div class="panel-heading"><b>Genero</b>
+                    </div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<Genero, int>)ViewBag.CountGeneros)
+                        @foreach (var dict in (Dictionary<Genero, int>) ViewBag.CountGeneros)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -175,14 +217,14 @@
                                 }
 
                                 @Html.ActionLink(
-                                        dict.Key.Nome,
-                                        "index", //actionName
-                                        "Produto", //controllerName
-                                        routeValueDictionary, //routeValues
-                                        null //htmlAttributes
+                                    dict.Key.Nome,
+                                    "index", //actionName
+                                    "Produto", //controllerName
+                                    routeValueDictionary, //routeValues
+                                    null //htmlAttributes
                                     )
                             </li>
-                                    }
+                        }
 
                     </ul>
 
@@ -197,6 +239,30 @@
                     {
                         var nome = "";
                         int id = 0;
+
+                        if (key == "jogos")
+                        {
+                            id = int.Parse(Request.QueryString[key]);
+                            var jogo = (IEnumerable<XamStore.Domain.Entities.Cadastro.Jogo>)ViewBag.Jogos;
+                            nome = jogo.FirstOrDefault(x => x.Id == id)?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                    @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                                </span>
+                            </span>
+
+                        }
 
                         if (key == "fabricante")
                         {
@@ -334,19 +400,9 @@
                                     <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
 
                                     <a class="ei_icons" href="Produto/detalhar/@produto.Id"><img src="/Imagens/icon_1.png" alt=""></a>
-                                    <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"><img src="/Imagens/icon_4.png" alt=""></a>
+                                    <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"></a>
                                     <div class="avaliable">
-                                        @{
-                                            var carrinho = Session["Carrinho"] as XamStore.Domain.Entities.Sistema.SessionCarrinho;
-                                            XamStore.Domain.Entities.Sistema.ProdutoCarrinho produtoCarrinho = null;
-
-                                            if (carrinho != null)
-                                            {
-                                                produtoCarrinho = carrinho.ProdutosCarrinho.FirstOrDefault(x => x.Produto.Id == produto.Id);
-                                            }
-                                        }
-                                        @(produtoCarrinho == null ? Ajax.ActionLink(".", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}) : Ajax.ActionLink("Remover do carrinho", "Remove", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}))
-
+                                        @Ajax.ActionLink("Adicionar ao Carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class="btn btn-primary btn-sm", @onClick="history.go(0);" })
                                     </div>
                                 </div>
                             </div>
@@ -409,6 +465,7 @@
         var registroPorPagina = $('.registroPorPagina option:selected').val();
         var pagina = $('.pagina').val();
 
+        var jogo = getParameterByName("jogos");
         var fabricante = getParameterByName("fabricante");
         var genero = getParameterByName("genero");
         var plataforma = getParameterByName("plataforma");
@@ -417,6 +474,10 @@
         var url = window.location.origin;
 
         var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
+
+        if (jogo !== "") {
+            url += "&jogos=" + jogo;
+        }
 
         if (fabricante !== "") {
             url += "&fabricante=" + fabricante;
