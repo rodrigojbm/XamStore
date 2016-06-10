@@ -41,14 +41,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             var url = window.location.origin;
             (function checkStatusPagseguro() {
 
-                setTimeout(function(){
+                setTimeout(function () {
                     $.ajax({
                         type: "POST",
                         url: url + "/carrinho/checkStatusPagseguro",
                         complete: checkStatusPagseguro,
                         timeout: 5000
                     });
-                },60000);
+                }, 60000);
             })();
         });
     </script>
@@ -65,6 +65,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </script>
 </head>
 <body>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/facebook")
     @Scripts.Render("~/bundles/custom")

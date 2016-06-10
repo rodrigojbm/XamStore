@@ -1,6 +1,9 @@
 ﻿using System.Data.Entity.Migrations;
+using System.Security.Policy;
+using Microsoft.Web.Administration;
 using XamStore.Domain.Entities.Cadastro;
 using XamStore.Infrastructure.Context;
+using Console = System.Console;
 
 namespace XamStore.ConsoleTeste
 {
@@ -8,20 +11,23 @@ namespace XamStore.ConsoleTeste
     {
         static void Main(string[] args)
         {
-            var context = new Context();
+            var server = new ServerManager();
 
-            context.Jogo.AddOrUpdate(x => x.Nome, new Jogo()
+            var sites = server.Sites;
+            foreach (var site in sites)
             {
-                Nome = "Algum",
-                Jogadores = 2,
-                Classificacao = 16,
-                IdPlataforma = 1,
-                IdGenero = 1,
-                IdConsole = 1,
-                IdFabricante = 1
-            });
+                var defaults = site.ApplicationDefaults;
 
-            context.SaveChanges();
+                var appPoolName = defaults.ApplicationPoolName;
+
+                var attributes = defaults.Attributes;
+                foreach (var configAttribute in attributes)
+                {
+                    Console.WriteLine(configAttribute.Name);
+                    Console.WriteLine(appPoolName);
+                }
+            }
+            Console.Read();
         }
     }
 }

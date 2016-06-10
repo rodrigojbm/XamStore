@@ -33,7 +33,10 @@ namespace XamStore.Application
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                    "~/Scripts/jquery.unobtrusive*",
                    "~/Scripts/jquery.validate*",
-                   "~/Scripts/jquery.unobtrusive-ajax.js",
+                   "~/Scripts/jquery.validate.unobstrusive.js",
+                   "~/Scripts/jquery.validate.unobstrusive.js",
+                   "~/Scripts/globalize/globalize.js",
+                   "~/Scripts/jquery.validate.globalize.js",
                    "~/Scripts/jquery-ui.js",
                    "~/Scripts/bootstrap.js"));
 

@@ -18,7 +18,7 @@
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
-            <div class="login_left">
+            <div class="login_left" style="margin-left: 25%;">
                 <div class="registration_left">
                     <h3>Cadastro no site</h3>
                     <p>Digite seus dados abaixo</p>
@@ -31,77 +31,100 @@
                         <!-- Form -->
                         @using (Ajax.BeginForm("Registrar", "Login", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", OnSuccess = "OnSucessRegistro", LoadingElementId = "Registrar" }, new { Id = "Registrar" }))
                         {
+                            <script type="text/javascript">
+                                $.validator.addMethod('date',
+                                     function (value, element, params) {
+                                         if (this.optional(element)) {
+                                             return true;
+                                         }
+
+                                         var result = true;
+                                         try {
+                                             $.datepicker.parseDate('dd/mm/yy', value);
+                                         } catch (e) {
+                                             result = false;
+                                         }
+
+                                         return result;
+                                     }
+                                )
+                            </script>
+
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true)
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.Nome, new { placeholder = "Nome" })
-                                    @Html.ValidationMessageFor(m => m.Nome)
-                                </label>
+                            <div class="col-sm-4">
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.Nome, new {placeholder = "Nome"})
+                                        @Html.ValidationMessageFor(m => m.Nome)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.Sobrenome, new {placeholder = "Sobrenome"})
+                                        @Html.ValidationMessageFor(m => m.Sobrenome)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.Rg, new {placeholder = "RG"})
+                                        @Html.ValidationMessageFor(m => m.Rg)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF/CNPJ"})
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.DataNascimento, new {placeholder = "Data De Nascimento"})
+                                        @Html.ValidationMessageFor(m => m.DataNascimento)
+                                    </label>
+                                </div>
+                                <div class="sky_form">
+                                    <ul>
+                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.SexoTipo, "0", new {@checked = "checked"})<i>Masculino</i></label></li>
+                                        <li><label class="radio">@Html.RadioButtonFor(m => m.SexoTipo, "1")<i>Feminino</i></label></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.Sobrenome, new {placeholder = "Sobrenome"})
-                                    @Html.ValidationMessageFor(m => m.Sobrenome)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.Rg, new {placeholder = "RG"})
-                                    @Html.ValidationMessageFor(m => m.Rg)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF"})
-                                    @Html.ValidationMessageFor(m => m.Email)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.DataNascimento, new {placeholder = "Data De Nascimento"})
-                                    @Html.ValidationMessageFor(m => m.DataNascimento)
-                                </label>
-                            </div>
-                            <div class="sky_form">
-                                <ul>
-                                    <li><label class="radio left">@Html.RadioButtonFor(m => m.SexoTipo, "0", new { @checked = "checked" })<i>Masculino</i></label></li>
-                                    <li><label class="radio">@Html.RadioButtonFor(m => m.SexoTipo, "1")<i>Feminino</i></label></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.Email, new {placeholder = "E-mail"})
-                                    @Html.ValidationMessageFor(m => m.Email)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail" })
-                                    @Html.ValidationMessageFor(m => m.EmailAutenticacao)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha" })
-                                    @Html.ValidationMessageFor(m => m.Senha)
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    @Html.PasswordFor(m => m.ConfirmaSenha, new {placeholder = "Repita a senha"})
-                                    @Html.ValidationMessageFor(m => m.ConfirmaSenha)
-                                </label>
-                            </div>
-                            <div class="sky_form">
-                                <ul>
-                                    <li><label class="radio left">@Html.RadioButtonFor(m => m.PessoaTipo, "0", new { @checked = "checked" })<i>Física</i></label></li>
-                                    <li><label class="radio">@Html.RadioButtonFor(m => m.PessoaTipo, "1")<i>Jurídica</i></label></li>
-                                </ul>
-                            </div>
+                            <div class="col-sm-4" style="margin: 20px;">
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail" })
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail" })
+                                        @Html.ValidationMessageFor(m => m.EmailAutenticacao)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha" })
+                                        @Html.ValidationMessageFor(m => m.Senha)
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha" })
+                                        @Html.ValidationMessageFor(m => m.ConfirmaSenha)
+                                    </label>
+                                </div>
+                                <div class="sky_form">
+                                    <ul>
+                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.PessoaTipo, "0", new { @checked = "checked" })<i>Física</i></label></li>
+                                        <li><label class="radio">@Html.RadioButtonFor(m => m.PessoaTipo, "1")<i>Jurídica</i></label></li>
+                                    </ul>
+                                </div>
 
-                            <div>
-                                <input type="submit" value="Criar conta" id="register-submit">
+                                <div>
+                                    <input type="submit" value="Criar conta" id="register-submit">
+                                </div>
                             </div>
                         }
                         <!-- /Form -->
