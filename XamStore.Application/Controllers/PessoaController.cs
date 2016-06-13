@@ -63,6 +63,7 @@ namespace XamStore.Application.Controllers
             var session = Session["Autenticacao"] as SessionAutenticacaoClient;
 
             Pessoa pessoa = null;
+            Endereco endereco = null;
             ICollection<Endereco> enderecos = null;
 
             switch (session?.AutenticacaoTipo)
@@ -82,6 +83,8 @@ namespace XamStore.Application.Controllers
 
             ViewBag.Menus = _db.Menu;
             ViewBag.Enderecos = enderecos;
+
+            ViewBag.IdEstado = new SelectList(_db.Estado, "Id", "Nome");
             ViewBag.IdCidade = new SelectList(_db.Cidade, "Id", "Nome");
 
             return View();

@@ -1,4 +1,7 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Security.Policy;
 using Microsoft.Web.Administration;
 using XamStore.Domain.Entities.Cadastro;
@@ -11,22 +14,27 @@ namespace XamStore.ConsoleTeste
     {
         static void Main(string[] args)
         {
-            var server = new ServerManager();
+            var valoresEncontrados = new List<string>();
 
-            var sites = server.Sites;
-            foreach (var site in sites)
+            try
             {
-                var defaults = site.ApplicationDefaults;
+                var lst = File.ReadAllLines(@"C:\Users\29502\Documents\cidades.txt");
 
-                var appPoolName = defaults.ApplicationPoolName;
-
-                var attributes = defaults.Attributes;
-                foreach (var configAttribute in attributes)
+                foreach (var item in lst)
                 {
-                    Console.WriteLine(configAttribute.Name);
-                    Console.WriteLine(appPoolName);
+                    var algo = item.Replace(",0", string.Empty);
+                    TextWriter valor = new StreamWriter(@"C:\Users\29502\Documents\novo.txt", true);
+                    valor.WriteLine(algo);
+                    valor.Close();
+                    valor.Dispose();
+                    Console.WriteLine(algo);    
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             Console.Read();
         }
     }

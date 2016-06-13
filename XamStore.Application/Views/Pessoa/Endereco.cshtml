@@ -4,9 +4,12 @@
 }
 
 @model XamStore.Domain.Entities.Cadastro.Endereco
-
+<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/comboDinamico.js"></script>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
+
+
 <!-- start top_bg -->
 <div class="top_bg">
     <div class="wrap">
@@ -37,7 +40,7 @@
                                if (cep !== "") {
                                    var url = 'http://cep.correiocontrol.com.br/' + cep + '.json';
                                    $.getJSON(url, function (json) {
-                                       $("#Logradoruro").val(json.logradouro);
+                                       $("#Logradouro").val(json.logradouro);
                                        $("#Bairro").val(json.bairro);
                                    });
                                }
@@ -75,16 +78,42 @@
                             </div>
                             <div>
                                 <label>
-                                    @Html.TextBoxFor(model => model.Bairro, new { placeholder = "Bairro" })
+                                    @Html.TextBoxFor(model => model.Bairro, new {placeholder = "Bairro"})
                                     @Html.ValidationMessageFor(model => model.Bairro)
+                                </label>
+                            </div>
+
+                            <div>
+                                <label>
+                                    @Html.DropDownList("estados", ViewBag.IdEstado as SelectList, null, new {style = "padding:10px;border:1px solid #ccc;color:#999;"})
                                 </label>
                             </div>
                             <div>
                                 <label>
-                                    @Html.DropDownList("IdCidade", ViewBag.cCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
-                                    @Html.ValidationMessageFor(model => model.IdCidade)
+                                    @Html.DropDownList("cidades", ViewBag.IdCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
                                 </label>
                             </div>
+
+                            <form>
+                                <select id="estados">
+                                    <option value=""></option>
+                                </select>
+                                <select id="cidades"></select>
+                            </form>
+
+                            @*<div>
+        <label>
+            @Html.DropDownList("IdEstado", ViewBag.IdEstado as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
+            @Html.ValidationMessageFor(model => model.Cidade.IdEstado)
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.DropDownList("IdCidade", ViewBag.IdCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
+            @Html.ValidationMessageFor(model => model.IdCidade)
+        </label>
+    </div>*@
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Cadastrar" class="btn btn-default" style="float:right" />

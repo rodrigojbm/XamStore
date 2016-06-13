@@ -23,8 +23,47 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading"><b>Jogos</b></div>
+                <ul class="list-group">
+                    @foreach (var dict in (Dictionary<Jogo, int>) ViewBag.CountJogos)
+                    {
+                        <li class="list-group-item">
+                            <span class="badge">
+                                    <span>@dict.Value</span>
+                                </span>
+                            @{
+                                var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+
+                                foreach (string key in Request.QueryString.Keys)
+                                {
+                                    routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
+                                }
+
+                                if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
+                                {
+
+                                    routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                }
+                                else
+                                {
+                                    routeValueFabricanteDictionary.Remove("jogos");
+                                    routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                }
+                            }
+
+                            @Html.ActionLink(
+                                dict.Key.Nome,
+                                "index",
+                                "Produto",
+                                routeValueFabricanteDictionary,
+                                null
+                                )
+                        </li>
+                    }
+                </ul>
+
+                    <div class="panel-heading"><b>Categoria</b></div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<Jogo, int>)ViewBag.CountJogos)
+                        @foreach (var dict in (Dictionary<Categoria, int>)ViewBag.CountCategorias)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -38,15 +77,15 @@
                                         routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
                                     }
 
-                                    if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
+                                    if (!routeValueFabricanteDictionary.ContainsKey("categorias"))
                                     {
 
-                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                        routeValueFabricanteDictionary.Add("categorias", dict.Key.Id);
                                     }
                                     else
                                     {
-                                        routeValueFabricanteDictionary.Remove("jogos");
-                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                        routeValueFabricanteDictionary.Remove("categorias");
+                                        routeValueFabricanteDictionary.Add("categorias", dict.Key.Id);
                                     }
                                 }
 
@@ -61,7 +100,7 @@
                                     }
                     </ul>
 
-                    <div class="panel-heading"><b>Fabricante</b></div>
+                <div class="panel-heading"><b>Fabricante</b></div>
                     <ul class="list-group">
                         @foreach (var dict in (Dictionary<Fabricante, int>) ViewBag.CountFabricantes)
                         {
@@ -261,6 +300,29 @@
                                     })
                                 </span>
                             </span>
+                        }
+
+                        if (key == "categorias")
+                        {
+                            id = int.Parse(Request.QueryString[key].ToString());
+                            var categoria = (IEnumerable<Categoria>)ViewBag.Categoria;
+                            nome = categoria.FirstOrDefault(x => x.Id == id)?.Nome;
+
+                            <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
+                                @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
+                                    @Ajax.ActionLink(
+                                    "×",
+                                    "RemoveQueryString",
+                                    "Produto",
+                                    new { filtro = @key, valor = @id, query = Request.Url.Query },
+                                    new AjaxOptions
+                                    {
+
+                                        HttpMethod = "POST", // <-- HTTP method
+                                        OnSuccess = "produtoRemoveRedirect"
+                                    })
+                                </span>
+                            </span>
 
                         }
 
@@ -434,7 +496,7 @@
                                 var queryStringPagina = Request.QueryString["pagina"];
                                 var index = i.ToString();
 
-                                <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "index", "Produto", paginationRouteValue, null)</li>
+                                <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "Index", "Produto", paginationRouteValue, null)</li>
     }
                         }
 
@@ -466,6 +528,7 @@
         var pagina = $('.pagina').val();
 
         var jogo = getParameterByName("jogos");
+        var categoria = getParameterByName("categorias");
         var fabricante = getParameterByName("fabricante");
         var genero = getParameterByName("genero");
         var plataforma = getParameterByName("plataforma");
@@ -477,6 +540,10 @@
 
         if (jogo !== "") {
             url += "&jogos=" + jogo;
+        }
+
+        if (categoria !== "") {
+            url += "&categorias=" + categoria;
         }
 
         if (fabricante !== "") {
