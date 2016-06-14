@@ -6,7 +6,7 @@
         <div class="menu">
             <ul>
                 @{
-                    foreach (var item in (IEnumerable<Menu>)ViewBag.Menus)
+                    foreach (var item in (IEnumerable<Menu>) ViewBag.Menus)
                     {
                         var routeValues = new RouteValueDictionary();
                         <li>
@@ -28,6 +28,7 @@
             </ul>
             <div class="clear"></div>
         </div>
+        
         <div id="smart_nav">
             <a class="navicon" href="#menu-left"> </a>
         </div>

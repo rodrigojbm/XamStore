@@ -5,6 +5,7 @@
 
 @using System.Linq;
 @using XamStore.Domain.Entities.Cadastro;
+<link type="text/css" rel="stylesheet" href="/Content/produtoStyle.css"/>
 
 <!-- start top_bg -->
 <div class="top_bg">
@@ -23,43 +24,43 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading"><b>Jogos</b></div>
-                <ul class="list-group">
-                    @foreach (var dict in (Dictionary<Jogo, int>) ViewBag.CountJogos)
-                    {
-                        <li class="list-group-item">
-                            <span class="badge">
+                    <ul class="list-group">
+                        @foreach (var dict in (Dictionary<Jogo, int>)ViewBag.CountJogos)
+                        {
+                            <li class="list-group-item">
+                                <span class="badge">
                                     <span>@dict.Value</span>
                                 </span>
-                            @{
-                                var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
+                                @{
+                                    var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
 
-                                foreach (string key in Request.QueryString.Keys)
-                                {
-                                    routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
+                                    foreach (string key in Request.QueryString.Keys)
+                                    {
+                                        routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
+                                    }
+
+                                    if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
+                                    {
+
+                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                    }
+                                    else
+                                    {
+                                        routeValueFabricanteDictionary.Remove("jogos");
+                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
+                                    }
                                 }
 
-                                if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
-                                {
-
-                                    routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
-                                }
-                                else
-                                {
-                                    routeValueFabricanteDictionary.Remove("jogos");
-                                    routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
-                                }
-                            }
-
-                            @Html.ActionLink(
+                                @Html.ActionLink(
                                 dict.Key.Nome,
                                 "index",
                                 "Produto",
                                 routeValueFabricanteDictionary,
                                 null
                                 )
-                        </li>
-                    }
-                </ul>
+                            </li>
+                                    }
+                    </ul>
 
                     <div class="panel-heading"><b>Categoria</b></div>
                     <ul class="list-group">
@@ -100,9 +101,9 @@
                                     }
                     </ul>
 
-                <div class="panel-heading"><b>Fabricante</b></div>
+                    <div class="panel-heading"><b>Fabricante</b></div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<Fabricante, int>) ViewBag.CountFabricantes)
+                        @foreach (var dict in (Dictionary<Fabricante, int>)ViewBag.CountFabricantes)
                         {
 
                             <li class="list-group-item">
@@ -137,13 +138,14 @@
                                     null
                                     )
                             </li>
-                        }
+                                    }
                     </ul>
 
-                    <div class="panel-heading"><b>Console</b>
+                    <div class="panel-heading">
+                        <b>Console</b>
                     </div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<XamStore.Domain.Entities.Cadastro.Console, int>) ViewBag.CountConsoles)
+                        @foreach (var dict in (Dictionary<XamStore.Domain.Entities.Cadastro.Console, int>)ViewBag.CountConsoles)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -178,15 +180,16 @@
                                     )
 
                             </li>
-                        }
+                                    }
 
                     </ul>
 
-                    <div class="panel-heading"><b>Plataforma</b>
+                    <div class="panel-heading">
+                        <b>Plataforma</b>
                     </div>
                     <ul class="list-group">
 
-                        @foreach (var dict in (Dictionary<Plataforma, int>) ViewBag.CountPlataformas)
+                        @foreach (var dict in (Dictionary<Plataforma, int>)ViewBag.CountPlataformas)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -220,14 +223,15 @@
                                     )
 
                             </li>
-                        }
+                                    }
 
                     </ul>
 
-                    <div class="panel-heading"><b>Genero</b>
+                    <div class="panel-heading">
+                        <b>Genero</b>
                     </div>
                     <ul class="list-group">
-                        @foreach (var dict in (Dictionary<Genero, int>) ViewBag.CountGeneros)
+                        @foreach (var dict in (Dictionary<Genero, int>)ViewBag.CountGeneros)
                         {
                             <li class="list-group-item">
                                 <span class="badge">
@@ -263,7 +267,7 @@
                                     null //htmlAttributes
                                     )
                             </li>
-                        }
+                                    }
 
                     </ul>
 
@@ -334,7 +338,7 @@
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
-                                @Ajax.ActionLink(
+                                    @Ajax.ActionLink(
                                     "×",
                                     "RemoveQueryString",
                                     "Produto",
@@ -345,8 +349,8 @@
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
+                                </span>
                             </span>
-                        </span>
 
                         }
 
@@ -358,7 +362,7 @@
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
-                                @Ajax.ActionLink(
+                                    @Ajax.ActionLink(
                                     "×",
                                     "RemoveQueryString",
                                     "Produto",
@@ -369,8 +373,8 @@
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
+                                </span>
                             </span>
-                        </span>
 
                         }
 
@@ -382,7 +386,7 @@
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
-                                @Ajax.ActionLink(
+                                    @Ajax.ActionLink(
                                     "×",
                                     "RemoveQueryString",
                                     "Produto",
@@ -393,8 +397,8 @@
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
+                                </span>
                             </span>
-                        </span>
 
                         }
 
@@ -406,7 +410,7 @@
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
-                                @Ajax.ActionLink(
+                                    @Ajax.ActionLink(
                                     "×",
                                     "RemoveQueryString",
                                     "Produto",
@@ -417,8 +421,8 @@
                                         HttpMethod = "POST", // <-- HTTP method
                                         OnSuccess = "produtoRemoveRedirect"
                                     })
+                                </span>
                             </span>
-                        </span>
 
                         }
                     }
@@ -428,52 +432,83 @@
                     <div class="panel-heading">
                         <select class="form-control order" style="display:inline;width:150px;">
                             @{ var queryOrder = ViewBag.Order;}
-                            <option @{ if (queryOrder == "asc") { @Html.Raw("selected = 'selected'")  ; } } value="asc">Crescente</option>
-                            <option @{ if (queryOrder == "desc") { @Html.Raw("selected = 'selected'")  ; } } value="desc">Decrescente</option>
-                            <option @{ if (queryOrder == "maiorPreco") { @Html.Raw("selected = 'selected'")   ; } } value="maiorPreco">Maior Preço</option>
-                            <option @{ if (queryOrder == "menorPreco") { @Html.Raw("selected = 'selected'")  ; } } value="menorPreco">Menor Preço</option>
+                            <option @{ if (queryOrder == "asc") { @Html.Raw("selected = 'selected'")       ; } } value="asc">Crescente</option>
+                            <option @{ if (queryOrder == "desc") { @Html.Raw("selected = 'selected'")       ; } } value="desc">Decrescente</option>
+                            <option @{ if (queryOrder == "maiorPreco") { @Html.Raw("selected = 'selected'")        ; } } value="maiorPreco">Maior Preço</option>
+                            <option @{ if (queryOrder == "menorPreco") { @Html.Raw("selected = 'selected'")       ; } } value="menorPreco">Menor Preço</option>
                         </select>
                         <select class="form-control registroPorPagina" style="display: inline; width: 150px;">
                             @{ var queryregistroPorPagina = ViewBag.RegiterPerPage;}
-                            <option @{ if (queryregistroPorPagina == "6") { @Html.Raw("selected = 'selected'")    ; } } value="6">6 por página</option>
-                            <option @{ if (queryregistroPorPagina == "9") { @Html.Raw("selected = 'selected'")     ; } } value="9">9 por página</option>
+                            <option @{ if (queryregistroPorPagina == "6") { @Html.Raw("selected = 'selected'")         ; } } value="6">6 por página</option>
+                            <option @{ if (queryregistroPorPagina == "9") { @Html.Raw("selected = 'selected'")          ; } } value="9">9 por página</option>
                         </select>
                         @{var pagina = Request.QueryString["pagina"];}
                         <input type="hidden" name="pagina" class="pagina"
-                               @{ if (pagina == null) { @Html.Raw("value='1'") ; } else { @Html.Raw("value='" + pagina + "'") ; } } />
+                               @{ if (pagina == null) { @Html.Raw("value='1'")      ; } else { @Html.Raw("value='" + pagina + "'")      ; } } />
                     </div>
                 </div>
 
                 @foreach (var produto in (IEnumerable<Produto>)ViewBag.Produtos)
                 {
-                    <a href="Produto/detalhar/@produto.Id">
-                        <div class="produto">
-                            <div class="produto-img">
-                                <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="180" height="131" />
-                            </div>
-                            <div class="produto-descricao">
-                                <div class="produto-titulo">
-                                    <b>@produto.Nome</b>
+                    @*<div class="produto" style="border-radius: 3px;">
+                            <a href="Produto/detalhar/@produto.Id">
+                                <div class="produto-img" style="text-align: center;">
+                                    <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="180" height="131"/>
                                 </div>
-                                <div class="produto-titulo-preco"></div>
-                                <div class="produto-preco">@($"{produto.Preco:C}")</div>
+                            </a>
+                            <a href="Produto/detalhar/@produto.Id">
+                                <div class="produto-descricao">
+                                    <div class="produto-titulo">@produto.Nome</div>
+                                    <div class="produto-titulo-preco"></div>
+                                    <div class="produto-preco">@($"{produto.Preco:C}")</div>
+                                    <div class="produto-opcoes">
+                                        <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
+                                        <a class="ei_icons" href="Produto/detalhar/@produto.Id"><img src="/Imagens/icon_1.png" alt=""></a>
+                                        <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"></a>
+                                        <div class="avaliable">
+                                            @Ajax.ActionLink("Adicionar ao Carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class = "btn btn-primary btn-sm", @onClick = "history.go(0);"})
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>*@
 
-                                <div class="produto-opcoes">
-                                    <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
+                    <div class="container-fluid">
 
-                                    <a class="ei_icons" href="Produto/detalhar/@produto.Id"><img src="/Imagens/icon_1.png" alt=""></a>
-                                    <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"></a>
+                        <div class="col-sm-4">
+                            <div class="panel panel-default text-center" id="panelDefault">
+                                <div class="panel-heading" id="panelHeading">
+                                    <a href="Produto/detalhar/@produto.Id"><h2>@produto.Nome</h2></a>
+                                </div>
+                                <div class="panel-body" id="panelBody">
+                                    <div class="produto-img" style="text-align: center;">
+                                        <a href="Produto/detalhar/@produto.Id"><img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="275" height="180" /></a>
+                                    </div>
+                                    <p>
+                                        <a href="Produto/detalhar/@produto.Id" style="text-decoration: none;">Detalhes</a>
+                                    </p>
+                                    <p>
+                                        <strong>15</strong> Ipsum
+                                    </p>
+                                    <p>
+                                        <strong>5</strong> Dolor
+                                    </p>
+                                </div>
+                                <div class="panel-footer" id="panelFooter">
+                                    <a href="Produto/detalhar/@produto.Id"><h3>@($"{produto.Preco:C}")</h3></a>
                                     <div class="avaliable">
-                                        @Ajax.ActionLink("Adicionar ao Carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class="btn btn-primary btn-sm", @onClick="history.go(0);" })
+                                        @Ajax.ActionLink("Adicionar ao Carrinho", "Add", "Carrinho", new { id = produto.Id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "addSuccess" }, new { @class = "btn btn-primary btn-sm", @onClick = "history.go(0);" })
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
                 }
+
                 <div class="clear"></div>
                 <nav>
-                    <ul class="pagination" style="margin-left:50%">
+                    <ul class="pagination" style="margin-left: 50%;">
                         @{
                             var produtos = (int)ViewBag.TotalPages;
 
@@ -496,13 +531,12 @@
                                 var queryStringPagina = Request.QueryString["pagina"];
                                 var index = i.ToString();
 
-                                <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "Index", "Produto", paginationRouteValue, null)</li>
+                                <li class="@{if (queryStringPagina.Equals(index)) { @Html.Raw("active"); }}">@Html.ActionLink(i.ToString(), "Index", "Produto", paginationRouteValue, new {@style= "background-color:  #363636;" })</li>
     }
                         }
 
                     </ul>
                 </nav>
-
             </div>
             <div class="clear"></div>
         </div>

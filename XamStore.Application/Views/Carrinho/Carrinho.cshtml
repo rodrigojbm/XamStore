@@ -36,7 +36,7 @@
                                     totalCarrinho = totalCarrinho + carrinho.Valor;
                                     <li class="list-group-item" id="@carrinho.Produto.Id" style="@if (i % 2 == 0) {@Html.Raw("background:#f8f8f8;")}">
                                         <div class="carrinho-produto-imagem" style="float:left;"><img src="~/Imagens/Produto/@carrinho.Imagem" width="80" height="80" style="border-radius:50%;padding:3px; border:1px solid #ccc;" /></div>
-                                        <div class="carrinho-produto-descricao" style="float:left;margin-left:10%;width:20%;margin-top:30px;">@carrinho.Produto.Descricao</div>
+                                        <div class="carrinho-produto-descricao" style="float:left;margin-left:10%;width:20%;margin-top:30px;">@carrinho.Produto.Nome</div>
                                         <div class="carrinho-produto-quatidade" style="float:left;margin-left:10%;margin-top:30px;">Quantidade <input class="carrinho-quantidade" type="text" value="@carrinho.Quantidade" style="width:30px;text-align:center" /></div>
                                         <div class="carrinho-produto-valor" style="float:left;margin-top:30px;margin-left:20%">@($"{carrinho.Valor:C}")</div>
                                         <div class="carrinho-produto-close" style="float:right;margin-top:30px;margin-right:5%">@Ajax.ActionLink("x", "Remove", "Carrinho", new { id = @carrinho.Produto.Id }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "removeCarrinhoSuccess" })</div>

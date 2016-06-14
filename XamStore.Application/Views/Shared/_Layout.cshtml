@@ -20,8 +20,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="../../Scripts/jquery.mmenu.js"></script>
     <script type="text/javascript">
         //	The menu on the left
-        $(function () {
-            $('nav#menu-left').mmenu();
+        $(document).ready(function() {
+            $(function() {
+                $('nav#menu-left').mmenu();
+            });
         });
     </script>
     <!-- start slider -->
@@ -30,6 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="../../Scripts/jquery.eislideshow.js"></script>
     <script type="text/javascript" src="../../Scripts/easing.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
         $(function () {
             $('#ei-slider').eislideshow({
                 animation: 'center',
@@ -50,6 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     });
                 }, 60000);
             })();
+        });
         });
     </script>
 
