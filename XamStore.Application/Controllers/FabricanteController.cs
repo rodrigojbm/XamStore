@@ -41,7 +41,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Fabricante/Cadastrar")]
-        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome")] Fabricante fabricante)
+        public async Task<ActionResult> Cadastrar([Bind(Include = "Id, Nome, Sobre")] Fabricante fabricante)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");
@@ -80,7 +80,7 @@ namespace XamStore.Application.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Fabricante/Editar/{id}")]
-        public async Task<ActionResult> Editar([Bind(Include = "Id, Nome")] Fabricante fabricante)
+        public async Task<ActionResult> Editar([Bind(Include = "Id, Nome, Sobre")] Fabricante fabricante)
         {
             if (!ChecarUsuarioAdminAutenticado())
                 return RedirectToAction("Index", "LoginAdmin");

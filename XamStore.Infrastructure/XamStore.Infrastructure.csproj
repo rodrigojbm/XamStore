@@ -73,9 +73,9 @@
     <Compile Include="Migrations\201606031855104_PrimeiroMigration.Designer.cs">
       <DependentUpon>201606031855104_PrimeiroMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606131914090_SegundoMigration.cs" />
-    <Compile Include="Migrations\201606131914090_SegundoMigration.Designer.cs">
-      <DependentUpon>201606131914090_SegundoMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201606151710532_TerceiroMigration.cs" />
+    <Compile Include="Migrations\201606151710532_TerceiroMigration.Designer.cs">
+      <DependentUpon>201606151710532_TerceiroMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,8 +101,8 @@
     <EmbeddedResource Include="Migrations\201606031855104_PrimeiroMigration.resx">
       <DependentUpon>201606031855104_PrimeiroMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606131914090_SegundoMigration.resx">
-      <DependentUpon>201606131914090_SegundoMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606151710532_TerceiroMigration.resx">
+      <DependentUpon>201606151710532_TerceiroMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

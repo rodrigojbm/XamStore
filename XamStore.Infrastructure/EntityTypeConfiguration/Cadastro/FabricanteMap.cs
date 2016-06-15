@@ -11,6 +11,7 @@ namespace XamStore.Infrastructure.EntityTypeConfiguration.Cadastro
             HasKey(f => f.Id);
             Property(f => f.Id).HasColumnName("Id");
             Property(f => f.Nome).HasColumnName("Nome").IsRequired();
+            Property(f => f.Sobre).HasColumnName("Sobre");
         }
     }
 }

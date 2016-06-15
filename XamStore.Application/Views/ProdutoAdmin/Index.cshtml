@@ -41,8 +41,8 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink("Editar", "Editar", "Admin/ProdutoAdmin", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "Admin/ProdutoAdmin", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
 
                 </td>
             </tr>

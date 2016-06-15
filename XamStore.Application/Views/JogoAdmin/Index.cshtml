@@ -52,8 +52,8 @@
                     @Html.DisplayFor(modelItem => item.Classificacao)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", "JogoAdmin", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "JogoAdmin", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", "JogoAdmin", new { id = item.Id }, new {@class="btn btn-default btn-sm"})
+                    @Html.ActionLink("Deletar", "Deletar", "JogoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

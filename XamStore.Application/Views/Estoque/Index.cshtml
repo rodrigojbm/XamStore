@@ -28,7 +28,7 @@
                     @Html.DisplayFor(modelItem => item.Quantidade)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", null, $"Estoque/Editar/{item.Id}")
+                    @Html.ActionLink("Editar", null, $"Estoque/Editar/{item.Id}", new { @class = "btn btn-default btn-sm" })
                 </td>
             </tr>
         }

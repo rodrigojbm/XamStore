@@ -13,7 +13,6 @@ namespace XamStore.Infrastructure.Context
     {
         public Context() : base("XamStore")
         {
-            
         }
 
         public DbSet<Pessoa> Pessoa { get; set; }

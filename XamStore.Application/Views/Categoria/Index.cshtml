@@ -24,8 +24,8 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "Categoria", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/Categoria", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

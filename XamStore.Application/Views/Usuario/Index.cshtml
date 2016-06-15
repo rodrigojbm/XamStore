@@ -36,12 +36,12 @@
                     @Html.DisplayFor(modelItem => item.Login)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
                     @{
                         if (item.UsuarioNivel.Id != 1)
                         {
                             @Html.Raw("|")
-                            @Html.ActionLink("Deletar", "Deletar", "Usuario", new { id = item.Id }, null)
+                            @Html.ActionLink("Deletar", "Deletar", "Usuario", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                         }
                     }
                 </td>
