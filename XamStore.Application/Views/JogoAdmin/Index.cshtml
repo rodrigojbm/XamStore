@@ -49,11 +49,11 @@
                     @Html.DisplayFor(modelItem => item.Jogadores)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Classificacao)
+                    @Html.DisplayFor(modelItem => item.Classificacao) Anos
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", "JogoAdmin", new { id = item.Id }, new {@class="btn btn-default btn-sm"})
-                    @Html.ActionLink("Deletar", "Deletar", "JogoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    @Html.ActionLink("Editar", "Editar", "Admin/JogoAdmin", new { id = item.Id }, new {@class="btn btn-default btn-sm"})
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/JogoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

@@ -55,31 +55,31 @@
                             <div class="col-sm-4">
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Nome, new {placeholder = "Nome"})
+                                        @Html.TextBoxFor(m => m.Nome, new {placeholder = "Nome", @class="form-control"})
                                         @Html.ValidationMessageFor(m => m.Nome)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Sobrenome, new {placeholder = "Sobrenome"})
+                                        @Html.TextBoxFor(m => m.Sobrenome, new {placeholder = "Sobrenome", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Sobrenome)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Rg, new {placeholder = "RG"})
+                                        @Html.TextBoxFor(m => m.Rg, new {placeholder = "RG", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Rg)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF/CNPJ"})
+                                        @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF/CNPJ", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Email)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.DataNascimento, new {placeholder = "Data De Nascimento"})
+                                        @Html.TextBoxFor(m => m.DataNascimento, new {placeholder = "Data De Nascimento", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.DataNascimento)
                                     </label>
                                 </div>
@@ -93,25 +93,25 @@
                             <div class="col-sm-4" style="margin: 20px;">
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail" })
+                                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Email)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail" })
+                                        @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha" })
+                                        @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.Senha)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha" })
+                                        @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha", @class = "form-control" })
                                         @Html.ValidationMessageFor(m => m.ConfirmaSenha)
                                     </label>
                                 </div>

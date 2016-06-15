@@ -21,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.Imagem)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Produto)
+                @Html.DisplayNameFor(model => model.Produto.Nome)
             </th>
             <th></th>
         </tr>
@@ -33,15 +33,15 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    <img src="~/Imagens/Produto/@item.Imagem" width="30" />
+                    <img src="~/Imagens/Produto/@item.Imagem" width="60" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Produto.Nome)
                 </td>
 
                 <td>
-                    @Html.ActionLink("Editar", "Editar", "Slide", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) |
-                    @Html.ActionLink("Deletar", "Deletar", "Slide", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    @Html.ActionLink("Editar", "Editar", "Slide", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/Slide", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

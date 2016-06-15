@@ -21,28 +21,28 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nome, new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nome)
+                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Nome)
                         </div>
                     </div>
-                    @*<div class="form-group">
+                    <div class="form-group">
                         @Html.LabelFor(model => model.Multiplayer, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Multiplayer)
+                            @Html.EditorFor(model => model.Multiplayer, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Multiplayer)
                         </div>
-                    </div>*@
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Jogadores, new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Jogadores)
+                            @Html.TextBoxFor(model => model.Jogadores, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Jogadores)
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Classificacao, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Classificacao, "Classificação", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Classificacao)
+                            @Html.TextBoxFor(model => model.Classificacao, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Classificacao)
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdPlataforma, "Plataforma", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdPlataforma", "----------SELECIONE----------")
+                            @Html.DropDownList("IdPlataforma", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdPlataforma)
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdGenero, "Genero", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdGenero", "----------SELECIONE----------")
+                            @Html.DropDownList("IdGenero", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdGenero)
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdConsole, "Console", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdConsole", "----------SELECIONE----------")
+                            @Html.DropDownList("IdConsole", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdConsole)
                         </div>
                     </div>
@@ -74,48 +74,12 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdFabricante, "Fabricante", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("IdFabricante", "----------SELECIONE----------")
+                            @Html.DropDownList("IdFabricante", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdFabricante)
                         </div>
                     </div>
                 </div>
             </div>
-
-            @*<div class="panel panel-default">
-                <div class="panel-heading">Hardware</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.DropDownList("cCameraTraseira", "----------selecione----------")
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Imagens</div>
-                <div style="padding:20px;">
-                    <div class="form-group">
-
-                        <div class="col-md-10 imagens">
-                            <a href="#" class="add">Adicionar mais imagens</a><br /><br />
-                            <input type="file" name="images[0]" id="images" /><br />
-                        </div>
-
-                        <div style="float:right">
-                            @foreach (var item in (IEnumerable<XamStore.Domain.Entities.Cadastro.ProdutoImagem>)ViewBag.Imagem)
-                            {
-                                <div style="float:left">
-                                    <img src="~/Imagens/Produto/@item.Imagem.Nome" width="80" height="71" style="padding:5px;border:1px solid #ccc;" />
-                                    <span style="">
-                                        <a href="@Url.Action("deletarImagem","ProdutoAdmin",new  { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
-                                    </span>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Editar" class="btn btn-default" style="float:right" />
@@ -126,7 +90,7 @@
 </div>
 <div style="clear:both"></div>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para Lista", "Index")
 </div>
 
 @section Scripts {

@@ -178,7 +178,8 @@ h4.style{
 }
 .btn form input[type="button"]:hover,.registration_form input[type="submit"]:hover{
 	background: #57C5A0;
-	border: 1px solid #57c5a0;
+	border: 1px solid #57C5A0;
+    color: white;
 }
 /* start registration */
 .registration{

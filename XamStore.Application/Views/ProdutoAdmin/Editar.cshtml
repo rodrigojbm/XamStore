@@ -19,17 +19,25 @@
                 <div class="panel-heading">Dados principais</div>
                 <div style="padding:20px;">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Nome, new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nome)
+                            @Html.TextBoxFor(model => model.Nome, new {@class="form-control"})
                             @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.PesoString, "Peso", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.PesoString) gramas (g)
+                            @Html.TextBoxFor(model => model.PesoString, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PesoString)
                         </div>
                     </div>
@@ -37,7 +45,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Garantia, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Garantia)
+                            @Html.TextBoxFor(model => model.Garantia, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Garantia)
                         </div>
                     </div>
@@ -45,7 +53,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.PrecoString, "Preço", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.PrecoString)
+                            @Html.TextBoxFor(model => model.PrecoString, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PrecoString)
                         </div>
                     </div>
@@ -53,7 +61,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdCategoria, "Categoria", new {@class = "control-label col-md-2"})
                         <div class="col-md-10">
-                            @Html.DropDownList("IdCategoria", "----------SELECIONE----------")
+                            @Html.DropDownList("IdCategoria", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdCategoria)
                         </div>
                     </div>
@@ -61,7 +69,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.IdJogo, "Jogo", new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("IdJogo", "----------SELECIONE----------")
+                            @Html.DropDownList("IdJogo", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.IdJogo)
                         </div>
                     </div>
@@ -84,7 +92,7 @@
                                 <div style="float:left">
                                     <img src="~/Imagens/Produto/@item.Imagem.Nome" width="80" height="71" style="padding:5px;border:1px solid #ccc;" />
                                     <span style="">
-                                        <a href="@Url.Action("DeletarImagem","ProdutoAdmin",new  { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
+                                        <a href="@Url.Action("DeletarImagem","ProdutoAdmin", new { id=item.Id, produtoId = item.IdProduto})" style="position:relative;top:-30px;left:-20px;padding:0 5px 2px 5px;border-radius:50%;border:1px solid #f00;color:#fff;background:#fa7878;cursor:pointer">x</a>
                                     </span>
                                 </div>
                             }
@@ -104,7 +112,7 @@
 </div>
 <div style="clear:both"></div>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para Lista", "Index")
 </div>
 
 @section Scripts {

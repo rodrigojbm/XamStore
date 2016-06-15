@@ -17,17 +17,19 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Quantidade)
+                    @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Quantidade)
                 </div>
             </div>
+
             <div class="form-group">
-                @Html.LabelFor(model => model.IdProduto, "IdProduto", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.IdProduto, "Produto", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("IdProduto", "----------SELECIONE----------")
-                    @Html.ValidationMessageFor(model => model.IdProduto)
+                    @Html.DropDownList("IdProduto", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Editar" class="btn btn-default" />

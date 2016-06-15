@@ -48,13 +48,13 @@
                         @Html.ValidationSummary(true)
                         <div>
                             <label>
-                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Email" })
+                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Email", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                             </label>
                         </div>
                         <div>
                             <label>
-                                @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha" })
+                                @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.Senha)
                             </label>
                         </div>
