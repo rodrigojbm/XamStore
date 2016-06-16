@@ -1,0 +1,75 @@
+﻿.panel {
+    border: 1px solid #363636; 
+    border-radius:0;
+    transition: box-shadow 0.5s;
+}
+
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+.panel-footer .btn:hover {
+    border: 1px solid #363636;
+    background-color: #fff !important;
+    color: #363636;
+}
+
+.panel-heading {
+    color: #fff !important;
+    background-color: #363636 !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.panel-footer {
+    background-color: #fff !important;
+}
+
+.panel-footer h3 {
+    font-size: 32px;
+}
+
+.panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.panel-footer .btn {
+    margin: 15px 0;
+    background-color: #363636;
+    color: #fff;
+}
+
+.menu-admin .list-group-item:hover {
+    background-color: gray;
+}
+
+.menu-admin a {
+    text-decoration: none;
+    color: black;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    border: 2px solid gray;
+}
+
+.btn-default:hover {
+    background-color: darkgray;
+    color: black;
+}
+
+.btn-danger:hover {
+    background-color: #ff2b2b;
+    color: black;
+    border: 2px solid #ff2b2b;
+}
+
+.dropdown-menu:hover {
+    background-color: #428bca;
+}

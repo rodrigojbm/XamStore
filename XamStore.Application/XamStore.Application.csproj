@@ -194,6 +194,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\estilos-relatorio.css" />
     <Content Include="Content\jquery.mmenu.all.css" />
+    <Content Include="Content\layoutAdmin.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\productviewgallery.css" />
     <Content Include="Content\SelecionarCategoriaProduto.css" />

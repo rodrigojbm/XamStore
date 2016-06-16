@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
+using System.Linq;
 using System.Security.Policy;
 using Microsoft.Web.Administration;
 using XamStore.Domain.Entities.Cadastro;
@@ -14,26 +15,32 @@ namespace XamStore.ConsoleTeste
     {
         static void Main(string[] args)
         {
-            var valoresEncontrados = new List<string>();
+            var server = new ServerManager();
+            const string b = @"C:\Users\Gerson\Desktop\GErson\Desenvolvimento\hosts.txt";
+            var c = File.CreateText(b);
 
-            try
+            foreach (var bindings in server.Sites.Select(site => site.Bindings))
             {
-                var lst = File.ReadAllLines(@"C:\Users\29502\Documents\cidades.txt");
-
-                foreach (var item in lst)
+                try
                 {
-                    var algo = item.Replace(",0", string.Empty);
-                    TextWriter valor = new StreamWriter(@"C:\Users\29502\Documents\novo.txt", true);
-                    valor.WriteLine(algo);
-                    valor.Close();
-                    valor.Dispose();
-                    Console.WriteLine(algo);    
+                    if (bindings == null) continue;
+                    foreach (var binding in bindings)
+                    {
+                        Console.Write(binding.EndPoint.Address);
+                        Console.Write("  ");
+                        Console.WriteLine(binding.Host);
+
+                        c.Write(binding.EndPoint.Address);
+                        c.Write("    ");
+                        c.WriteLine(binding.Host);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            c.Close();
 
             Console.Read();
         }

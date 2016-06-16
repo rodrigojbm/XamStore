@@ -126,9 +126,10 @@ h2.style{
 }
 h4.style{
 	font-size: 1.5em;
-	color: #5e5e5e;
+	color: white;
+    text-align: center;
 	text-transform: capitalize;
-	border: 1px solid #3D3D3D;
+	border: 1px solid gray;
 	padding: 1% 2%;
 }
 .login_left{

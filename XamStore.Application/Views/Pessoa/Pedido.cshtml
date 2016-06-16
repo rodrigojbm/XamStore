@@ -4,6 +4,7 @@
 }
 @using System.Linq;
 @using XamStore.Domain.Services
+<link type="text/css" rel="stylesheet" href="~/Content/layoutAdmin.css" />
 <script type="text/javascript">
     jQuery(function ($) {
         $('.panel-heading span.clickable').on("click", function (e) {
@@ -96,7 +97,7 @@
                                     <div class="titulo"><b>Endereço de entrega</b></div><br />
                                     <div style="font-weight:normal">
                                         @pedido.Endereco.Logradouro, @pedido.Endereco.Numero,<br />
-                                        @($"{Int64.Parse(pedido.Endereco.Cep):#####-###}"),
+                                        @($"{int.Parse(pedido.Endereco.Cep):#####-###}"),
                                         @pedido.Endereco.Bairro,<br />
                                         @pedido.Endereco.Cidade.Nome - @pedido.Endereco.Cidade.Estado.Abreviacao
                                     </div>
