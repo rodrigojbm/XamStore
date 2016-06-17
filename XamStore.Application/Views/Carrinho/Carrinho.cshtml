@@ -40,7 +40,7 @@
                                         <div class="carrinho-produto-descricao" style="float:left;margin-left:10%;width:20%;margin-top:30px;">@carrinho.Produto.Nome</div>
                                         <div class="carrinho-produto-quatidade" style="float:left;margin-left:10%;margin-top:30px;">Quantidade <input class="carrinho-quantidade" type="text" value="@carrinho.Quantidade" style="width:30px;text-align:center" /></div>
                                         <div class="carrinho-produto-valor" style="float:left;margin-top:30px;margin-left:20%">@($"{carrinho.Valor:C}")</div>
-                                        <div class="carrinho-produto-close" style="float:right;margin-top:30px;margin-right:5%">@Ajax.ActionLink("x", "Remove", "Carrinho", new { id = @carrinho.Produto.Id }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "removeCarrinhoSuccess" })</div>
+                                        <div class="carrinho-produto-close" style="float:right;margin-top:30px;margin-right:5%">@Ajax.ActionLink("x", "Remove", "Carrinho", new { id = @carrinho.Produto.Id }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "removeCarrinhoSuccess" }, new {@class="btn btn-primary btn-sm", @style="margin-top: -10px;"})</div>
                                         <div style="clear:both"></div>
                                     </li>
                                     i++;
@@ -57,7 +57,7 @@
             </div>
             @{if (Session["Autenticacao"] == null)
                 {
-                    @Html.ActionLink("Finalizar Comprar", "FinalizarCompra", "Carrinho", new { pedidoId = 0 }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Finalizar Compra", "FinalizarCompra", "Carrinho", new { pedidoId = 0 }, new { @class = "btn btn-primary" })
                 }
             }
             <div style="width:32.5%;float:left;

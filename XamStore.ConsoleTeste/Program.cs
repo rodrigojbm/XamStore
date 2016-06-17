@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using Microsoft.Web.Administration;
 using XamStore.Domain.Entities.Cadastro;
@@ -15,34 +16,73 @@ namespace XamStore.ConsoleTeste
     {
         static void Main(string[] args)
         {
-            var server = new ServerManager();
-            const string b = @"C:\Users\Gerson\Desktop\GErson\Desenvolvimento\hosts.txt";
-            var c = File.CreateText(b);
-
-            foreach (var bindings in server.Sites.Select(site => site.Bindings))
-            {
-                try
+            var listaHostsServidor = new List<HostServidor>
+            {   
+                new HostServidor
                 {
-                    if (bindings == null) continue;
-                    foreach (var binding in bindings)
-                    {
-                        Console.Write(binding.EndPoint.Address);
-                        Console.Write("  ");
-                        Console.WriteLine(binding.Host);
+                    Ip = "10.0.16.180",
+                    Endereco = "sdk.tjmt.jus.br"
+                },
 
-                        c.Write(binding.EndPoint.Address);
-                        c.Write("    ");
-                        c.WriteLine(binding.Host);
-                    }
+                new HostServidor
+                {
+                    Ip = "10.0.16.188",
+                    Endereco = "cia.tjmt.jus.br"
+                },
+
+                new HostServidor
+                {
+                    Ip = "10.0.16.20",
+                    Endereco = "tjmt.jus.br"
                 }
-                catch (Exception e)
+            };
+
+
+            var Iis = new List<HostIis>
+            {
+                new HostIis
                 {
-                    Console.WriteLine(e.Message);
+                    Ip = "10.0.16.20",
+                    Endereco = "tjmt.jus.br"
+                },
+
+                 new HostIis
+                {
+                    Ip = "10.0.16.21",
+                    Endereco = "tjmt.jus.br"
+                }
+            };
+
+
+            foreach (var item in listaHostsServidor)
+            {
+                var result = Iis.Where(x => !x.Endereco.Contains(item.Endereco)).ToList();
+                foreach (var host in result)
+                {
+                    Console.WriteLine(host.Endereco);
+                    //listaHostsServidor.Add(new HostServidor {Ip = host.Ip, Endereco = host.Endereco});
                 }
             }
-            c.Close();
+
+            foreach (var hostServidor in listaHostsServidor)
+            {
+                Console.WriteLine(hostServidor.Endereco);
+            }
+
 
             Console.Read();
         }
+    }
+
+    public class HostIis
+    {
+        public string Ip { get; set; }
+        public string Endereco { get; set; }
+    }
+
+    public class HostServidor
+    {
+        public string Ip { get; set; }
+        public string Endereco { get; set; }
     }
 }

@@ -73,3 +73,7 @@
 .dropdown-menu:hover {
     background-color: #428bca;
 }
+
+.ei-title h2 {
+    color: white;
+}
