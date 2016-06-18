@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http.Routing;
 using System.Web.Mvc;
@@ -17,6 +18,7 @@ using XamStore.Domain.Entities.Sistema;
 using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
 using static System.Convert;
+using Console = System.Console;
 using SessionAutenticacaoClient = XamStore.Domain.Entities.Sistema.SessionAutenticacaoClient;
 using SessionCarrinho = XamStore.Domain.Entities.Sistema.SessionCarrinho;
 
@@ -133,6 +135,7 @@ namespace XamStore.Application.Controllers
                 var sCdAvisoRecebimento = "N";
 
                 var webServiceCorreios = new CalcPrecoPrazoWS();
+
                 var retornoCorreios = webServiceCorreios.CalcPrecoPrazo(empresa, senha, codigoServico, cepOrigem, cepDestino, peso, nCdFormato, nVlComprimento, nVlAltura, nVlLargura, nVlDiametro, sCdMaoPropria, nVlValorDeclarado, sCdAvisoRecebimento);
                 var sessionCarrinho = Session["Carrinho"] as SessionCarrinho;
 
@@ -153,7 +156,7 @@ namespace XamStore.Application.Controllers
 
                 return Json(new {RedirectUrl = Url.Action("Index", "Carrinho")}, JsonRequestBehavior.AllowGet);
             }
-            catch
+            catch(Exception ex)
             {
                 return Json(new {RedirectUrl = Url.Action("Index", "Carrinho")}, JsonRequestBehavior.AllowGet);
             }
@@ -165,7 +168,7 @@ namespace XamStore.Application.Controllers
             var sessionCarrinho = Session["Carrinho"] as SessionCarrinho;
             var newSessionCarrinho = new SessionCarrinho();
 
-            foreach (var produtoCarrinho in sessionCarrinho?.ProdutosCarrinho)
+            foreach (var produtoCarrinho in sessionCarrinho.ProdutosCarrinho)
             {
                 if (produtoCarrinho.Produto.Id == id)
                 {
@@ -215,7 +218,7 @@ namespace XamStore.Application.Controllers
                 {
                     payment.Items.Add(new Item(
                         carrinhoProduto.Produto.Id.ToString(),
-                        carrinhoProduto.Produto.Descricao,
+                        carrinhoProduto.Produto.Nome,
                         carrinhoProduto.Quantidade,
                         ToDecimal(carrinhoProduto.Produto.Preco)
                         ));

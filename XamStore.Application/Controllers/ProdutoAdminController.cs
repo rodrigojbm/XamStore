@@ -115,7 +115,7 @@ namespace XamStore.Application.Controllers
                     }
 
                     var imagem = new Imagem();
-                    var imageCript = $"{image.FileName}{produto.Descricao}";
+                    var imageCript = $"{image.FileName}{produto.Nome}";
                     imageCript = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(imageCript)).Select(s => s.ToString("x2")));
                     var fullPath = $"~/Imagens/Produto/{imageCript}{extensao}";
                     image.SaveAs(Server.MapPath(fullPath));

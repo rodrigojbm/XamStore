@@ -15,7 +15,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Logradouro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Logradouro)
+                @Html.TextBoxFor(model => model.Logradouro, new {@class="form-control"})
                 @Html.ValidationMessageFor(model => model.Logradouro)
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Complemento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Complemento)
+                @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Complemento)
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Numero)
+                @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Numero)
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Bairro)
+                @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Bairro)
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdCidade, "IdCidade", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdCidade", string.Empty)
+                @Html.DropDownList("IdCidade", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCidade)
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdPessoa, "IdPessoa", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdPessoa", string.Empty)
+                @Html.DropDownList("IdPessoa", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdPessoa)
             </div>
         </div>
@@ -69,5 +69,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-default" })
 </div>

@@ -48,14 +48,14 @@
                         @Html.ValidationSummary(true)
                         <div>
                             <label>
-                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "email" })
+                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "E-mail", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                                 <!--<input placeholder="e-mail:" type="email" tabindex="3" required="">-->
                             </label>
                         </div>
                         <div>
                             <label>
-                                @Html.PasswordFor(m => m.Senha, new { placeholder = "senha" })
+                                @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.Senha)
                             </label>
                         </div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="login_left">
-                <h3>Redes sociais</h3>
+                <h3>Redes Sociais</h3>
                 <p>Você pode se logar em nossa loja atravéz de umas das redes sociais abaixo.</p>
                 <!-- start registration -->
                 <div class="registration">

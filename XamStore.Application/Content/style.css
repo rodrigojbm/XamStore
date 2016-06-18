@@ -126,9 +126,10 @@ h2.style{
 }
 h4.style{
 	font-size: 1.5em;
-	color: #5e5e5e;
+	color: white;
+    text-align: center;
 	text-transform: capitalize;
-	border: 1px solid #3D3D3D;
+	border: 1px solid gray;
 	padding: 1% 2%;
 }
 .login_left{
@@ -178,7 +179,8 @@ h4.style{
 }
 .btn form input[type="button"]:hover,.registration_form input[type="submit"]:hover{
 	background: #57C5A0;
-	border: 1px solid #57c5a0;
+	border: 1px solid #57C5A0;
+    color: white;
 }
 /* start registration */
 .registration{
@@ -2353,47 +2355,41 @@ span.color7{
 .categoria-produto h2 {
     font-size:15px;
     font-weight:bold;
-
 }
 
-
 .produtos {
-   
     margin-left:25%;
-   
     width:75%;
 }
 .produto {
-    width:33.3%;
-    height:350px;
-    border:1px solid #fff;
+    width:33%;
+    height: 350px;
+    border:1px solid #ccc;
     float:left;
-   
+    margin: 1.5px;
 }
 .produto:hover{
-   
-
-    border:1px solid #ccc;
-  
-   
+    border:1px solid gray;
 }
 
 .produto-img {
-    margin-left:30px;
+    text-align: center;
     padding-top:10px;
 }
 
 .produto-descricao {
     padding:10px;
 }
+
 .produto-titulo {
+    text-align: center;
     font-weight:bold;
     height:40px;
-    
     width:280px;
 }
+
 .produto-opcoes {
-    margin-left:70px;
+    text-align: center;
     clear:both;
 }
 .produto-preco {

@@ -4,14 +4,18 @@
 }
 
 @model XamStore.Domain.Entities.Cadastro.Endereco
-
+<link type="text/css" rel="stylesheet" href="~/Content/layoutAdmin.css" />
+<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/comboDinamico.js"></script>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
+
+
 <!-- start top_bg -->
 <div class="top_bg">
     <div class="wrap">
         <div class="main_top">
-            <h4 class="style">Meus Dados</h4>
+            <h4 class="style" style="color: white;">Meus Dados</h4>
         </div>
     </div>
 </div>
@@ -26,23 +30,25 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">Novo Endereço</div>
-                    <script src="../../Scripts/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
+                    <script src="/Scripts/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
                     <script type="text/javascript">
-                       jQuery(function ($) {
-                           $('#Cep').mask('99999-999');
-                       });
-                       $(function () {
-                           $("#Cep").blur(function () {
-                               var cep = $(this).val().replace(/[^0-9]/, '');
-                               if (cep !== "") {
-                                   var url = 'http://cep.correiocontrol.com.br/' + cep + '.json';
-                                   $.getJSON(url, function (json) {
-                                       $("#Logradoruro").val(json.logradouro);
-                                       $("#Bairro").val(json.bairro);
-                                   });
-                               }
-                           });
-                       });
+                        $(document).ready(function() {
+                            jQuery(function($) {
+                                $('#Cep').mask('99999-999');
+                            });
+                            $(function() {
+                                $("#Cep").blur(function() {
+                                    var cep = $(this).val().replace(/[^0-9]/, '');
+                                    if (cep !== "") {
+                                        var url = 'http://cep.correiocontrol.com.br/' + cep + '.json';
+                                        $.getJSON(url, function(json) {
+                                            $("#Logradouro").val(json.logradouro);
+                                            $("#Bairro").val(json.bairro);
+                                        });
+                                    }
+                                });
+                            });
+                        });
                     </script>
                     @using (@Html.BeginForm("CadastrarEndereco", "Pessoa", FormMethod.Post))
                     {
@@ -50,41 +56,56 @@
                         <div class="registration_form" style="padding:15px;">
                             @Html.ValidationSummary(true)
                             <div>
+                                <label>CEP: </label><br/>
                                 <label>
-                                    @Html.TextBoxFor(model => model.Cep, new { placeholder = "Cep" })
+                                    @Html.TextBoxFor(model => model.Cep, new {placeholder = "Cep", @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.Cep)
                                 </label>
                             </div>
                             <div>
+                                <label>Logradouro: </label><br />
                                 <label>
-                                    @Html.TextBoxFor(model => model.Logradouro, new { placeholder = "Logradouro" })
+                                    @Html.TextBoxFor(model => model.Logradouro, new {placeholder = "Logradouro", @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.Logradouro)
                                 </label>
                             </div>
                             <div>
+                                <label>Complemento: </label><br />
                                 <label>
-                                    @Html.TextBoxFor(model => model.Complemento, new { placeholder = "Complemento" })
+                                    @Html.TextBoxFor(model => model.Complemento, new {placeholder = "Complemento", @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.Complemento)
                                 </label>
                             </div>
                             <div>
+                                <label>Número: </label><br />
                                 <label>
-                                    @Html.TextBoxFor(model => model.Numero, new { placeholder = "Nº" })
+                                    @Html.TextBoxFor(model => model.Numero, new {placeholder = "Nº", @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.Numero)
                                 </label>
                             </div>
                             <div>
+                                <label>Bairro: </label><br />
                                 <label>
-                                    @Html.TextBoxFor(model => model.Bairro, new { placeholder = "Bairro" })
+                                    @Html.TextBoxFor(model => model.Bairro, new {placeholder = "Bairro", @class = "form-control"})
                                     @Html.ValidationMessageFor(model => model.Bairro)
                                 </label>
                             </div>
+
                             <div>
+                                <label>Estado: </label><br />
                                 <label>
-                                    @Html.DropDownList("IdCidade", ViewBag.cCidade as SelectList, null, new { style = "padding:10px;border:1px solid #ccc;color:#999;" })
-                                    @Html.ValidationMessageFor(model => model.IdCidade)
+                                    @Html.DropDownList("IdEstado", ViewBag.IdEstado as SelectList, null, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.Cidade.IdEstado)
                                 </label>
                             </div>
+                            <div>
+                                <label>Cidade: </label><br />
+                                <label>
+                                    @Html.TextBoxFor(model => model.Cidade.Nome, new {placeholder = "Cidade", @class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.Cidade.Nome)
+                                </label>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Cadastrar" class="btn btn-default" style="float:right" />
@@ -99,7 +120,7 @@
             <div style="width:38%;float:left;margin-left:1%">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">Endereços cadastrados</div>
+                    <div class="panel-heading">Endereços Cadastrados</div>
                     <!-- List group -->
                     <ul class="list-group">
                         @{
@@ -113,10 +134,10 @@
                                 <th style="background:#f4f4f4;">
                                     Endereço
                                 </th>
-                                <th style="background:#f4f4f4;">
+                                <th id="Cep" style="background:#f4f4f4;">
                                     Cep
                                 </th>
-                                <th style="background:#f4f4f4;">
+                                <th style="background: #f4f4f4;">
                                     Cidade
                                 </th>
                                 <th style="background:#f4f4f4;">
@@ -132,7 +153,7 @@
                                         <tr>
                                             <td>@endereco.Id</td>
                                             <td>@endereco.Logradouro</td>
-                                            <td>@endereco.Cep</td>
+                                            <td id="Cep">@endereco.Cep</td>
                                             <td>@endereco.Cidade.Nome</td>
                                             <td>@Html.ActionLink("Excluir", "ExcluirEndereco", "Pessoa", new { id = endereco.Id }, null)</td>
                                         </tr>

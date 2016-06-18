@@ -82,7 +82,12 @@ namespace XamStore.Application.Controllers
 
             ViewBag.Menus = _db.Menu;
             ViewBag.Enderecos = enderecos;
+
+            ViewBag.IdEstado = new SelectList(_db.Estado, "Id", "Nome");
             ViewBag.IdCidade = new SelectList(_db.Cidade, "Id", "Nome");
+
+            //var selected = idCidade.Where(x => x.Value == "selectedValue").First();
+            //selected.Selected = true;
 
             return View();
         }

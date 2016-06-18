@@ -25,12 +25,12 @@
                 @Html.DisplayFor(model => model.Nome)
             </dd>
 
-            <@*dt>
+            <dt>
                 @Html.DisplayNameFor(model => model.Multiplayer)
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Multiplayer)
-            </dd>*@
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Jogadores)
             </dt>
@@ -53,7 +53,7 @@
                 <input type="submit" value="Deletar" class="btn btn-default" style="float:right" />
             </div>
             <br />
-            @Html.ActionLink("Voltar", "Index")
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
         }
     </div>
 </div>

@@ -14,8 +14,14 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Nome)
             </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sobre)
+            </dt>
             <dd>
                 @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Sobre)
             </dd>
             @{
                 var jogos = ViewBag.Jogos;
@@ -40,7 +46,7 @@
                 <input type="submit" value="Deletar" class="btn btn-default @if (jogos.Count > 0) { @Html.Raw("disabled"); }" style="float:right" />
             </div>
             <br />
-            @Html.ActionLink("Voltar", "Index")
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
         }
     </div>
 </div>

@@ -35,7 +35,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Senha, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Senha)
+                    @Html.PasswordFor(model => model.Senha)
                     @Html.ValidationMessageFor(model => model.Senha)
                 </div>
             </div>
@@ -57,7 +57,7 @@
     }
 
     <div>
-        @Html.ActionLink("Voltar para lista", "Index")
+        @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-default" })
     </div>
 
     @section Scripts {

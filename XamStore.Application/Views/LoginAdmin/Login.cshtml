@@ -22,7 +22,7 @@
                 <p>Ao criar uma conta na nossa loja, você será capaz de se mover através do processo de compra mais rápida, armazenar múltiplos endereços de envio, ver e rastrear seus pedidos e muito mais.</p>
                 <div class="btn">
                     <form>
-                        <input type="button" onclick="location.href='login/Registro';" value="Criar uma conta" />
+                        <input type="button" onclick="location.href='Login/Registro';" value="Criar uma conta" />
                     </form>
                 </div>
 
@@ -48,13 +48,13 @@
                         @Html.ValidationSummary(true)
                         <div>
                             <label>
-                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "email" })
+                                @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Email", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                             </label>
                         </div>
                         <div>
                             <label>
-                                @Html.PasswordFor(m => m.Senha, new { placeholder = "senha" })
+                                @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha", @class="form-control" })
                                 @Html.ValidationMessageFor(m => m.Senha)
                             </label>
                         </div>
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="login_left">
-                <h3>Redes socias</h3>
+                <h3>Redes Sociais</h3>
                 <p>Você pode se logar em nossa loja atravéz de umas das redes sociais abaixo.</p>
                 
                 <div class="registration">

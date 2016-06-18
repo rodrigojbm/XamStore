@@ -28,12 +28,16 @@ namespace XamStore.Application
                 "~/Scripts/jquery.fancybox.pack.js",
                 "~/Scripts/jquery.mmenu.js",
                 "~/Scripts/move-top.js",
-                "~/Scripts/productviewgallery.js"));
+                "~/Scripts/productviewgallery.js",
+                "~/Scripts/modernizr-2.6.2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                    "~/Scripts/jquery.unobtrusive*",
                    "~/Scripts/jquery.validate*",
-                   "~/Scripts/jquery.unobtrusive-ajax.js",
+                   "~/Scripts/jquery.validate.unobstrusive.js",
+                   "~/Scripts/jquery.validate.unobstrusive.js",
+                   "~/Scripts/globalize/globalize.js",
+                   "~/Scripts/jquery.validate.globalize.js",
                    "~/Scripts/jquery-ui.js",
                    "~/Scripts/bootstrap.js"));
 

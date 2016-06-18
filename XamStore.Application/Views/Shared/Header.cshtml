@@ -1,4 +1,5 @@
 ﻿@using XamStore.Domain.Entities.Sistema
+<link rel="stylesheet" type="text/css" href="/Content/layoutAdmin.css"/>
 
 <!-- start header -->
 <div class="top_bg">
@@ -13,9 +14,9 @@
                 var profile = (SessionAutenticacaoClient)Session["Autenticacao"];
                 <div class="log_reg">
                     <ul>
-                        <li style="color:#fff">Olá @profile.Nome</li>
+                        <li style="color: #fff">Olá @profile.Nome</li>
                         <span style="color:#fff;">|</span>
-                        @Html.ActionLink("Meus dados", "perfil", "pessoa")
+                        @Html.ActionLink("Meus dados", "Perfil", "Pessoa", null, new { @style = "color: #777777;font-family: 'Maven Pro', sans-serif;text-transform: uppercase;font-size: 0.8125em;-webkit-text-stroke: 0.5px;" })
                         <span style="color:#fff;">|</span>
                         <li>@Html.ActionLink("Sair", "Sair", "Login")</li>
 
@@ -26,14 +27,14 @@
             {
                 <div class="log_reg">
                     <ul>
-                        <li>@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "btn btn-sm"})</li>
+                        <li>@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "btn btn-sm", @style="color: white;"})</li>
                         <div class="clear"></div>
                     </ul>
                 </div>
 
                 <div class="log_reg">
                     <ul>
-                        <li>@Html.ActionLink("Entrar", "Index", "Login", null, new { @class = "btn btn-sm" })</li>
+                        <li>@Html.ActionLink("Entrar", "Index", "Login", null, new { @class = "btn btn-sm", @style="color:white;" })</li>
                         <div class="clear"></div>
                     </ul>
                 </div>

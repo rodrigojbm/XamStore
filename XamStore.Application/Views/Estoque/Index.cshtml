@@ -7,11 +7,11 @@
 
 @Html.Partial("MenuAdmin");
 <div class="content-right">
-    <h2>Gerenciamento do estoque</h2>
-    <table class="table">
+    <h2>Gerenciamento do Estoque</h2>
+    <table class="table table-hover table-responsive">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Produto.Descricao)
+                @Html.DisplayNameFor(model => model.Produto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantidade)
@@ -22,13 +22,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Descricao)
+                    @Html.DisplayFor(modelItem => item.Produto.Nome)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Quantidade)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", null, $"Estoque/Editar/{item.Id}")
+                    @Html.ActionLink("Editar", null, $"Editar/{item.Id}", new { @class = "btn btn-default btn-sm" })
                 </td>
             </tr>
         }

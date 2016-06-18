@@ -7,7 +7,7 @@
 <div class="content-right">
     <h2>Cadastro de Plataforma</h2>
     <p>
-        @Html.ActionLink("Nova Plataforma", "Cadastrar")
+        @Html.ActionLink("Nova Plataforma", "Cadastrar", null, new { @class = "btn btn-default" })
     </p>
     <table class="table">
         <tr>
@@ -23,8 +23,8 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "Plataforma", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/Plataforma", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

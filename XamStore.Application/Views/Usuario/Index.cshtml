@@ -8,11 +8,11 @@
 <div class="content-right">
     <h2>Cadastro de usuário</h2>
 
-    <p> @Html.ActionLink("Novo usuário", "Cadastrar") </p>
+    <p> @Html.ActionLink("Novo usuário", "Cadastrar", null, new { @class = "btn btn-default" }) </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UsuarioNivel.Nome)
+                @Html.DisplayNameFor(model => model.UsuarioNivel)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -36,12 +36,11 @@
                     @Html.DisplayFor(modelItem => item.Login)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
                     @{
                         if (item.UsuarioNivel.Id != 1)
                         {
-                            @Html.Raw("|")
-                            @Html.ActionLink("Deletar", "Deletar", "Usuario", new { id = item.Id }, null)
+                            @Html.ActionLink("Deletar", "Deletar", "Admin/Usuario", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                         }
                     }
                 </td>

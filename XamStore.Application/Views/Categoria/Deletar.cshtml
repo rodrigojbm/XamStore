@@ -39,7 +39,7 @@
                 <input type="submit" value="Deletar" class="btn btn-default @if (produtoCount > 0) { @Html.Raw("disabled"); }" style="float:right" />
             </div>
             <br />
-            @Html.ActionLink("Voltar", "Index")
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
         }
     </div>
 </div>

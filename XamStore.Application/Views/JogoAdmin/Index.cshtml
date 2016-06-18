@@ -11,9 +11,9 @@
     <h2>Cadastro de Jogos</h2>
     <hr />
     <p>
-        @Html.ActionLink("Novo jogo", "Cadastrar")
+        @Html.ActionLink("Novo Jogo", "Cadastrar", null, new { @class = "btn btn-default" })
     </p>
-    <table class="table">
+    <table class="table table-hover">
         <tr>
             <th>
                 #
@@ -49,11 +49,11 @@
                     @Html.DisplayFor(modelItem => item.Jogadores)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Classificacao)
+                    @Html.DisplayFor(modelItem => item.Classificacao) Anos
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", "JogoAdmin", new { id = item.Id }, null) |
-                    @Html.ActionLink("Deletar", "Deletar", "JogoAdmin", new { id = item.Id }, null)
+                    @Html.ActionLink("Editar", "Editar", "Admin/JogoAdmin", new { id = item.Id }, new {@class="btn btn-default btn-sm"})
+                    @Html.ActionLink("Deletar", "Deletar", "Admin/JogoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Validation;
+﻿using System;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -111,8 +112,9 @@ namespace XamStore.Application.Controllers
                 if (pessoaGoogle == null)
                 {
                     var saida = pessoa.Nome.Split(' ');
-                    pessoa.Sobrenome = saida[1];
-
+                    pessoa.Sobrenome = saida.Last();
+                    pessoa.Cpf = "00000000000";
+                    pessoa.DataNascimento = DateTime.Parse("01/01/1990");
                     pessoa.SexoTipo = SexoTipoEnum.Masculino;
                     pessoa.Senha = "senha_google";
                     pessoa.PessoaTipo = PessoaTipoEnum.Fisica;
@@ -149,18 +151,18 @@ namespace XamStore.Application.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Registrar([Bind(Include = "Nome, Sobrenome, DataNascimento, Rg, Cpf, SexoTipo, Email, Senha, PessoaTipo")] Pessoa pessoa)
+        public JsonResult Registrar([Bind(Include = "Nome, Sobrenome, DataNascimento, Rg, Cpf, SexoTipo, Email, Senha, PessoaTipo, ConfirmaSenha")] Pessoa pessoa)
         {
             ViewBag.Menus = _db.Menu;
             ViewBag.Produtos = _db.Slide;
 
             ModelState.Remove("EmailAutenticacao");
 
-            //if (!ModelState.IsValid)
-            //    return Json(new { RedirectUrl = Url.Action("Registro", "Login") }, JsonRequestBehavior.AllowGet);
+            if (!ModelState.IsValid)
+                return Json(new { RedirectUrl = Url.Action("Registro", "Login") }, JsonRequestBehavior.AllowGet);
 
             pessoa.EmailAutenticacao = pessoa.Email;
-            pessoa.DataNascimento = pessoa.DataNascimento.Date;
+            //pessoa.DataNascimento = DateTime.Now;
 
             _db.Pessoa.Add(pessoa);
 
