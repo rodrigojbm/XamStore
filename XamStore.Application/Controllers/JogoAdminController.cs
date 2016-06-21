@@ -298,6 +298,8 @@ namespace XamStore.Application.Controllers
 
                 var produto = _db.Jogo.Find(id);
 
+                ViewBag.Produtos = _db.Produto.Where(x => x.IdJogo == id).ToList();
+
                 return View(produto);
             }
             catch (DbUpdateException)

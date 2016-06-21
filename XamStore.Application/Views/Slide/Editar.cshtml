@@ -5,53 +5,56 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
-<div class="content-right">
-    <h2>Editar Slide </h2>
-    <hr />
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Editar Slide </h2>
+        <hr/>
 
-    @using (Html.BeginForm("Editar", "Slide", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
-    {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm("Editar", "Slide", null, FormMethod.Post, new {enctype = "multipart/form-data", id = "validateManually"}))
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.Imagem)
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Imagem)
 
-            <div class="form-group">
-                <div class="control-label col-md-2"><b>Imagem</b></div>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.File, new { @type = "file", @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.File)
+                <div class="form-group">
+                    <div class="control-label col-md-2"><b>Imagem: </b>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.File, new {@type = "file", @class = "form-control"})
+                        @Html.ValidationMessageFor(x => x.File)
 
+                    </div>
+                    <div style="float: right">
+                        <b>Imagem Atual</b>
+                        <img src="~/Imagens/Produto/@Model.Imagem" width="100"/>
+                    </div>
                 </div>
-                <div style="float:right">
-                    <b>Imagem atual</b>
-                    <img src="~/Imagens/Produto/@Model.Imagem" width="100" />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdProduto, "Produto: ", new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdProduto", null, new {@class="form-control"})
+                        @Html.ValidationMessageFor(model => model.IdProduto)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Editar" class="btn btn-default"/>
+                    </div>
                 </div>
             </div>
+        }
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdProduto, "Produto", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("IdProduto", "---------SELECIONE--------")
-                    @Html.ValidationMessageFor(model => model.IdProduto)
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Editar" class="btn btn-default" />
-                </div>
-            </div>
+        <div>
+            @Html.ActionLink("Voltar para Lista", "Index", null, new {@class = "btn btn-default"})
         </div>
-    }
 
-    <div>
-        @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-default" })
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
     </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
 </div>

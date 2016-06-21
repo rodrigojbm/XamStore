@@ -22,46 +22,6 @@
         <div class="main" style="min-height:1000px;">
             <div class="categoria-produto">
                 <div class="panel panel-default">
-
-                    <div class="panel-heading"><b>Jogos</b></div>
-                    <ul class="list-group">
-                        @foreach (var dict in (Dictionary<Jogo, int>)ViewBag.CountJogos)
-                        {
-                            <li class="list-group-item">
-                                <span class="badge">
-                                    <span>@dict.Value</span>
-                                </span>
-                                @{
-                                    var routeValueFabricanteDictionary = new RouteValueDictionary(ViewContext.RouteData.Values);
-
-                                    foreach (string key in Request.QueryString.Keys)
-                                    {
-                                        routeValueFabricanteDictionary[key] = Request.QueryString[key].ToString();
-                                    }
-
-                                    if (!routeValueFabricanteDictionary.ContainsKey("jogos"))
-                                    {
-
-                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
-                                    }
-                                    else
-                                    {
-                                        routeValueFabricanteDictionary.Remove("jogos");
-                                        routeValueFabricanteDictionary.Add("jogos", dict.Key.Id);
-                                    }
-                                }
-
-                                @Html.ActionLink(
-                                dict.Key.Nome,
-                                "index",
-                                "Produto",
-                                routeValueFabricanteDictionary,
-                                null
-                                )
-                            </li>
-                                    }
-                    </ul>
-
                     <div class="panel-heading"><b>Categoria</b></div>
                     <ul class="list-group">
                         @foreach (var dict in (Dictionary<Categoria, int>)ViewBag.CountCategorias)
@@ -450,31 +410,7 @@
 
                 @foreach (var produto in (IEnumerable<Produto>)ViewBag.Produtos)
                 {
-                    @*<div class="produto" style="border-radius: 3px;">
-                            <a href="Produto/detalhar/@produto.Id">
-                                <div class="produto-img" style="text-align: center;">
-                                    <img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="180" height="131"/>
-                                </div>
-                            </a>
-                            <a href="Produto/detalhar/@produto.Id">
-                                <div class="produto-descricao">
-                                    <div class="produto-titulo">@produto.Nome</div>
-                                    <div class="produto-titulo-preco"></div>
-                                    <div class="produto-preco">@($"{produto.Preco:C}")</div>
-                                    <div class="produto-opcoes">
-                                        <a class="ei_icons" href="Produto/detalhar/@produto.Id">Detalhes</a>
-                                        <a class="ei_icons" href="Produto/detalhar/@produto.Id"><img src="/Imagens/icon_1.png" alt=""></a>
-                                        <a class="ei_icons add-carrinho" id="@produto.Id" href="/Produto/detalhar/@produto.Id"></a>
-                                        <div class="avaliable">
-                                            @Ajax.ActionLink("Adicionar ao Carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class = "btn btn-primary btn-sm", @onClick = "history.go(0);"})
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>*@
-
                     <div class="container-fluid">
-
                         <div class="col-sm-4">
                             <div class="panel panel-default text-center" id="panelDefault">
                                 <div class="panel-heading" id="panelHeading">
@@ -486,12 +422,6 @@
                                     </div>
                                     <p>
                                         <a href="Produto/detalhar/@produto.Id" style="text-decoration: none;">Detalhes</a>
-                                    </p>
-                                    <p>
-                                        <strong>15</strong> Ipsum
-                                    </p>
-                                    <p>
-                                        <strong>5</strong> Dolor
                                     </p>
                                 </div>
                                 <div class="panel-footer" id="panelFooter">
@@ -561,7 +491,6 @@
         var registroPorPagina = $('.registroPorPagina option:selected').val();
         var pagina = $('.pagina').val();
 
-        var jogo = getParameterByName("jogos");
         var categoria = getParameterByName("categorias");
         var fabricante = getParameterByName("fabricante");
         var genero = getParameterByName("genero");
@@ -571,10 +500,6 @@
         var url = window.location.origin;
 
         var url = url + "/Produto?pagina=" + pagina + "&ordem=" + order + "&RegistroPorPagina=" + registroPorPagina;
-
-        if (jogo !== "") {
-            url += "&jogos=" + jogo;
-        }
 
         if (categoria !== "") {
             url += "&categorias=" + categoria;

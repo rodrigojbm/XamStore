@@ -6,45 +6,45 @@
 }
 
 @Html.Partial("MenuAdmin");
-<div class="content-right">
-    <h2>Cadastro de Slide</h2>
-
-    <p>
-        @Html.ActionLink("Novo slide", "Cadastrar", null, new { @class = "btn btn-default" })
-    </p>
-    <table class="table table-hover table-responsive">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Produto.Nome)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de Slide</h2>
+        <p>
+            @Html.ActionLink("Novo slide", "Cadastrar", null, new {@class = "btn btn-default"})
+        </p>
+        <table class="table table-hover table-responsive">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    <img src="~/Imagens/Produto/@item.Imagem" width="60" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Nome)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Editar", "Editar", "Slide", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                    @Html.ActionLink("Deletar", "Deletar", "Admin/Slide", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto.Nome)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <img src="~/Imagens/Produto/@item.Imagem" width="60"/>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produto.Nome)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", "Slide", new {id = item.Id}, new {@class = "btn btn-default btn-sm"})
+                        @Html.ActionLink("Deletar", "Deletar", "Admin/Slide", new {id = item.Id}, new {@class = "btn btn-danger btn-sm"})
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 </div>

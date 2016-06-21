@@ -4,45 +4,50 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
-
-<div class="content-right">
-    <h2>Cadastro de Plataforma</h2>
-    <hr />
-    <h4>Deseja deletar esta Plataforma?</h4>
-    <div>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            @{
-                var jogos = ViewBag.Jogos;
-                if (jogos.Count > 0)
-                {
-                    <div style="color:#ff0000">
-                        No momento, você não pode deletar esta Plataforma, pois existem jogos vinculados a ele.<br />
-                        Para poder deletar é necessário Remover os seguintes jogos:<br /><br />
-                        @foreach (var jogo in jogos)
-                        {
-                            <div style="color:#000000">@jogo.Id - @jogo.Nome</div>
-                        }
-                    </div>
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de Plataforma</h2>
+        <hr/>
+        <h4>Deseja deletar esta Plataforma?</h4>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                @{
+                    var jogos = ViewBag.Jogos;
+                    if (jogos.Count > 0)
+                    {
+                        <div style="color: #ff0000">
+                            No momento, você não pode deletar esta Plataforma, pois existem jogos vinculados a ele.<br/>
+                            Para poder deletar é necessário Remover os seguintes jogos:<br/><br/>
+                            @foreach (var jogo in jogos)
+                            {
+                                <div style="color: #000000">@jogo.Id - @jogo.Nome</div>
+                            }
+                        </div>
+                    }
                 }
+            </dl>
+            @using (Html.BeginForm("Deletar", "Plataforma"))
+            {
+                @Html.HiddenFor(x => x.Id)
+                @Html.AntiForgeryToken()
+
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Deletar" class="btn btn-default @if (jogos.Count > 0)
+                                                                                {
+                                                                                    @Html.Raw("disabled")
+                                                                                    ;
+                                                                                }" style="float: right"/>
+                </div>
+                <br/>
+                @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-default"})
             }
-        </dl>
-        @using (Html.BeginForm("Deletar", "Plataforma"))
-        {
-            @Html.HiddenFor(x => x.Id)
-            @Html.AntiForgeryToken()
-
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Deletar" class="btn btn-default @if (jogos.Count > 0) { @Html.Raw("disabled"); }" style="float:right" />
-            </div>
-            <br />
-            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
-        }
+        </div>
     </div>
 </div>
