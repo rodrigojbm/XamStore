@@ -2408,3 +2408,10 @@ span.color7{
     font-size: 30px;
     color:#57C5A0;
 }
+
+.logo-principal img {
+    width: 180px;
+    height: 70px;
+    position: absolute;
+    margin-top: -7px;
+}

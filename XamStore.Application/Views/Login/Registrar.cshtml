@@ -21,7 +21,9 @@
             <div class="login_left" style="margin-left: 25%;">
                 <div class="registration_left">
                     <h3>Cadastro no site</h3>
-                    <p>Digite seus dados abaixo</p>
+                    <h4>
+                        <p>Digite seus dados abaixo</p>
+                    </h4>
                     <script type="text/javascript">
                         function OnSucessRegistro(data) {
                             window.location.replace(data.RedirectUrl);
@@ -74,7 +76,7 @@
                                 <div>
                                     <label>
                                         @Html.TextBoxFor(m => m.Cpf, new {placeholder = "CPF/CNPJ", @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.Email)
+                                        @Html.ValidationMessageFor(m => m.Cpf)
                                     </label>
                                 </div>
                                 <div>
@@ -83,41 +85,42 @@
                                         @Html.ValidationMessageFor(m => m.DataNascimento)
                                     </label>
                                 </div>
+                                
+                            </div>
+                            <div class="col-sm-4" style="margin: 20px; top: -33px;">
                                 <div class="sky_form">
                                     <ul>
-                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.SexoTipo, "0", new {@checked = "checked"})<i>Masculino</i></label></li>
+                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.SexoTipo, "0", new { @checked = "checked" })<i>Masculino</i></label></li>
                                         <li><label class="radio">@Html.RadioButtonFor(m => m.SexoTipo, "1")<i>Feminino</i></label></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="col-sm-4" style="margin: 20px;">
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Email, new {placeholder = "E-mail", @class = "form-control"})
                                         @Html.ValidationMessageFor(m => m.Email)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.TextBoxFor(m => m.EmailAutenticacao, new { placeholder = "Confirmar E-mail", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.EmailAutenticacao, new {placeholder = "Confirmar E-mail", @class = "form-control"})
                                         @Html.ValidationMessageFor(m => m.EmailAutenticacao)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.PasswordFor(m => m.Senha, new { placeholder = "Senha", @class = "form-control" })
+                                        @Html.PasswordFor(m => m.Senha, new {placeholder = "Senha", @class = "form-control"})
                                         @Html.ValidationMessageFor(m => m.Senha)
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        @Html.PasswordFor(m => m.ConfirmaSenha, new { placeholder = "Repita a senha", @class = "form-control" })
+                                        @Html.PasswordFor(m => m.ConfirmaSenha, new {placeholder = "Repita a senha", @class = "form-control"})
                                         @Html.ValidationMessageFor(m => m.ConfirmaSenha)
                                     </label>
                                 </div>
                                 <div class="sky_form">
                                     <ul>
-                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.PessoaTipo, "0", new { @checked = "checked" })<i>Física</i></label></li>
+                                        <li><label class="radio left">@Html.RadioButtonFor(m => m.PessoaTipo, "0", new {@checked = "checked"})<i>Física</i></label></li>
                                         <li><label class="radio">@Html.RadioButtonFor(m => m.PessoaTipo, "1")<i>Jurídica</i></label></li>
                                     </ul>
                                 </div>

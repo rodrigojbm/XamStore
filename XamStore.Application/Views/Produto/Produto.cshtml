@@ -247,7 +247,7 @@
                         {
                             id = int.Parse(Request.QueryString[key]);
                             var jogo = (IEnumerable<XamStore.Domain.Entities.Cadastro.Jogo>)ViewBag.Jogos;
-                            nome = jogo.FirstOrDefault(x => x.Id == id)?.Nome;
+                            nome = jogo.FirstOrDefault(x => x.Id == id).Nome;
 
                             <span class="label label-success" style="height:20px !important;padding:10px;margin-right:5px;">
                                 @nome <span class="badge" style="background:#fff; height:15px;width:15px;margin:2px 0 0 15px;padding-left:4px;">
@@ -421,7 +421,7 @@
                                         <a href="Produto/detalhar/@produto.Id"><img src="~/Imagens/produto/@produto.ProdutoImagens.FirstOrDefault().Imagem.Nome" width="275" height="180" /></a>
                                     </div>
                                     <p>
-                                        <a href="Produto/detalhar/@produto.Id" style="text-decoration: none;">Detalhes</a>
+                                        <a href="Produto/detalhar/@produto.Id" style="text-decoration: none;"><strong>Saber Mais</strong></a>
                                     </p>
                                 </div>
                                 <div class="panel-footer" id="panelFooter">

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Http.Routing;
 using System.Web.Mvc;
 using Uol.PagSeguro.Constants;
 using Uol.PagSeguro.Domain;
@@ -18,7 +16,6 @@ using XamStore.Domain.Entities.Sistema;
 using XamStore.Domain.Enums;
 using XamStore.Infrastructure.Context;
 using static System.Convert;
-using Console = System.Console;
 using SessionAutenticacaoClient = XamStore.Domain.Entities.Sistema.SessionAutenticacaoClient;
 using SessionCarrinho = XamStore.Domain.Entities.Sistema.SessionCarrinho;
 
@@ -214,7 +211,7 @@ namespace XamStore.Application.Controllers
 
                 var payment = new PaymentRequest { Currency = Currency.Brl };
 
-                foreach (var carrinhoProduto in sessionCarrinho?.ProdutosCarrinho)
+                foreach (var carrinhoProduto in sessionCarrinho.ProdutosCarrinho)
                 {
                     payment.Items.Add(new Item(
                         carrinhoProduto.Produto.Id.ToString(),
@@ -224,7 +221,7 @@ namespace XamStore.Application.Controllers
                         ));
                 }
 
-                payment.Shipping = new Shipping { ShippingType = sessionCarrinho?.IsSedex == true ? ShippingType.Sedex : ShippingType.Pac };
+                payment.Shipping = new Shipping { ShippingType = sessionCarrinho.IsSedex == true ? ShippingType.Sedex : ShippingType.Pac };
 
                 var cidade = _db.Cidade.FirstOrDefault(x => x.Id == sessionCarrinho.Endereco.IdCidade);
                 var estado = _db.Estado.FirstOrDefault(x => x.Id == cidade.IdEstado);
@@ -245,7 +242,7 @@ namespace XamStore.Application.Controllers
 
                 payment.Reference = pedido.Id.ToString();
 
-                var url = $"{Request.Url?.Scheme}://{Request.Url?.Authority}{Request.Url?.AbsolutePath}";
+                var url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.Url.AbsolutePath}";
 
                 payment.RedirectUri = new Uri(url);
                 payment.MaxAge = 172800;

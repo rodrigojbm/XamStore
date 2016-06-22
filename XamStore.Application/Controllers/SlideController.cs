@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
@@ -9,7 +8,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using XamStore.Domain.Entities.Cadastro;
-using XamStore.Domain.Services;
 using XamStore.Infrastructure.Context;
 
 namespace XamStore.Application.Controllers

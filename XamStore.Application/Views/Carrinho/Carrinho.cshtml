@@ -37,9 +37,9 @@
                                     totalCarrinho = totalCarrinho + carrinho.Valor;
                                     <li class="list-group-item" id="@carrinho.Produto.Id" style="@if (i % 2 == 0) {@Html.Raw("background:#f8f8f8;")}">
                                         <div class="carrinho-produto-imagem" style="float:left;"><img src="~/Imagens/Produto/@carrinho.Imagem" width="80" height="80" style="border-radius:50%;padding:3px; border:1px solid #ccc;" /></div>
-                                        <div class="carrinho-produto-descricao" style="float:left;margin-left:10%;width:20%;margin-top:30px;">@carrinho.Produto.Nome</div>
+                                        <div class="carrinho-produto-descricao" style="float: left; margin-left: 10%; width: 20%; margin-top: 30px;"><strong>@carrinho.Produto.Nome</strong></div>
                                         <div class="carrinho-produto-quatidade" style="float:left;margin-left:10%;margin-top:30px;">Quantidade <input class="carrinho-quantidade" type="text" value="@carrinho.Quantidade" style="width:30px;text-align:center" /></div>
-                                        <div class="carrinho-produto-valor" style="float:left;margin-top:30px;margin-left:20%">@($"{carrinho.Valor:C}")</div>
+                                        <div class="carrinho-produto-valor" style="float: left; margin-top: 30px; margin-left: 20%"><strong>@($"{carrinho.Valor:C}")</strong></div>
                                         <div class="carrinho-produto-close" style="float:right;margin-top:30px;margin-right:5%">@Ajax.ActionLink("x", "Remove", "Carrinho", new { id = @carrinho.Produto.Id }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "removeCarrinhoSuccess" }, new {@class="btn btn-primary btn-sm", @style="margin-top: -10px;"})</div>
                                         <div style="clear:both"></div>
                                     </li>
@@ -50,7 +50,7 @@
                             {
                                 throw;
                             }
-                            <li class="list-group-item" style="text-align:right">Total :@($"{totalCarrinho:C}")</li>
+                            <li class="list-group-item" style="text-align: right"><strong>Total: @($"{totalCarrinho:C}")</strong></li>
                         }
                     }
                 </ul>
@@ -77,7 +77,7 @@
             ">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">Endereço de entrega</div>
+                    <div class="panel-heading">Endereço de Entrega</div>
                     <!-- List group -->
                     @{
                         var enderecos = ViewBag.Enderecos as ICollection<XamStore.Domain.Entities.Cadastro.Endereco>;
@@ -147,7 +147,7 @@
                     <ul class="list-group">
                         <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="pac" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == false) { @Html.Raw("checked=checked") ; } } } /> Pac (Encomenda normal)</li>
                         <li class="list-group-item" style="text-align:left"><input type="radio" name="tipoFrete" value="sedex" @{if (sessionCarrinho != null) { if (sessionCarrinho.IsSedex == true) { @Html.Raw("checked=checked") ; } } } /> Sedex</li>
-                        <li class="list-group-item" style="text-align:left">Peso <span class="peso">@pesoTotal</span> g</li>
+                        <li class="list-group-item" style="text-align:left">Peso: <span class="peso">@pesoTotal</span> g</li>
 
                         @if (Session["autenticacao"] != null)
                         {
@@ -191,14 +191,14 @@
             ">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">Totais</div>
+                    <div class="panel-heading">Total</div>
                     <!-- List group -->
                     <ul class="list-group">
-                        <li class="list-group-item" style="text-align:left">Produtos <span class="produto-result">@($"{totalCarrinho:C}")</span></li>
-                        <li class="list-group-item" style="text-align:left">Frete <span class="frete-result">@{if (sessionCarrinho != null)
+                        <li class="list-group-item" style="text-align:left">Produtos: <span class="produto-result">@($"{totalCarrinho:C}")</span></li>
+                        <li class="list-group-item" style="text-align:left">Frete: <span class="frete-result">@{if (sessionCarrinho != null)
                             {@Html.Raw($"{sessionCarrinho.Frete:C}")
                             } }</span></li>
-                        <li class="list-group-item" style="text-align:left">Total Geral R$ <span class="total-result">@{if (sessionCarrinho != null)
+                        <li class="list-group-item" style="text-align:left">Total Geral: <span class="total-result">@{if (sessionCarrinho != null)
                             {@Html.Raw($"{sessionCarrinho.TotalGeral + sessionCarrinho.Frete:C}")
                             } }</span></li>
                         @{

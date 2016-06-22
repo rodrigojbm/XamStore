@@ -21,7 +21,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("XamStore", "Index", "Admin", null, new {@class = "navbar-brand"})
+                <a href="@Url.Action("Index", "Admin")" class="navbar-brand logo-principal"><img src="/Imagens/Produto/logo.png" /></a>
+                @*@Html.ActionLink("XamStore", "Index", "Admin", null, new {@class = "navbar-brand"})*@
             </div>
 
             @using XamStore.Domain.Entities.Sistema;

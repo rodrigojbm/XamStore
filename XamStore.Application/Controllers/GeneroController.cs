@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using XamStore.Domain.Entities.Cadastro;
 using XamStore.Infrastructure.Context;
@@ -53,7 +50,7 @@ namespace XamStore.Application.Controllers
             _db.Genero.Add(genero);
             await _db.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Gênero cadastrada com sucesso!";
+            ViewBag.Mensagem = "Gênero cadastrado com sucesso!";
 
             return View("Index", await _db.Genero.ToListAsync());
         }
