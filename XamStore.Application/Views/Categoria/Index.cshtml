@@ -6,29 +6,31 @@
 }
 
 @Html.Partial("MenuAdmin");
-<div class="content-right">
-    <h2>Cadastro de Categoria</h2>
-    <p> @Html.ActionLink("Nova Categoria", "Cadastrar", null, new { @class = "btn btn-default" }) </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de Categoria</h2>
+        <p> @Html.ActionLink("Nova Categoria", "Cadastrar", null, new { @class = "btn btn-default" }) </p>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                    @Html.ActionLink("Deletar", "Deletar", "Admin/Categoria", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                        @Html.ActionLink("Deletar", "Deletar", "Admin/Categoria", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    </div>

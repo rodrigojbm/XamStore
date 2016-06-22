@@ -5,41 +5,42 @@
 }
 
 @Html.Partial("MenuAdmin");
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de categoria</h2>
+        <hr />
+        <h4>Deseja deletar esta categoria?</h4>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                @{
+                    var produtoCount = ViewBag.ProdutoCount;
 
-<div class="content-right">
-    <h2>Cadastro de categoria</h2>
-    <hr />
-    <h4>Deseja deletar esta categoria?</h4>
-    <div>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            @{
-                var produtoCount = ViewBag.ProdutoCount;
-
-                if (produtoCount > 0)
-                {
-                    <div style="color:#ff0000">
-                        No momento, você não pode deletar esta categoria, pois existe produtos vinculados a ela.<br />
-                        Para poder deletar é necessário deletar todos os produtos.
-                    </div>
+                    if (produtoCount > 0)
+                    {
+                        <div style="color:#ff0000">
+                            No momento, você não pode deletar esta categoria, pois existe produtos vinculados a ela.<br />
+                            Para poder deletar é necessário deletar todos os produtos.
+                        </div>
+                    }
                 }
-            }
-        </dl>
-        @using (Html.BeginForm("Deletar", "Categoria"))
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(x => x.Id)
+            </dl>
+            @using (Html.BeginForm("Deletar", "Categoria"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.Id)
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Deletar" class="btn btn-default @if (produtoCount > 0) { @Html.Raw("disabled"); }" style="float:right" />
-            </div>
-            <br />
-            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
-        }
+                <div class="form-actions no-color">
+                    <input type="submit" value="Deletar" class="btn btn-default @if (produtoCount > 0) { @Html.Raw("disabled"); }" style="float:right" />
+                </div>
+                <br />
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+            }
+        </div>
     </div>
-</div>
+    </div>
