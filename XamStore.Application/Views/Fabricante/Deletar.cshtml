@@ -6,16 +6,16 @@
 @Html.Partial("MenuAdmin");
 <div class="col-md-8">
     <div class="content-right">
-        <h2>Cadastro de fabricante</h2>
-        <hr />
-        <h4>Deseja deletar este fabricante?</h4>
+        <h2>Deletar Fabricante</h2>
+        <hr/>
+        <h4>Deseja deletar este Fabricante?</h4>
         <div>
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.Nome):
                 </dt>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Sobre)
+                    @Html.DisplayNameFor(model => model.Sobre):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Nome)
@@ -27,12 +27,12 @@
                     var jogos = ViewBag.Jogos;
                     if (jogos.Count > 0)
                     {
-                        <div style="color:#ff0000">
-                            No momento, você não pode deletar este fabricante, pois existem jogos vinculados a ele.<br />
-                            Para poder deletar é necessário Remover os seguintes jogos:<br /><br />
+                        <div style="color: #ff0000">
+                            No momento, você não pode deletar este fabricante, pois existem jogos vinculados a ele.<br/>
+                            Para poder deletar é necessário Remover os seguintes jogos:<br/><br/>
                             @foreach (var jogo in jogos)
                             {
-                                <div style="color:#000000">@jogo.Id - @jogo.Nome</div>
+                                <div style="color: #000000"> @jogo.Id - @jogo.Nome </div>
                             }
                         </div>
                     }
@@ -43,11 +43,16 @@
                 @Html.HiddenFor(x => x.Id)
                 @Html.AntiForgeryToken()
                 <div class="form-actions no-color">
-                    <input type="submit" value="Deletar" class="btn btn-default @if (jogos.Count > 0) { @Html.Raw("disabled"); }" style="float:right" />
+                    <input type="submit" value="Deletar" class="btn btn-default @if (jogos.Count > 0)
+                                                                                {
+                                                                                    @Html.Raw("disabled")
+                                                                                    ;
+                                                                                }" style="float: right"/>   
                 </div>
-                <br />
-                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+                <br/>
+                @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-default"})
             }
         </div>
     </div>
-    </div>
+</div>
+

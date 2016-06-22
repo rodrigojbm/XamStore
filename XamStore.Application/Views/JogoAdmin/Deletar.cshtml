@@ -8,41 +8,57 @@
 <div class="col-md-8">
     <div class="content-right">
         <h2>Cadastro de Jogos</h2>
-        <hr />
+        <hr/>
         <h4>Deseja deletar este jogo?</h4>
         <div>
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayNameFor(model => model.Id):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Id)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.Nome):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Nome)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Multiplayer)
+                    @Html.DisplayNameFor(model => model.Multiplayer):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Multiplayer)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Jogadores)
+                    @Html.DisplayNameFor(model => model.Jogadores):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Jogadores)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Classificacao)
+                    @Html.DisplayNameFor(model => model.Classificacao):
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Classificacao)
                 </dd>
+
+                @{
+                    var produtos = ViewBag.Produtos;
+                    if (produtos.Count > 0)
+                    {
+                        <div style="color: #ff0000">
+                            No momento, você não pode deletar este Jogo, pois existem Produtos vinculados a ele.<br />
+                            Para poder deletar é necessário Remover os seguintes Produtos:<br /><br />
+                            @foreach (var produto in produtos)
+                            {
+                                <div style="color: #000000"> @produto.Id - @produto.Nome </div>
+                            }
+                        </div>
+                    }
+                }
+
             </dl>
             @using (Html.BeginForm("Deletar", "JogoAdmin"))
             {
@@ -50,11 +66,15 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Deletar" class="btn btn-default" style="float:right" />
+                    <input type="submit" value="Deletar" class="btn btn-default @if (produtos.Count > 0)
+                                                                                {
+                                                                                    @Html.Raw("disabled")
+                                                                                    ;
+                                                                                }" style="float: right" />
                 </div>
-                <br />
-                @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+                <br/>
+                @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-default"})
             }
         </div>
     </div>
-    </div>
+</div>

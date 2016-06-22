@@ -5,26 +5,27 @@
 }
 
 @Html.Partial("MenuAdmin");
+<div class="col-md-8">
+    <div class="content-right">
+        @using (Html.BeginForm("Clientes", "Relatorio", FormMethod.Post))
+        {
 
-<div class="content-right">
-    @using (Html.BeginForm("Clientes", "Relatorio", FormMethod.Post))
-    {
+            <div class="form-horizontal">
+                <h2>Relatório de clientes</h2>
+                <hr/>
 
-        <div class="form-horizontal">
-            <h2>Relatório de clientes</h2>
-            <hr />
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Gerar relatório" class="btn btn-default" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Gerar relatório" class="btn btn-default"/>
+                    </div>
                 </div>
             </div>
+        }
+        <div>
+            @Html.ActionLink("Voltar", "Index")
         </div>
-    }
-    <div>
-        @Html.ActionLink("Voltar", "Index")
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
     </div>
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
 </div>

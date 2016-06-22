@@ -7,58 +7,60 @@
 
 
 @Html.Partial("MenuAdmin");
-<div class="content-right" style="float:right;margin-right:500px;"> <!--testar os floats-->
-    <h2>Cadastro de Produtos</h2>
-    <hr />
-    <p>
-        @Html.ActionLink("Novo produto", "Cadastrar", null, new { @class = "btn btn-default" })
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estoque)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de Produtos</h2>
+        <hr />
+        <p>
+            @Html.ActionLink("Novo produto", "Cadastrar", null, new { @class = "btn btn-default" })
+        </p>
+        <table class="table table-hover table-responsive">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estoque)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Preco)
-                </td>
-                <td>
-
-                    @Html.ActionLink("Editar", "Editar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                    @Html.ActionLink("Deletar", "Deletar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-
-                </td>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estoque)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Preco)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estoque)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Preco)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Editar", "Editar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                        @Html.ActionLink("Deletar", "Deletar", "Admin/ProdutoAdmin", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>

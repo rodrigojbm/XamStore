@@ -126,7 +126,7 @@
                         @{
                             var enderecos = ViewBag.Enderecos as ICollection<XamStore.Domain.Entities.Cadastro.Endereco>;
                         }
-                        <table class="table">
+                        <table class="table table-hover table-responsive">
                             <tr>
                                 <th style="background:#f4f4f4;">
                                     #
@@ -155,7 +155,7 @@
                                             <td>@endereco.Logradouro</td>
                                             <td id="Cep">@endereco.Cep</td>
                                             <td>@endereco.Cidade.Nome</td>
-                                            <td>@Html.ActionLink("Excluir", "ExcluirEndereco", "Pessoa", new { id = endereco.Id }, null)</td>
+                                            <td>@Html.ActionLink("Excluir", "ExcluirEndereco", "Pessoa", new { id = endereco.Id }, new {@class="btn btn-default btn-xs"})</td>
                                         </tr>
                                     }
                                 }

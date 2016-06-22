@@ -8,8 +8,8 @@
 <div class="col-md-8">
     <div class="content-right">
         <h2>Cadastro de Produtos</h2>
-        <hr />
-        @using (Html.BeginForm("Cadastrar", "JogoAdmin", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "validateManually" }))
+        <hr/>
+        @using (Html.BeginForm("Cadastrar", "JogoAdmin", null, FormMethod.Post, new {enctype = "multipart/form-data", id = "validateManually"}))
         {
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
@@ -19,67 +19,67 @@
                     <div class="panel-heading">Dados Principais</div>
                     <div style="padding: 20px;">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Nome, "Nome: ", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Nome, "Nome: ", new {@class = "control-label col-md-2"})
                             <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.Nome, new {@class = "form-control"})
                                 @Html.ValidationMessageFor(model => model.Nome)
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Multiplayer, "Multiplayer: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Multiplayer, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Multiplayer)
+                        <div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Multiplayer, "Multiplayer: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Multiplayer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Multiplayer)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Jogadores, "Jogadores: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.Jogadores, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Jogadores)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Jogadores, "Jogadores: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Jogadores, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Jogadores)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Classificacao, "Classificação: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.Classificacao, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Classificacao)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Classificacao, "Classificação: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Classificacao, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Classificacao)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IdPlataforma, "Plataforma", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("IdPlataforma", null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.IdPlataforma)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdPlataforma, "Plataforma: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdPlataforma", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IdPlataforma)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IdGenero, "Genero: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("IdGenero", null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.IdGenero)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdGenero, "Genero: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdGenero", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IdGenero)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IdConsole, "Console: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("IdConsole", null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.IdConsole)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdConsole, "Console: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdConsole", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IdConsole)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IdFabricante, "Fabricante: ", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("IdFabricante", null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.IdFabricante)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdFabricante, "Fabricante: ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdFabricante", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IdFabricante)
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,16 +99,18 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Cadastrar" class="btn btn-default" style="float: right" />
+                    <input type="submit" value="Cadastrar" class="btn btn-default" style="float: right"/>
                 </div>
             </div>
         }
     </div>
+</div>
+
     <div style="clear:both"></div>
     <div>
         @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-default" })
     </div>
-    </div>
+
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }

@@ -9,6 +9,7 @@
 <div class="col-md-8">
     <div class="content-right">
         <h2>Gerenciamento do Estoque</h2>
+        <br/>
         <table class="table table-hover table-responsive">
             <tr>
                 <th>
@@ -29,10 +30,10 @@
                         @Html.DisplayFor(modelItem => item.Quantidade)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", null, $"Editar/{item.Id}", new { @class = "btn btn-default btn-sm" })
+                        @Html.ActionLink("Editar", null, $"Admin/Estoque/Editar/{item.Id}", new {@class = "btn btn-default btn-sm"})
                     </td>
                 </tr>
             }
         </table>
     </div>
-    </div>
+</div>

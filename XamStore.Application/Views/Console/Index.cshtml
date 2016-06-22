@@ -8,12 +8,12 @@
     <div class="content-right">
         <h2>Cadastro de Console</h2>
         <p>
-            @Html.ActionLink("Nova Console", "Cadastrar", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Novo Console", "Cadastrar", null, new {@class = "btn btn-default"})
         </p>
-        <table class="table">
+        <table class="table table-hover table-responsive">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.Nome): 
                 </th>
                 <th></th>
             </tr>
@@ -24,11 +24,11 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                        @Html.ActionLink("Deletar", "Deletar", "Admin/Console", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Editar", "Editar", new {id = item.Id}, new {@class = "btn btn-default btn-sm"})
+                        @Html.ActionLink("Deletar", "Deletar", "Admin/Console", new {id = item.Id}, new {@class = "btn btn-danger btn-sm"})
                     </td>
                 </tr>
             }
         </table>
     </div>
-    </div>
+</div>

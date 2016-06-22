@@ -5,46 +5,48 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
-<div class="content-right">
-    <h2>Cadastro de usuário</h2>
+<div class="col-md-8">
+    <div class="content-right">
+        <h2>Cadastro de usuário</h2>
 
-    <p> @Html.ActionLink("Novo usuário", "Cadastrar", null, new { @class = "btn btn-default" }) </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioNivel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Login)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <p> @Html.ActionLink("Novo usuário", "Cadastrar", null, new {@class = "btn btn-default"}) </p>
+        <table class="table table-hover table-responsive">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UsuarioNivel.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Login)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                    @{
-                        if (item.UsuarioNivel.Id != 1)
-                        {
-                            @Html.ActionLink("Deletar", "Deletar", "Admin/Usuario", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                        }
-                    }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioNivel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Login)
+                </th>
+                <th></th>
             </tr>
-          }
-    </table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioNivel.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new {id = item.Id}, new {@class = "btn btn-default btn-sm"})
+                        @{
+                            if (item.UsuarioNivel.Id != 1)
+                            {
+                                @Html.ActionLink("Deletar", "Deletar", "Admin/Usuario", new {id = item.Id}, new {@class = "btn btn-danger btn-sm"})
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 </div>

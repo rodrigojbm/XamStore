@@ -4,32 +4,35 @@
 }
 
 @Html.Partial("MenuAdmin");
-<div class="content-right">
+<div class="col-md-8">
     <div class="content-right">
-        <h2>Relatórios</h2>
-        <table class="table">
-            <tr>
-                <th>
-                    Nome
-                </th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>
-                    Relatório de vendas
-                </td>
-                <td>
-                    @Html.ActionLink("Visualizar", "Venda", new { @class = "btn btn-primary btn-sm" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Relatório de clientes
-                </td>
-                <td>
-                    @Html.ActionLink("Visualizar", "Cliente", new { @class = "btn btn-default btn-sm" })
-                </td>
-            </tr>
-        </table>
+        <div class="content-right">
+            <h2>Relatórios</h2>
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        Relatório de Vendas
+                    </td>
+                    <td>
+                        @Html.ActionLink("Visualizar", "Venda", null, new {@class = "btn btn-primary btn-sm"})
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Relatório de Clientes
+                    </td>
+                    <td>
+                        @Html.ActionLink("Visualizar", "Cliente", null, new {@class = "btn btn-default btn-sm"})
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
+

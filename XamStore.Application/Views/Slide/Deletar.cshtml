@@ -4,11 +4,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
-
 <div class="col-md-8">
     <div class="content-right">
         <h2>Cadastro de Slide</h2>
-        <hr />
+        <hr/>
         <h4>Deseja deletar este Slide?</h4>
         <div>
             <dl class="dl-horizontal">
@@ -24,11 +23,11 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(x => x.Id)
                 <div class="form-actions no-color">
-                    <input type="submit" value="Deletar" class="btn btn-default" style="float:right" />
+                    <input type="submit" value="Deletar" class="btn btn-default" style="float: right"/>
 
                 </div>
-                <br /><br />
-                @Html.ActionLink("Voltar para lista", "Index", null, new { @class = "btn btn-default" })
+                <br/><br/>
+                @Html.ActionLink("Voltar para Lista", "Index", null, new {@class = "btn btn-default"})
             }
         </div>
     </div>

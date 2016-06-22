@@ -3,7 +3,7 @@
 <div class="top_bg">
     <div class="wrap">
         <div class="main_top">
-            <h2 class="style"></h2>
+            <h2 class="style"> @produto.Nome </h2>
         </div>
     </div>
 </div>
@@ -53,13 +53,16 @@
                                     </div>
                                     <script src="../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
                                     <link rel="stylesheet" type="text/css" href="../../Content/productviewgallery.css" media="all" />
-                                    <script type="text/javascript" src="../../Scripts/cloud-zoom.1.0.3.min.js"></script>
+                                    <script type="text/javascript" src="/Scripts/cloud-zoom.1.0.3.min.js"></script>
+                                    <script type="text/javascript" src="/Scripts/jquery.elevatezoom.js"></script>
+                                    <script type="text/javascript" src="/Scripts/jquery.elevateZoom-3.0.8.min.js"></script>
+                                    <script type="text/javascript" src="/Scripts/ImageZoom.js"></script>
                                     <script type="text/javascript" src="../../Scripts/jquery.fancybox.pack.js"></script>
                                     <script type="text/javascript" src="../../Scripts/productviewgallery.js"></script>
                                     <script type="text/javascript" src="../../Scripts/carrinho.js"></script>
                                     <div class="product-image">
                                         <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="~/Imagens/Produto/@produto.ProdutoImagens.FirstOrDefault()" title="Women Shorts" alt="Women Shorts">
-                                            <img src="~/Imagens/Produto/@produto.ProdutoImagens.FirstOrDefault()" />
+                                            <img id="zoom_01" src="~/Imagens/Produto/@produto.ProdutoImagens.FirstOrDefault()" data-zoom-image="~/Imagens/Produto/@produto.ProdutoImagens.FirstOrDefault()" />
                                         </a>
                                     </div>
 
@@ -118,7 +121,7 @@
                                         produtoCarrinho = carrinho.ProdutosCarrinho.FirstOrDefault(x => x.Produto.Id == produto.Id);
                                     }
                                 }
-                                @(produtoCarrinho == null ? Ajax.ActionLink("Adicionar ao carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}) : Ajax.ActionLink("Remover do carrinho", "Remove", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}))
+                                @(produtoCarrinho == null ? Ajax.ActionLink("Adicionar ao carrinho", "Add", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class="btn btn-default"}) : Ajax.ActionLink("Remover do carrinho", "Remove", "Carrinho", new {id = produto.Id}, new AjaxOptions {HttpMethod = "Post", OnSuccess = "addSuccess"}, new {@class="btn btn-default"}))
 
                             </div>
                         </div>
@@ -130,31 +133,63 @@
                         <section class="tabs" style="min-height:2000px;height:auto">
                             <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
                             <label for="tab-1" class="tab-label-1">Descrição</label>
-                            <!-- <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
-                             <label for="tab-2" class="tab-label-2">Técnica</label>
-
-                             <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3">
-                             <label for="tab-3" class="tab-label-3">semiconductor</label>-->
                             <div class="clear-shadow"></div>
                             <div class="content">
                                 <div class="content-1" style="margin-left:15px;height:auto;position:inherit">
-                                    <p class="para top" style="font-size:20px;color:#ccc;"><span>Especificações técnicas</span></p>
+                                    <p class="para top" style="font-size:20px;color:gray;"><span>Especificações técnicas</span></p>
 
-                                    <table width="100%" border="0" style="border-bottom:1px solid #f4f4f4;">
+                                    <table class="table table-bordered table-hover table-striped" width="100%" border="0" style="border-bottom:1px solid #f4f4f4;">
+                                        <tbody>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Nome</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Nome</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Decrição</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Descricao</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Categoria</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Categoria.Nome</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Garantia</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Garantia</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Peso</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Peso g</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/><br/><br/>
+
+                                    <p class="para top" style="font-size:20px;color:gray;"><span>Sobre</span></p>
+                                    <table class="table table-bordered table-hover table-striped" width="100%" border="0" style="border-bottom:1px solid #f4f4f4;">
                                         <tbody>
                                             <tr>
-                                                <td style="background:#f4f4f4;padding:20px;border-right:1px solid #ccc;">Peso</td>
-                                                <td style="background:#f4f4f4;padding:20px">@produto.Peso g</td>
+                                                <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Classificação</td>
+                                                <td style="background: #f4f4f4; padding: 20px">@produto.Jogo.Classificacao Anos</td>
                                             </tr>
+                                            <tr>
+                                                <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Console</td>
+                                                <td style="background: #f4f4f4; padding: 20px">@produto.Jogo.Console.Nome</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Fabricante</td>
+                                                <td style="background: #f4f4f4; padding: 20px">@produto.Jogo.Fabricante.Nome</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Gênero</td>
+                                                <td style="background: #f4f4f4; padding: 20px">@produto.Jogo.Genero.Nome</td>
+                                            </tr>
+                                        <tr>
+                                            <td style="background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">Jogadores</td>
+                                            <td style="background: #f4f4f4; padding: 20px">@produto.Jogo.Jogadores</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                     <br /><br /><br />
-
-                                    <br /><br /><br />
-                                    <p class="para top" style="font-size:20px;color:#ccc;"><span>Câmeras</span></p>
-
-                                    <br /><br /><br />
-                                    <p class="para top" style="font-size:20px;color:#ccc;"><span>Acessórios</span></p>
                                 </div>
                             </div>
                         </section>

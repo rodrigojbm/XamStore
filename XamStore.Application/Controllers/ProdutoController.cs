@@ -61,14 +61,12 @@ namespace XamStore.Application.Controllers
             ViewBag.Genero = _db.Genero;
             ViewBag.Plataforma = _db.Plataforma;
             ViewBag.Console = _db.Console;
-            ViewBag.Jogos = _db.Jogo;
             ViewBag.Categoria = _db.Categoria;
 
             var countFabricanteDictionary = new Dictionary<Fabricante, int>();
             var countGeneroDictionary = new Dictionary<Genero, int>();
             var countPlataformaDictionary = new Dictionary<Plataforma, int>();
             var countConsoleDictionary = new Dictionary<Domain.Entities.Cadastro.Console, int>();
-            var countJogoDictionary = new Dictionary<Jogo, int>();
             var countCategoriaDictionary = new Dictionary<Categoria, int>();
 
             foreach (var fab in _db.Fabricante.ToList())
@@ -99,13 +97,6 @@ namespace XamStore.Application.Controllers
                     countConsoleDictionary.Add(console, count);
             }
 
-            foreach (var jogo in _db.Jogo.ToList())
-            {
-                var count = _db.Produto.Count(x => x.Jogo.Id == jogo.Id);
-                if (count > 0)
-                    countJogoDictionary.Add(jogo, count);
-            }
-
             foreach (var categoria in _db.Categoria.ToList())
             {
                 var count = _db.Produto.Count(x => x.Categoria.Id == categoria.Id);
@@ -117,7 +108,6 @@ namespace XamStore.Application.Controllers
             ViewBag.CountGeneros = countGeneroDictionary;
             ViewBag.CountPlataformas = countPlataformaDictionary;
             ViewBag.CountConsoles = countConsoleDictionary;
-            ViewBag.CountJogos = countJogoDictionary;
             ViewBag.CountCategorias = countCategoriaDictionary;
 
             return View("Produto");

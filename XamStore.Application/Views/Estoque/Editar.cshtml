@@ -4,45 +4,44 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @Html.Partial("MenuAdmin");
-
 <div class="col-md-8">
     <div class="content-right">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
-                <h2>Gerenciamento do estoque</h2>
-                <hr />
+                <h2>Gerenciamento do Estoque</h2>
+                <hr/>
                 @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.Id)
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Quantidade, htmlAttributes: new {@class = "control-label col-md-2"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Quantidade, new {@class = "form-control"})
                         @Html.ValidationMessageFor(model => model.Quantidade)
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.IdProduto, "Produto", new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.IdProduto, "Produto", new {@class = "control-label col-md-2"})
                     <div class="col-md-10">
-                        @Html.DropDownList("IdProduto", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
+                        @Html.DropDownList("IdProduto", null, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.IdProduto, "", new {@class = "text-danger"})
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Editar" class="btn btn-default" />
+                        <input type="submit" value="Editar" class="btn btn-default"/>
                     </div>
                 </div>
             </div>
         }
         <div>
-            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Voltar", "Index", null, new {@class = "btn btn-default"})
         </div>
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
         }
     </div>
-    </div>
+</div>
