@@ -467,7 +467,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Imagens\Produto\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Jogo\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamStore.Domain\XamStore.Domain.csproj">
