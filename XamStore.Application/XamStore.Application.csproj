@@ -306,8 +306,6 @@
     <Content Include="Imagens\32-twitter.png" />
     <Content Include="Imagens\ProdutoCategoria\tetris.jpg" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="Scripts\ai.0.22.9-build00167.js" />
-    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -328,14 +326,6 @@
     <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\facebook.js" />
     <Content Include="Scripts\globalize.culture.pt-BR.js" />
-    <Content Include="Scripts\globalize.js" />
-    <Content Include="Scripts\globalize\currency.js" />
-    <Content Include="Scripts\globalize\date.js" />
-    <Content Include="Scripts\globalize\message.js" />
-    <Content Include="Scripts\globalize\number.js" />
-    <Content Include="Scripts\globalize\plural.js" />
-    <Content Include="Scripts\globalize\relative-time.js" />
-    <Content Include="Scripts\globalize\unit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
